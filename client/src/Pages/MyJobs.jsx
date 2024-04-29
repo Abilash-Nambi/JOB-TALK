@@ -1,8 +1,17 @@
 import React from "react";
 import InputField from "../components/InputField";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const MyJobs = () => {
+  const [jobs, setJobs] = useState([]);
+
+  useEffect(() => {
+    fetch("jobs.json")
+      .then((res) => res.json())
+      .then((data) => setJobs(data));
+  }, []);
   return (
     <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4  ">
       <h1 className="text-center p-4"> All My Jobs</h1>
@@ -68,87 +77,49 @@ const MyJobs = () => {
                 </thead>
 
                 <tbody>
-                  <tr>
-                    <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
-                      /argon/
-                    </th>
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
-                      4,569
-                    </td>
-                    <td class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      340
-                    </td>
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      <i class="fas fa-arrow-up text-emerald-500 mr-4"></i>
-                      46,53%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
-                      /argon/index.html
-                    </th>
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      3,985
-                    </td>
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      319
-                    </td>
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      <i class="fas fa-arrow-down text-orange-500 mr-4"></i>
-                      46,53%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
-                      /argon/charts.html
-                    </th>
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      3,513
-                    </td>
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      294
-                    </td>
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      <i class="fas fa-arrow-down text-orange-500 mr-4"></i>
-                      36,49%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
-                      /argon/tables.html
-                    </th>
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      2,050
-                    </td>
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      147
-                    </td>
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      <i class="fas fa-arrow-up text-emerald-500 mr-4"></i>
-                      50,87%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
-                      /argon/profile.html
-                    </th>
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      1,795
-                    </td>
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      190
-                    </td>
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      <i class="fas fa-arrow-down text-red-500 mr-4"></i>
-                      46,53%
-                    </td>
-                  </tr>
+                  {jobs.map((data, i) => (
+                    <tr key={i}>
+                      <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
+                        {i + 1}
+                      </th>
+                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
+                        {data.jobTitle}
+                      </td>
+                      <td class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        {data.companyName}
+                      </td>
+                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <i class="fas fa-arrow-up text-emerald-500 mr-4"></i>$
+                        {data.minPrice}-${data.maxPrice}
+                      </td>
+                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <Link to="/post-job">
+                          <button
+                            class="bg-yellow-200 text-black active:bg-yellow-400 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                            type="button"
+                          >
+                            EDIT
+                          </button>
+                        </Link>
+                      </td>
+                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <Link to="/post-job">
+                          <button
+                            class="bg-red-600 text-white active:bg-red-800 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                            type="button"
+                          >
+                            DELETE
+                          </button>
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
           </div>
         </div>
-        <footer class="relative pt-8 pb-6 mt-16">
+        {/* <footer class="relative pt-8 pb-6 mt-16">
           <div class="container mx-auto px-4">
             <div class="flex flex-wrap items-center md:justify-between justify-center">
               <div class="w-full md:w-6/12 px-4 mx-auto text-center">
@@ -175,7 +146,7 @@ const MyJobs = () => {
               </div>
             </div>
           </div>
-        </footer>
+        </footer> */}
       </section>
     </div>
   );
