@@ -1,13 +1,9 @@
 import React from "react";
 
-const Button = ({ onClick, value, title }) => {
+const Button = ({ onClick, value, title, className }) => {
   return (
     <div>
-      <button
-        onClick={onClick}
-        value={value}
-        className="px-4 border text-base hover:bg-blue hover:text-white"
-      >
+      <button onClick={onClick} value={value} className={className}>
         {title}
       </button>
     </div>

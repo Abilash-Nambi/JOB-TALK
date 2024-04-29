@@ -54,7 +54,7 @@ const Header = () => {
         {/* signin and signup */}
 
         <div className="hidden text-base text-primary font-medium space-x-5 lg:block">
-          <Link className="py-2 px-5 border rounded" to="/login">
+          <Link className="py-2 px-5 border rounded" to="/log-in">
             Log in
           </Link>
           <Link
@@ -93,13 +93,12 @@ const Header = () => {
             </li>
           ))}
           <li>
-            {" "}
-            <Link className="text-white" to="/login">
+            <Link to="/log-in" className="text-white">
               Log in
             </Link>
           </li>
           <li>
-            <Link className="text-white" to="/sign-up">
+            <Link to="/sign-up" className="text-white">
               Sign up
             </Link>
           </li>

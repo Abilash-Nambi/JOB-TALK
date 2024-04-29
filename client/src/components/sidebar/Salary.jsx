@@ -7,9 +7,24 @@ const Salary = ({ handleRadioChange, handleClick }) => {
     <div>
       <h4 className="text-lg font-medium mb-2">Salary</h4>
       <div className="flex flex-wrap mb-2">
-        <Button onClick={handleClick} value=" " title="Hourly" />
-        <Button onClick={handleClick} value="Monthly" title="Monthly" />
-        <Button onClick={handleClick} value="Yearly" title="Yearly" />
+        <Button
+          onClick={handleClick}
+          value=" "
+          title="Hourly"
+          className="px-4 border text-base hover:bg-blue hover:text-white"
+        />
+        <Button
+          onClick={handleClick}
+          value="Monthly"
+          title="Monthly"
+          className="px-4 border text-base hover:bg-blue hover:text-white"
+        />
+        <Button
+          onClick={handleClick}
+          value="Yearly"
+          title="Yearly"
+          className="px-4 border text-base hover:bg-blue hover:text-white"
+        />
       </div>
 
       <div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { IoIosSearch } from "react-icons/io";
 import { CiLocationOn } from "react-icons/ci";
+import Button from "./Button";
 const Banner = ({ query, handleInputChange }) => {
   return (
     <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4 md:py-20 py-14">
@@ -33,9 +34,11 @@ const Banner = ({ query, handleInputChange }) => {
             />
             <CiLocationOn className="absolute mt-2.5 ml-2 text-grey-400" />
           </div>
-          <button className="text-white bg-blue px-8 rounded py-2 rounded-s-sm md:rounded-none">
-            Search
-          </button>
+
+          <Button
+            title="Sign Up"
+            className="text-white bg-blue px-8 rounded py-2 rounded-s-sm md:rounded-none"
+          />
         </div>
       </form>
     </div>
