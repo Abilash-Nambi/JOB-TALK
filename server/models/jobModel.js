@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const jobSchema = new mongoose.Schema(
   {
-    OwnerEmail: {
+    ownerEmail: {
       type: String,
       required: [true, "email is required"],
       index: true,
@@ -47,6 +47,7 @@ const jobSchema = new mongoose.Schema(
     },
     description: {
       type: String,
+      minlength: 200,
     },
   },
   { timestamps: true }

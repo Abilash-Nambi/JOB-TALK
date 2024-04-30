@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get("/", getAllJobs);
 router.post("/addjob", addJob);
-router.post("/deletejob/:id", removeJob);
-router.post("/updatejob/:id", updateJob);
+router.delete("/deletejob/:id", removeJob);
+router.put("/updatejob/:id", updateJob);
 
 module.exports = router;

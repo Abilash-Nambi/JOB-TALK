@@ -12,6 +12,7 @@ const getAllJobs = async (req, res) => {
 const addJob = async (req, res) => {
   try {
     const { data } = req.body;
+    console.log("🚀 + addJob + data:", data);
 
     // Check if data exists in the request body
     if (!data) {
@@ -22,7 +23,7 @@ const addJob = async (req, res) => {
     const newJob = await jobModel.create(data);
 
     // Respond with success message and created job data
-    res.status(201).json({ message: "Job added successfully", data: newJob });
+    res.status(200).json({ message: "Job added successfully", data: newJob });
   } catch (error) {
     // Handle errors
     res

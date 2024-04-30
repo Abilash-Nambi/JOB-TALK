@@ -6,24 +6,33 @@ import Card from "../components/Card";
 import Jobs from "./Jobs";
 import Sidebar from "../components/sidebar/Sidebar";
 import NewsLetter from "../components/NewsLetter";
+import axios from "axios";
 
 const Home = () => {
   const [query, setQuerry] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(" ");
   const [jobs, setJobs] = useState([]);
+  console.log("🚀 + Home + jobs:", jobs);
 
   useEffect(() => {
-    fetch("jobs.json")
-      .then((res) => res.json())
-      .then((data) => setJobs(data));
+    fetchData();
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/job`);
+      setJobs(res.data.data);
+    } catch (error) {
+      console.log("🚀 + fetchData + error:", error);
+    }
+  };
 
   const handleInputChange = (e) => {
     setQuerry((prev) => e.target.value);
   };
 
   // filtered jobs
-  const filteredJobs = jobs.filter((data) =>
+  const filteredJobs = jobs?.filter((data) =>
     data?.jobTitle.toLowerCase().includes(query.toLowerCase())
   );
   //Radio filtering
@@ -66,7 +75,7 @@ const Home = () => {
       );
     }
 
-    return filteredData.map((data, i) => <Card key={i} data={data} />);
+    return filteredData?.map((data, i) => <Card key={i} data={data} />);
   };
 
   const result = filteredItems(jobs, selectedCategory, query);

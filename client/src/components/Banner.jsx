@@ -2,7 +2,16 @@ import React from "react";
 import { IoIosSearch } from "react-icons/io";
 import { CiLocationOn } from "react-icons/ci";
 import Button from "./Button";
+import useToast from "../hooks/useToast";
+
 const Banner = ({ query, handleInputChange }) => {
+  const { successToast, errorToast, warningToast } = useToast();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    warningToast("done");
+  };
+
   return (
     <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4 md:py-20 py-14">
       <h1 className="text-5xl font-bold text-primary mb-3">
@@ -38,6 +47,7 @@ const Banner = ({ query, handleInputChange }) => {
           <Button
             title="Sign Up"
             className="text-white bg-blue px-8 rounded py-2 rounded-s-sm md:rounded-none"
+            onClick={(e) => handleSubmit(e)}
           />
         </div>
       </form>
