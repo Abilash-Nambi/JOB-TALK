@@ -1,27 +1,55 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-  userName: {
-    type: String,
-    lowercase: true,
-    required: [true, "username is required"],
-    match: [/^[a-zA-Z0-9]+$/, "is invalid"],
-    index: true,
-    trim: true,
+const jobSchema = new mongoose.Schema(
+  {
+    OwnerEmail: {
+      type: String,
+      required: [true, "email is required"],
+      index: true,
+      trim: true,
+    },
+    companyName: {
+      type: String,
+      required: [true, "company name is required"],
+      index: true,
+    },
+    jobTitle: {
+      type: String,
+      required: [true, "job title is required"],
+      index: true,
+    },
+    companyLogo: {
+      type: String,
+      trim: true,
+    },
+    minPrice: {
+      type: Number,
+    },
+    maxPrice: {
+      type: Number,
+    },
+    salaryType: {
+      type: String,
+      trim: true,
+    },
+    jobLocation: {
+      type: String,
+      trim: true,
+    },
+    postingDate: {
+      type: String,
+    },
+    experienceLevel: {
+      type: String,
+    },
+    employmentType: {
+      type: String,
+    },
+    description: {
+      type: String,
+    },
   },
-  email: {
-    type: String,
-    lowercase: true,
-    required: [true, "email is required"],
-    match: [/\S+@\S+\.\S+/, "is invalid"],
-    index: true,
-    trim: true,
-  },
-  password: {
-    type: String,
-    trim: true,
-    required: [true, "password is required"],
-  },
-});
+  { timestamps: true }
+);
 
-mongoose.model("User", userSchema);
+module.exports = mongoose.model("Job", jobSchema);
