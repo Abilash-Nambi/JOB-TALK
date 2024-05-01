@@ -8,6 +8,8 @@ import { LogIn } from "../Pages/LogIn";
 import SignUp from "../Pages/SignUp";
 import HomeLayout from "../Layouts/HomeLayout";
 import AuthLayout from "../Layouts/AuthLayout";
+import RecruiterSignUp from "../Pages/RecruiterSignUp";
+import PricingPage from "../Pages/PricingPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <SignUp />,
+      },
+      {
+        path: "/recruiter/sign-up",
+        element: <RecruiterSignUp />,
+      },
+      {
+        path: "/recruiter/pricing-page",
+        element: <PricingPage />,
       },
     ],
   },

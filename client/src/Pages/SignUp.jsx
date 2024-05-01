@@ -2,6 +2,7 @@ import React from "react";
 import signUp from "../assets/images/signUpImg.png";
 import logo from "../../public/images/logo.jpg";
 import Button from "../components/Button";
+import { Link } from "react-router-dom";
 const SignUp = () => {
   return (
     <div className="container mx-auto px-4 md:px-24 h-screen justify-center items-center flex flex-col">
@@ -15,7 +16,6 @@ const SignUp = () => {
             <img src={logo} alt="" className="h-22 w-20" />
           </div>
           <input
-            type="email"
             placeholder="email@gmail.com"
             className="border block px-3 py-2"
           />
@@ -29,6 +29,14 @@ const SignUp = () => {
             placeholder="confirm password"
             className="border block px-3 py-2"
           />
+
+          <p>
+            Are you a recruiter looking for list your job?{" "}
+            <Link to="/recruiter/sign-up">
+              <span className="text-blue font-semibold mt-0"> Click me </span>
+            </Link>
+          </p>
+
           <Button
             title="Sign Up"
             className="py-2 px-5 border rounded bg-blue text-white"
