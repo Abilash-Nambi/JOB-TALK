@@ -1,15 +1,15 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, RouterProvider } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header";
+
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import router from "./Router/Router";
 
 function App() {
   return (
     <>
       <ToastContainer />
-      <Header />
-      <Outlet />
+      <RouterProvider router={router} />
     </>
   );
 }

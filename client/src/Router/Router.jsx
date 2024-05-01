@@ -6,10 +6,12 @@ import MyJobs from "../Pages/MyJobs";
 import SalaryPage from "../Pages/SalaryPage";
 import { LogIn } from "../Pages/LogIn";
 import SignUp from "../Pages/SignUp";
+import HomeLayout from "../Layouts/HomeLayout";
+import AuthLayout from "../Layouts/AuthLayout";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <HomeLayout />,
     children: [
       {
         path: "/",
@@ -30,12 +32,18 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/log-in",
-    element: <LogIn />,
-  },
-  {
-    path: "/sign-up",
-    element: <SignUp />,
+    path: "/",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "/sign-in",
+        element: <LogIn />,
+      },
+      {
+        path: "/sign-up",
+        element: <SignUp />,
+      },
+    ],
   },
 ]);
 
