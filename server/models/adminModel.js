@@ -9,6 +9,12 @@ const adminSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  recruiters: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Recruiter",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Admin", adminSchema);

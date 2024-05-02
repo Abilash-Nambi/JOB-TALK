@@ -7,11 +7,13 @@ require("dotenv").config();
 const connectDb = require("./config/db");
 connectDb();
 const PORT = 7000;
-const jobRoute = require("./routes/job");
+const recruiterRoute = require("./routes/recruiter");
 const userRoute = require("./routes/user");
+const jobRoute = require("./routes/job");
 
-app.use("/api/job", jobRoute);
+app.use("/api/recruiter", recruiterRoute);
 app.use("/api/user", userRoute);
+app.use("/api/job", jobRoute);
 
 app.all("*", (req, res) => {
   res.status(404).json("This page does not exist");
