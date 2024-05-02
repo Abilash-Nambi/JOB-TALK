@@ -4,9 +4,11 @@ import { Link, NavLink } from "react-router-dom";
 import { FaAlignRight } from "react-icons/fa6";
 import { useState } from "react";
 import { FaXmark } from "react-icons/fa6";
+import DropDown from "./DropDown";
 
 const Header = () => {
   const [isTrue, setIsTrue] = useState(false);
+  const [onHover, setOnHover] = useState(false);
   const handleChange = () => {
     setIsTrue(!isTrue);
   };
@@ -29,6 +31,21 @@ const Header = () => {
       title: "Post A Job",
     },
   ];
+  const dropDownMenu = [
+    {
+      path: "/sign-in",
+      title: "Employer login",
+    },
+    {
+      path: "/recruiter/sign-up",
+      title: "Employer Register",
+    },
+    {
+      path: "/recruiter/pricing-page",
+      title: "Pricing Page",
+    },
+  ];
+
   return (
     <header className="max-w-screen-2xl mx-auto xl:px-24 px-4">
       <nav className="flex justify-between py-4 items-center">
@@ -63,6 +80,13 @@ const Header = () => {
           >
             Sign up
           </Link>
+          {/* <Link
+            className="py-2 px-5 border rounded  text-primary"
+            to="/recruiter/sign-in"
+          >
+            For Employer
+          </Link> */}
+          <DropDown title="For Employer" dropDownMenu={dropDownMenu} />
         </div>
 
         {/* Mobile toggle */}
@@ -83,6 +107,16 @@ const Header = () => {
       >
         <ul>
           {navItems.map((data, i) => (
+            <li key={i} className="text-base text-white ">
+              <NavLink
+                to={`${data.path}`}
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                {data.title}
+              </NavLink>
+            </li>
+          ))}
+          {dropDownMenu.map((data, i) => (
             <li key={i} className="text-base text-white ">
               <NavLink
                 to={`${data.path}`}

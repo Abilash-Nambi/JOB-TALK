@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 import image from "../assets/images/recruiterSIgnup.jpeg";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 const RecruiterSignUp = () => {
   const {
     register,
@@ -16,15 +17,17 @@ const RecruiterSignUp = () => {
   const onSubmit = (data) => console.log(data);
   return (
     <div className="container mx-auto px-4 md:px-24 h-screen justify-center items-center flex flex-col">
-      <h1 className="text-2xl font-semibold">Recruiter Sign up</h1>
+      <h1 className="text-2xl font-semibold">Employer Sign up</h1>
       <div className="grid md:grid-cols-2 shadow-2xl px-5 py-5 ">
         <div className="hidden md:block ">
-          <img src={image} alt="" className="w-[23em] h-[20em]" />
+          <img src={image} alt="" className="w-[25em] h-[20em]" />
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="text-center justify-center items-center flex flex-col gap-3 relative">
             <div>
-              <img src={logo} alt="" className="h-22 w-20" />
+              <Link to="/">
+                <img src={logo} alt="" className="h-22 w-20" />
+              </Link>
             </div>
             {errors.email && (
               <span className="text-red-500 text-xs absolute top-[7em] right-[6em]">
@@ -33,8 +36,8 @@ const RecruiterSignUp = () => {
             )}
             <input
               placeholder="email@gmail.com"
-              className={`border block px-3 py-2 ${
-                errors.password ? "border-red-500" : ""
+              className={`border block px-3 py-2 placeholder:text-xs${
+                errors.password ? "border-red-500 placeholder:text-xs" : ""
               }`}
               type="email"
               {...register("email", {
@@ -64,10 +67,11 @@ const RecruiterSignUp = () => {
                     "Password must contain at least one uppercase letter, one numeric digit, and one special character",
                 },
               })}
-              className={`border block px-3 py-2 ${
-                errors.password ? "border-red-500" : ""
+              className={`border block px-3 py-2 placeholder:text-xs${
+                errors.password ? "border-red-500 placeholder:text-xs" : ""
               }`}
               type="password"
+              placeholder="Admin@123"
             />
 
             {errors.confirmPassword && (
@@ -82,15 +86,19 @@ const RecruiterSignUp = () => {
                 validate: (value) =>
                   value === password || "The passwords do not match",
               })}
-              className={`border block px-3 py-2 ${
-                errors.confirmPassword ? "border-red-500" : ""
+              className={`border block px-3 py-2 placeholder:text-xs ${
+                errors.confirmPassword
+                  ? "border-red-500 placeholder:text-xs"
+                  : ""
               }`}
               type="password"
+              placeholder="Admin@123"
             />
 
             <input
               type="submit"
-              className="py-2 px-5 border rounded bg-blue text-white"
+              className="py-1 px-4 border rounded bg-blue text-white text-sm"
+              value="Sign up"
             />
           </div>
         </form>
