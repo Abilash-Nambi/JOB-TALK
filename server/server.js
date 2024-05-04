@@ -1,15 +1,23 @@
 const express = require("express");
 const cors = require("cors");
-const app = express();
-app.use(cors());
-app.use(express.json());
-require("dotenv").config();
+const cookieParser = require("cookie-parser");
+const dotenv = require("dotenv");
 const connectDb = require("./config/db");
-connectDb();
-const PORT = 7000;
 const recruiterRoute = require("./routes/recruiter");
 const userRoute = require("./routes/user");
 const jobRoute = require("./routes/job");
+
+dotenv.config();
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use(cookieParser());
+
+connectDb();
+
+const PORT = 7000;
 
 app.use("/api/recruiter", recruiterRoute);
 app.use("/api/user", userRoute);
@@ -20,5 +28,5 @@ app.all("*", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  return console.log(`your port is running on ${PORT}`);
+  console.log(`Your port is running on ${PORT}`);
 });
