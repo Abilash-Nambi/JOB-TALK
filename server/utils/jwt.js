@@ -9,10 +9,9 @@ const generateToken = (userId) => {
   );
 
   const options = {
-    expires : new Date (
-      Date.now()+ 
-    )
-  }
+    expires: new Date(Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 1000), //expires in 7 days
+    httpOnly: true,
+  };
 };
 
 module.exports = { generateToken };
