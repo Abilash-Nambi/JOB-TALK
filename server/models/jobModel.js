@@ -2,16 +2,11 @@ const mongoose = require("mongoose");
 
 const jobSchema = new mongoose.Schema(
   {
-    ownerEmail: {
-      type: String,
-      required: [true, "email is required"],
-      index: true,
-      trim: true,
-    },
     companyName: {
       type: String,
-      required: [true, "company name is required"],
-      index: true,
+      required: [true, "Please provide a Company name."],
+      minLength: [3, "Title must contain at least 3 Characters!"],
+      maxLength: [30, "Title cannot exceed 30 Characters!"],
     },
     jobTitle: {
       type: String,
@@ -36,8 +31,9 @@ const jobSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    postingDate: {
-      type: String,
+    jobPostedOn: {
+      type: Date,
+      default: Date.now,
     },
     experienceLevel: {
       type: String,
@@ -47,7 +43,18 @@ const jobSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      minlength: 200,
+      required: [true, "Please provide decription."],
+      minLength: [30, "Description must contain at least 30 Characters!"],
+      maxLength: [500, "Description cannot exceed 500 Characters!"],
+    },
+    postedBy: {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    expired: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }

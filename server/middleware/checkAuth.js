@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const userModel = require("../models/userModel");
 
 const checkAuth = (req, res, next) => {
   try {
@@ -9,7 +10,7 @@ const checkAuth = (req, res, next) => {
     }
 
     const tokenValid = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    req.userId = tokenValid._id;
+    req.user = userModel.findById(tokenValid._id);
     next();
   } catch (error) {
     res.status(401).json({ message: "You are Unauthorized" });
