@@ -45,13 +45,13 @@ const userSignUp = async (req, res) => {
 };
 const userSignIn = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, role } = req.body;
 
-    // if (!email || !password || !role) {
-    //   return res.status(400).json({
-    //     message: "Please provide email, password, role.",
-    //   });
-    // }
+    if (!email || !password || !role) {
+      return res.status(400).json({
+        message: "Please provide email, password, role.",
+      });
+    }
 
     // Check if user exists
     const user = await userModel.findOne({ email });
@@ -62,6 +62,10 @@ const userSignIn = async (req, res) => {
       return res
         .status(400)
         .json({ message: "User Not Found, Please check mail id" });
+    }
+
+    if (user.role !== role) {
+      return res.status(400).json({ message: "User with this role not found" });
     }
 
     // Check if password is correct
@@ -77,8 +81,8 @@ const userSignIn = async (req, res) => {
 
     const options = {
       expires: new Date(
-        Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 1000
-      ), //expires in 7 days
+        new Date().getTime() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000 //expires after 5 days
+      ),
       httpOnly: true,
     };
 
@@ -95,4 +99,19 @@ const userSignIn = async (req, res) => {
   }
 };
 
-module.exports = { userSignUp, userSignIn };
+const userSignOut = async (req, res) => {
+  try {
+    res
+      .status(201)
+      .cookie("token", " ", {
+        expires: new Date(Date.now()),
+        httpOnly: true,
+      })
+      .json({
+        success: true,
+        message: "User logged out successfully",
+      });
+  } catch (error) {}
+};
+
+module.exports = { userSignUp, userSignIn, userSignOut };
