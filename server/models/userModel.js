@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       lowercase: true,
       required: [true, "Username is required"],
-      minLength: [3, "Username must contain at leas 3 characters!"],
+      minLength: [3, "Username must contain at least 3 characters!"],
       maxLength: [30, "Username cannot exceed 30 characters!"],
       trim: true,
     },
@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       trim: true,
       required: [true, "Password is required"],
-      minLength: [8, "Password must contain at leas 3 characters!"],
+      minLength: [8, "Password must contain at least 8 characters!"],
       maxLength: [30, "Password cannot exceed 30 characters!"],
     },
     role: {
@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
-    //jobs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Job" }],
+    // jobs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Job" }],
   }
   // { timestamps: true }
 );

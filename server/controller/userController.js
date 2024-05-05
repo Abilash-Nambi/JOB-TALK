@@ -45,10 +45,17 @@ const userSignUp = async (req, res) => {
 };
 const userSignIn = async (req, res) => {
   try {
-    const { email, password } = req.body.data;
+    const { email, password } = req.body;
+
+    // if (!email || !password || !role) {
+    //   return res.status(400).json({
+    //     message: "Please provide email, password, role.",
+    //   });
+    // }
 
     // Check if user exists
     const user = await userModel.findOne({ email });
+    console.log("🚀 + userSignIn + user:", user);
 
     // If user doesn't exist, return error
     if (!user) {
@@ -62,14 +69,21 @@ const userSignIn = async (req, res) => {
 
     // If password is incorrect, return error
     if (!isValidPassword) {
-      return res.status(400).json({ message: "Incorrect password" });
+      return res.status(400).json({ message: "Invalid password or email" });
     }
 
     // Generate token for authentication
     const token = generateToken(user._id);
 
-    // Return success response with token, email, and user ID
-    return res.status(200).json({
+    const options = {
+      expires: new Date(
+        Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 1000
+      ), //expires in 7 days
+      httpOnly: true,
+    };
+
+    // Return success response with cookies token, email, and user ID
+    return res.status(200).cookie("token", token, options).json({
       message: "Login Success",
       token,
       email: user.email,
