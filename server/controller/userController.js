@@ -4,7 +4,12 @@ const { generateToken } = require("../utils/jwt");
 
 const userSignUp = async (req, res) => {
   try {
-    const { userName, email, password } = req.body.data;
+    const { userName, email, password, role } = req.body;
+    if (!userName || !email || !password || !role) {
+      return res.json({
+        message: "Please fill full registration form!",
+      });
+    }
 
     // Check if user already exists
     const existingUser = await userModel.findOne({ email });
@@ -22,6 +27,7 @@ const userSignUp = async (req, res) => {
       userName,
       email,
       password: hashedPassword,
+      role,
     });
 
     // Exclude password field from response

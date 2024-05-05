@@ -1,31 +1,42 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
 
 const userSchema = new mongoose.Schema(
   {
     userName: {
       type: String,
       lowercase: true,
-      required: [true, "username is required"],
-      match: [/^[a-zA-Z0-9]+$/, "is invalid"],
-      index: true,
+      required: [true, "Username is required"],
+      minLength: [3, "Username must contain at leas 3 characters!"],
+      maxLength: [30, "Username cannot exceed 30 characters!"],
       trim: true,
     },
     email: {
       type: String,
       lowercase: true,
-      required: [true, "email is required"],
-      match: [/\S+@\S+\.\S+/, "is invalid"],
-      index: true,
+      required: [true, "Email is required"],
+      validate: [validator.isEmail, "Please provide a valid email!"],
       trim: true,
     },
     password: {
       type: String,
       trim: true,
-      required: [true, "password is required"],
+      required: [true, "Password is required"],
+      minLength: [8, "Password must contain at leas 3 characters!"],
+      maxLength: [30, "Password cannot exceed 30 characters!"],
     },
-    jobs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Job" }],
-  },
-  { timestamps: true }
+    role: {
+      type: String,
+      required: [true, "Please provide role"],
+      enum: ["Job Seeker", "Employer"],
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+    //jobs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Job" }],
+  }
+  // { timestamps: true }
 );
 
 module.exports = mongoose.model("User", userSchema);

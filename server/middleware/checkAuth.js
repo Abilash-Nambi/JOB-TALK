@@ -5,7 +5,7 @@ const checkAuth = (req, res, next) => {
     const token = req.headers.authorization;
 
     if (!token) {
-      return res.status(401).json({ message: "Access Denied" });
+      return res.status(400).json({ message: "Access Denied" });
     }
 
     const tokenValid = jwt.verify(token, process.env.JWT_SECRET_KEY);
