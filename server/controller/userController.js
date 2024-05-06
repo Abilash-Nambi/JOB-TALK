@@ -55,7 +55,7 @@ const userSignIn = async (req, res) => {
 
     // Check if user exists
     const user = await userModel.findOne({ email });
-    console.log("🚀 + userSignIn + user:", user);
+    //console.log("🚀 + userSignIn + user:", user);
 
     // If user doesn't exist, return error
     if (!user) {

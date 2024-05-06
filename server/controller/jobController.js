@@ -8,6 +8,7 @@ const getAllJobs = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
 const postJob = async (req, res) => {
   try {
     const { role } = req.user;
@@ -51,8 +52,9 @@ const postJob = async (req, res) => {
     }
 
     const postedBy = req.user._id;
+    console.log("🚀 + postJob + postedBy:", postedBy);
 
-    const newJob = jobModel.create({
+    const newJob = await jobModel.create({
       companyName,
       jobTitle,
       companyLogo,
