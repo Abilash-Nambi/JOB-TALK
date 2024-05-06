@@ -93,7 +93,14 @@ const getMyjobs = async (req, res) => {
 
 const updateJob = async (req, res) => {
   try {
+    const { role } = req.user;
+    if (role === "Job Seeker") {
+      return res.status(400).json({
+        message: "Job Seeker not allowed to access this resource.",
+      });
+    }
     const { jobId } = req.query;
+    console.log("🚀 + updateJob + jobId:", jobId);
     if (!jobId) {
       return res.status(400).json({ message: "Job Id is required" });
     }
@@ -126,6 +133,12 @@ const updateJob = async (req, res) => {
 };
 const removeJob = async (req, res) => {
   try {
+    const { role } = req.user;
+    if (role === "Job Seeker") {
+      return res.status(400).json({
+        message: "Job Seeker not allowed to access this resource.",
+      });
+    }
     const { jobId } = req.query;
     if (!jobId) {
       return res.status(400).json({ message: "Job Id is required" });
