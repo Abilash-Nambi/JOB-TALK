@@ -28,7 +28,6 @@ const postJob = async (req, res) => {
       experienceLevel,
       employmentType,
       description,
-      expired,
     } = req.body;
 
     if (
@@ -50,6 +49,23 @@ const postJob = async (req, res) => {
         .status(400)
         .json({ message: "Please provide Salary details." });
     }
+
+    const postedBy = req.user._id;
+
+    const newJob = jobModel.create({
+      companyName,
+      jobTitle,
+      companyLogo,
+      minPrice,
+      maxPrice,
+      salaryType,
+      jobLocation,
+      experienceLevel,
+      employmentType,
+      description,
+      postedBy,
+    });
+    res.status(200).json({ message: "Job added successfully", data: newJob });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
