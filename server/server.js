@@ -3,7 +3,6 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const connectDb = require("./config/db");
-const recruiterRouter = require("./routes/recruiter");
 const userRouter = require("./routes/user");
 const jobRouter = require("./routes/job");
 const applicationRouter = require("./routes/application");
@@ -32,7 +31,6 @@ connectDb();
 
 const PORT = 7000;
 
-app.use("/api/recruiter", recruiterRouter);
 app.use("/api/user", userRouter);
 app.use("/api/job", jobRouter);
 app.use("/api/application", applicationRouter);

@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import validator from "validator";
+const mongoose = require("mongoose");
+const validator = require("validator");
 
 const applicationSchema = new mongoose.Schema({
   name: {
@@ -61,4 +61,4 @@ const applicationSchema = new mongoose.Schema({
   },
 });
 
-export const Application = mongoose.model("Application", applicationSchema);
+module.exports = mongoose.model("Application", applicationSchema);

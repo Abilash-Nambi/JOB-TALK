@@ -1,4 +1,5 @@
 const applicationModel = require("../models/applicationModel");
+const cloudinary = require("../config/cloudinary");
 
 const employerGetAllApplication = async (req, res) => {
   try {
@@ -58,8 +59,49 @@ const jobSeekerDeleteApplication = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+const postApplication = async (req, res) => {
+  console.log("Cloudinary Configuration:", cloudinary.config());
+
+  try {
+    const { role } = req.user;
+    if (role === "Employer") {
+      return res.status(400).json({
+        message: "Employer not allowed to access this resource.",
+      });
+    }
+
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).json({ message: "Resume File Required!" });
+    }
+    const { resume } = req.files;
+    console.log("🚀 + postApplication + resume:", resume.tempFilePath);
+    const allowedFormats = ["image/png", "image/jpeg", "image/webp"];
+    if (!allowedFormats.includes(resume.mimetype)) {
+      // this mime type will check that file included the allowed formas
+      return res.status(400).json({
+        message: "Invalid file type. Please upload a PNG, jpeg, webp file.",
+      });
+    }
+
+    const cloudinaryResponse = await cloudinary.uploader.upload(
+      resume.tempFilePath
+    );
+    console.log("Cloudinary Response:", cloudinaryResponse); //.secure_url:
+    // Handle the response
+
+    if (cloudinaryResponse.error || cloudinaryResponse === "undefined") {
+      return res
+        .status(500)
+        .json({ message: "Failed to upload Resume to Cloudinary" });
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
 module.exports = {
   employerGetAllApplication,
   jobSeekerGetAllApplication,
   jobSeekerDeleteApplication,
+  postApplication,
 };
