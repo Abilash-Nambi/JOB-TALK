@@ -99,9 +99,9 @@ const updateJob = async (req, res) => {
         message: "Job Seeker not allowed to access this resource.",
       });
     }
-    const { jobId } = req.query;
-    console.log("🚀 + updateJob + jobId:", jobId);
-    if (!jobId) {
+    const { id } = req.params;
+    console.log("🚀 + updateJob + jobId:", id);
+    if (!id) {
       return res.status(400).json({ message: "Job Id is required" });
     }
 
@@ -113,13 +113,13 @@ const updateJob = async (req, res) => {
     }
 
     // Check if the job exists
-    const existingJob = await jobModel.findById(jobId);
+    const existingJob = await jobModel.findById(id);
     if (!existingJob) {
       return res.status(404).json({ message: "Job not found" });
     }
 
     // Update the job
-    const updatedJob = await jobModel.findByIdAndUpdate(jobId, updatedData, {
+    const updatedJob = await jobModel.findByIdAndUpdate(id, updatedData, {
       new: true,
     });
 
@@ -139,19 +139,20 @@ const removeJob = async (req, res) => {
         message: "Job Seeker not allowed to access this resource.",
       });
     }
-    const { jobId } = req.query;
-    if (!jobId) {
+
+    const { id } = req.params;
+    if (!id) {
       return res.status(400).json({ message: "Job Id is required" });
     }
 
     // Check if the job exists
-    const existingJob = await jobModel.findById(jobId);
+    const existingJob = await jobModel.findById(id);
     if (!existingJob) {
       return res.status(404).json({ message: "Job not found" });
     }
 
     // Delete the job
-    const deletedJob = await jobModel.findByIdAndDelete(jobId);
+    const deletedJob = await jobModel.findByIdAndDelete(id);
 
     // Respond with success message and deleted data
     res

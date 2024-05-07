@@ -6,6 +6,7 @@ const connectDb = require("./config/db");
 const recruiterRouter = require("./routes/recruiter");
 const userRouter = require("./routes/user");
 const jobRouter = require("./routes/job");
+const applicationRouter = require("./routes/application");
 const fileUpload = require("express-fileupload");
 
 dotenv.config();
@@ -34,6 +35,7 @@ const PORT = 7000;
 app.use("/api/recruiter", recruiterRouter);
 app.use("/api/user", userRouter);
 app.use("/api/job", jobRouter);
+app.use("/api/application", applicationRouter);
 
 app.all("*", (req, res) => {
   res.status(404).json("This page does not exist");
