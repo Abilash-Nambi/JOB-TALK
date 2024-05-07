@@ -1,5 +1,6 @@
 const applicationModel = require("../models/applicationModel");
 const cloudinary = require("../config/cloudinary");
+const jobModel = require("../models/jobModel");
 
 const employerGetAllApplication = async (req, res) => {
   try {
@@ -61,8 +62,6 @@ const jobSeekerDeleteApplication = async (req, res) => {
 };
 
 const postApplication = async (req, res) => {
-  console.log("Cloudinary Configuration:", cloudinary.config());
-
   try {
     const { role } = req.user;
     if (role === "Employer") {
@@ -87,7 +86,7 @@ const postApplication = async (req, res) => {
     const cloudinaryResponse = await cloudinary.uploader.upload(
       resume.tempFilePath
     );
-    console.log("Cloudinary Response:", cloudinaryResponse); //.secure_url:
+    //console.log("Cloudinary Response:", cloudinaryResponse); //.secure_url:
     // Handle the response
 
     if (cloudinaryResponse.error || cloudinaryResponse === "undefined") {
@@ -95,6 +94,56 @@ const postApplication = async (req, res) => {
         .status(500)
         .json({ message: "Failed to upload Resume to Cloudinary" });
     }
+    const { name, email, coverLetter, phone, address, jobId } = req.body;
+    const applicantID = {
+      user: req.user._id,
+      role: "Job Seeker",
+    };
+
+    if (!jobId) {
+      return res.status(400).json({ message: "JobId not found!" });
+    }
+
+    const jodDetails = await jobModel.findById(jobId);
+    console.log("🚀 + postApplication + jodDetails:", jodDetails);
+    if (!jodDetails) {
+      return res.status(400).json({ message: "Job not found!" });
+    }
+    const employerID = {
+      user: jodDetails.postedBy,
+      role: "Employer",
+    };
+
+    if (
+      !name ||
+      !email ||
+      !coverLetter ||
+      !phone ||
+      !address ||
+      !applicantID ||
+      !employerID ||
+      !resume
+    ) {
+      return res.status(400).json({ messsage: "Please fill all fields" });
+    }
+
+    const application = await applicationModel.create({
+      name,
+      email,
+      coverLetter,
+      phone,
+      address,
+      applicantID,
+      employerID,
+      resume: {
+        public_id: cloudinaryResponse.public_id,
+        url: cloudinaryResponse.secure_url,
+      },
+    });
+
+    res
+      .status(200)
+      .json({ message: "Application created successfully", data: application });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

@@ -111,7 +111,21 @@ const userSignOut = async (req, res) => {
         success: true,
         message: "User logged out successfully",
       });
-  } catch (error) {}
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
 };
 
-module.exports = { userSignUp, userSignIn, userSignOut };
+const getUser = async (req, res) => {
+  try {
+    const user = req.user;
+    res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+};
+
+module.exports = { getUser, userSignUp, userSignIn, userSignOut };
