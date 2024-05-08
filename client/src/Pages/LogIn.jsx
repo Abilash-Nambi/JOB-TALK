@@ -1,5 +1,5 @@
 import React from "react";
-import loginImg from "../assets/images/loginImg.png";
+import loginImg from "../Assets/images/loginImg.png";
 import logo from "../../public/images/logo.jpg";
 import Button from "../components/Button";
 import { useForm } from "react-hook-form";

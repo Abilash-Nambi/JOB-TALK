@@ -1,9 +1,9 @@
 import React from "react";
-import signUp from "../assets/images/signUpImg.png";
+import signUp from "../Assets/images/signUpImg.png";
 import logo from "../../public/images/logo.jpg";
 import Button from "../components/Button";
 import Input from "../components/Input";
-import image from "../assets/images/recruiterSIgnup.jpeg";
+import image from "../Assets/images/recruiterSIgnup.jpeg";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 const RecruiterSignUp = () => {
