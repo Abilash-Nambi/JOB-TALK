@@ -1,5 +1,8 @@
 import axios from "axios";
 import { BASE_URL } from "./Api";
+import { useNavigate } from "react-router-dom";
+
+const navigate = useNavigate();
 
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -10,6 +13,7 @@ axiosInstance.interceptors.response.use(
   (error) => {
     const status = error.response ? error.response.status : null;
     if (status === 401) {
+      navigate("/");
     } else if (status === 404) {
       // Handle not found errors
     } else {
@@ -18,4 +22,15 @@ axiosInstance.interceptors.response.use(
 
     return Promise.reject(error);
   }
+);
+
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const authToken = localStorage.getItem("authToken");
+    if (authToken) {
+      config.headers.Authorization = `Bearer ${authToken}`;
+    }
+    return config;
+  },
+  (error) => error
 );
