@@ -2,7 +2,7 @@ import React from "react";
 import { IoIosSearch } from "react-icons/io";
 import { CiLocationOn } from "react-icons/ci";
 import Button from "./Button";
-import useToast from "../hooks/useToast";
+import useToast from "../Hooks/useToast";
 
 const Banner = ({ query, handleInputChange }) => {
   const { successToast, errorToast, warningToast } = useToast();
