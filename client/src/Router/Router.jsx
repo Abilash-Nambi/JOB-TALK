@@ -10,6 +10,8 @@ import HomeLayout from "../Layouts/HomeLayout";
 import AuthLayout from "../Layouts/AuthLayout";
 import RecruiterSignUp from "../Pages/RecruiterSignUp";
 import PricingPage from "../Pages/PricingPage";
+import ErrorLayout from "../Layouts/ErrorLayout";
+import Error404 from "../Pages/Error404";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -52,6 +54,16 @@ const router = createBrowserRouter([
       {
         path: "/recruiter/pricing-page",
         element: <PricingPage />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <ErrorLayout />,
+    children: [
+      {
+        path: "/error404",
+        element: <Error404 />,
       },
     ],
   },
