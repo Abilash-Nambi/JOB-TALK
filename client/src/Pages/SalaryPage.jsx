@@ -14,7 +14,7 @@ const SalaryPage = () => {
 
   return (
     <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4 ">
-      <BreadCrumb title={"Salary Estimate"} path={"Salary"} />
+      <BreadCrumb title={"Salary Estimate"} />
       <div className="mt-5">
         <div className="p-2 text-center mb-2 ">
           <input

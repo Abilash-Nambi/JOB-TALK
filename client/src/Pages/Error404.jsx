@@ -1,9 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "../Hooks/useRouter";
 import Button from "../components/Button";
 
 const Error404 = () => {
-  const navigate = useNavigate();
+  const { navigate } = useRouter();
   return (
     <div>
       <section className="bg-[#FAFAFA] h-screen flex items-center">

@@ -1,9 +1,8 @@
 import axios from "axios";
 import { BASE_URL } from "./Api";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "../../Hooks/useRouter";
 
-const navigate = useNavigate();
-
+const { navigate } = useRouter();
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
 });
