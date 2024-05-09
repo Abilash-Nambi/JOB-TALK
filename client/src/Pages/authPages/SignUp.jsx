@@ -55,7 +55,7 @@ const SignUp = () => {
                 {...register("role", {
                   required: "Please select a role",
                 })}
-                className={`border block px-[3rem] py-2 bg-white${
+                className={`border block px-3 py-2  bg-white${
                   errors.role ? "border-red-500" : ""
                 }`}
               >
@@ -134,7 +134,6 @@ const SignUp = () => {
               />
             </div>
             <div className="relative">
-              {" "}
               {errors.confirmPassword && (
                 <span className="text-red-500 text-xs absolute top-[-15px] right-[0px]">
                   {errors.confirmPassword.message}
@@ -144,7 +143,7 @@ const SignUp = () => {
                 {...register("confirmPassword", {
                   required: "Please confirm your password",
                   validate: (value) =>
-                    value === password || "The passwords do not match",
+                    value === watch("password") || "The passwords do not match",
                 })}
                 className={`border block px-3 py-2 placeholder:text-xs ${
                   errors.confirmPassword
