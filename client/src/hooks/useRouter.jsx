@@ -1,6 +1,6 @@
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 
-export const useRouter = () => {
+const useRouter = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
@@ -12,3 +12,4 @@ export const useRouter = () => {
     goBack: () => navigate(-1),
   };
 };
+export default useRouter;

@@ -1,5 +1,5 @@
 import React from "react";
-import { useRouter } from "../Hooks/useRouter";
+import useRouter from "../Hooks/useRouter";
 
 const BreadCrumb = ({ title }) => {
   const { location } = useRouter();

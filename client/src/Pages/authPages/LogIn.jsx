@@ -4,8 +4,12 @@ import logo from "../../../public/images/logo.jpg";
 import Button from "../../components/Button";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-
+import { userSignIn } from "../../Services/authServices";
+import useToast from "../../Hooks/useToast";
+import useRouter from "../../Hooks/useRouter";
 export const LogIn = () => {
+  const { successToast, errorToast, warningToast } = useToast();
+  const { navigate } = useRouter();
   const {
     register,
     handleSubmit,
@@ -13,7 +17,17 @@ export const LogIn = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const response = await userSignIn(data, successToast, errorToast);
+      const { status } = response;
+      if (status === 200) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.log("🚀 + onSubmit + error:", error);
+    }
+  };
   return (
     <div className="container mx-auto px-4 md:px-24 h-screen justify-center items-center flex flex-col">
       <h1 className="text-2xl font-semibold">Sign In</h1>
@@ -23,63 +37,80 @@ export const LogIn = () => {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="text-center justify-center items-center flex flex-col gap-3 relative">
+          <div className="text-center justify-center items-center flex flex-col gap-3 ">
             <div>
               <Link to="/">
                 {" "}
                 <img src={logo} alt="" className="h-22 w-20" />
               </Link>
             </div>
-            {errors.email && (
-              <span className="text-red-500 text-xs absolute top-[7em] right-[6em]">
-                {errors.email.message}
-              </span>
-            )}
-            <input
-              placeholder="email@gmail.com"
-              className={`border block px-3 py-2 placeholder:text-xs${
-                errors.password ? "border-red-500 placeholder:text-xs" : ""
-              }`}
-              type="email"
-              {...register("email", {
-                required: "Email Address is required",
-                pattern: {
-                  value: /^\S+@\S+$/i,
-                  message: "Invalid email address",
-                },
-              })}
-            />
-            {errors.password && (
-              <span className="text-red-500 text-xs absolute top-[12em] right-[6em]">
-                {errors.password.message}
-              </span>
-            )}
-            <input
-              {...register("password", {
-                required: "Password is required",
-                minLength: {
-                  value: 8,
-                  message: "Password must be at least 8 characters long",
-                },
-                pattern: {
-                  value:
-                    /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/,
-                  message:
-                    "Password must contain at least one uppercase letter, one numeric digit, and one special character",
-                },
-              })}
-              className={`border block px-3 py-2 placeholder:text-xs${
-                errors.password ? "border-red-500 placeholder:text-xs" : ""
-              }`}
-              type="password"
-              placeholder="Admin@123"
-            />
-
-            {errors.confirmPassword && (
-              <span className="text-red-500 text-xs absolute top-[16em] right-[6em]">
-                {errors.confirmPassword.message}
-              </span>
-            )}
+            <div className="relative">
+              {errors.role && (
+                <span className="text-red-500 text-xs absolute top-[-15px] right-[0px]">
+                  {errors.role.message}
+                </span>
+              )}
+              <select
+                {...register("role", {
+                  required: "Please select a role",
+                })}
+                className={`border block px-3 py-2  bg-white${
+                  errors.role ? "border-red-500" : ""
+                }`}
+              >
+                <option value="">Select Role</option>
+                <option value="Job Seeker">Job Seeker</option>
+                <option value="Employer">Employer</option>
+              </select>
+            </div>
+            <div className="relative">
+              {errors.email && (
+                <span className="text-red-500 text-xs absolute top-[-15px] right-[0px]">
+                  {errors.email.message}
+                </span>
+              )}
+              <input
+                placeholder="email@gmail.com"
+                className={`border block px-3 py-2 placeholder:text-xs${
+                  errors.password ? "border-red-500 placeholder:text-xs" : ""
+                }`}
+                type="email"
+                {...register("email", {
+                  required: "Email Address is required",
+                  pattern: {
+                    value: /^\S+@\S+$/i,
+                    message: "Invalid email address",
+                  },
+                })}
+              />
+            </div>
+            <div className="relative">
+              {errors.password && (
+                <span className="text-red-500 text-xs absolute top-[-15px] right-[0px] w-max">
+                  {errors.password.message}
+                </span>
+              )}
+              <input
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 5,
+                    message: "Password must be at least 5 characters long",
+                  },
+                  // pattern: {
+                  //   value:
+                  //     /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{5,}$/,
+                  //   message:
+                  //     "Password must contain at least one uppercase letter, one numeric digit, and one special character",
+                  // },
+                })}
+                className={`border block px-3 py-2 placeholder:text-xs${
+                  errors.password ? "border-red-500 placeholder:text-xs" : ""
+                }`}
+                type="password"
+                placeholder="Password"
+              />
+            </div>
 
             <input
               type="submit"

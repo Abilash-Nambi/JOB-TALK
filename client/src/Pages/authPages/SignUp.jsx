@@ -1,13 +1,14 @@
 import React from "react";
 import signUp from "../../Assets/images/signUpImg.png";
 import logo from "../../../public/images/logo.jpg";
-import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { userSignUp } from "../../Services/authServices";
 import useToast from "../../Hooks/useToast";
+import useRouter from "../../Hooks/useRouter";
 const SignUp = () => {
   const { successToast, errorToast, warningToast } = useToast();
+  const { navigate } = useRouter();
   const {
     register,
     handleSubmit,
@@ -20,13 +21,16 @@ const SignUp = () => {
   errorToast(errors?.password?.message);
 
   const onSubmit = async (data) => {
-    console.log("🚀 + onSubmit + data:", data);
-    // try {
-    //   const response = await userSignUp(data, successToast, errorToast);
-    //   console.log("🚀 + onSubmit + response:", response);
-    // } catch (error) {
-    //   console.log("🚀 + onSubmit + error:", error);
-    // }
+    // console.log("🚀 + onSubmit + data:", data);
+    try {
+      const response = await userSignUp(data, successToast, errorToast);
+      const { status } = response;
+      if (status === 200) {
+        navigate("/sign-in");
+      }
+    } catch (error) {
+      console.log("🚀 + onSubmit + error:", error);
+    }
   };
 
   return (

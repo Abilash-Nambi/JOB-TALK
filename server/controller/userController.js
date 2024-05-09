@@ -3,6 +3,7 @@ const { generatePasswordHash, comparePassword } = require("../utils/bcrypt");
 const { generateToken } = require("../utils/jwt");
 
 const userSignUp = async (req, res) => {
+  console.log("🚀 + userSignUp + req:", req);
   try {
     const { userName, email, password, role } = req.body;
     if (!userName || !email || !password || !role) {
