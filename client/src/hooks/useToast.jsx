@@ -3,7 +3,7 @@ const useToast = () => {
   const successToast = (message) =>
     toast.success(message, {
       position: "top-right",
-      autoClose: 3000,
+      autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -15,7 +15,7 @@ const useToast = () => {
   const errorToast = (message) => {
     toast.error(message, {
       position: "top-right",
-      autoClose: 3000,
+      autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -27,7 +27,7 @@ const useToast = () => {
   const warningToast = (message) => {
     toast.warning(message, {
       position: "top-right",
-      autoClose: 3000,
+      autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,

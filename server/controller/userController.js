@@ -35,7 +35,9 @@ const userSignUp = async (req, res) => {
     delete userWithoutPassword.password;
 
     // Send success response without password
-    return res.status(200).json(userWithoutPassword);
+    return res
+      .status(200)
+      .json({ message: "Registered Successfully", data: userWithoutPassword });
   } catch (error) {
     // Handle errors
     return res.status(400).json({

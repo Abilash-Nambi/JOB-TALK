@@ -1,8 +1,8 @@
 import axios from "axios";
 import { BASE_URL } from "./Api";
-import { useRouter } from "../../Hooks/useRouter";
+//import { useRouter } from "../../Hooks/useRouter";
 
-const { navigate } = useRouter();
+// const { navigate } = useRouter();
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
 });
@@ -12,7 +12,7 @@ axiosInstance.interceptors.response.use(
   (error) => {
     const status = error.response ? error.response.status : null;
     if (status === 401) {
-      navigate("/");
+      window.location.href = "/";
     } else if (status === 404) {
       // Handle not found errors
     } else {
@@ -27,6 +27,7 @@ axiosInstance.interceptors.request.use(
   (config) => {
     const authToken = localStorage.getItem("authToken");
     if (authToken) {
+      config.withCredentials = true;
       config.headers.Authorization = `Bearer ${authToken}`;
     }
     return config;
