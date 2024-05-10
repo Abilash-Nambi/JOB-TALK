@@ -162,4 +162,28 @@ const removeJob = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
-module.exports = { getAllJobs, postJob, getMyjobs, updateJob, removeJob };
+
+const getSingleJob = async (req, res) => {
+  const { id } = req.params;
+  console.log("🚀 + getSingleJob + id:", id);
+  try {
+    const job = await jobModel.findById(id);
+    if (!job) {
+      return res.status(400).json({ message: "Job not found." });
+    }
+    res.status(200).json({
+      success: true,
+      data: job,
+    });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+};
+module.exports = {
+  getAllJobs,
+  postJob,
+  getMyjobs,
+  updateJob,
+  removeJob,
+  getSingleJob,
+};

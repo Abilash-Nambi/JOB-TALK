@@ -12,10 +12,12 @@ import PricingPage from "../Pages/PricingPage";
 import ErrorLayout from "../Layouts/ErrorLayout";
 import Error404 from "../Pages/Error404";
 import JobPage from "../Pages/JobPage";
+import AuthProtected from "../Services/ProtectedRoutes/AuthProtected";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
+
     errorElement: <Error404 />,
     children: [
       {
@@ -35,13 +37,17 @@ const router = createBrowserRouter([
         element: <SalaryPage />,
       },
       {
-        path: "/job-details",
-        element: <JobPage />,
+        path: "/job-details/:id",
+        element: (
+          <AuthProtected>
+            <JobPage />
+          </AuthProtected>
+        ),
       },
     ],
   },
   {
-    path: "/",
+    path: "/auth",
     element: <AuthLayout />,
     children: [
       {
@@ -59,7 +65,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/",
+    path: "/error",
     element: <ErrorLayout />,
     children: [
       {

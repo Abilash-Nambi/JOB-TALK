@@ -7,6 +7,7 @@ import Jobs from "./Jobs";
 import Sidebar from "../components/sidebar/Sidebar";
 import NewsLetter from "../components/NewsLetter";
 import axios from "axios";
+import { getAllJob } from "../Services/api/JobEndPoints";
 
 const Home = () => {
   const [query, setQuerry] = useState("");
@@ -20,8 +21,8 @@ const Home = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/job`);
-      setJobs(res.data.data);
+      const response = await getAllJob();
+      setJobs(response.data.data);
     } catch (error) {
       console.log("🚀 + fetchData + error:", error);
     }

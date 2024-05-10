@@ -22,29 +22,33 @@ const Header = () => {
   const navItemsEmployer = [
     {
       path: "/",
-      title: "Start a search",
+      title: "START A SEARCH",
     },
     {
       path: "/my-job",
-      title: "My Jobs",
+      title: "VIEW YOUR JOBS",
     },
     {
       path: "/salary",
-      title: "Salary Estimate",
+      title: "SALARY ESTIMATE",
     },
     {
       path: "/post-job",
-      title: "Post A Job",
+      title: "POST A JOB",
+    },
+    {
+      path: " ",
+      title: "APPLICANTS APPLICATION",
     },
   ];
   const navItemsJodSeeker = [
     {
       path: "/",
-      title: "Start a search",
+      title: "START A SEARCH",
     },
     {
       path: "/my-job",
-      title: "My Application",
+      title: "MY APPLICATION",
     },
   ];
 

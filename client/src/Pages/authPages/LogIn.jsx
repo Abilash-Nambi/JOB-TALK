@@ -40,8 +40,12 @@ export const LogIn = () => {
     }
   };
   const getUser = async () => {
-    const response = await getProfile();
-    dispatch(logIn(response.data.data));
+    try {
+      const response = await getProfile();
+      dispatch(logIn(response.data.data));
+    } catch (error) {
+      console.log("🚀 + getUser + error:", error);
+    }
   };
   return (
     <div className="container mx-auto px-4 md:px-24 h-screen justify-center items-center flex flex-col">

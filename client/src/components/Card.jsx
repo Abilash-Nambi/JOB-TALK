@@ -20,6 +20,7 @@ const Card = ({ data }) => {
     postingDate,
     description,
     employmentType,
+    _id,
   } = data;
   return (
     <div>
@@ -53,11 +54,11 @@ const Card = ({ data }) => {
               </span>
             </div>
             <p className="text-base  text-primary/70">{description}</p>
-            <Link to="/job-details" className="justify-end flex">
+            <Link to={`/job-details/${_id}`} className="justify-end flex">
               <Button
                 title="VIEW JOB"
                 icon={<FaArrowRight />}
-                className="bg-blue text-white px-2 py-1  text-xs flex gap-2 items-center mt-2 rounded-sm "
+                className="bg-blue text-white px-2 py-1  text-xs flex gap-2 items-center mt-2 rounded-sm hover:bg-[#172554] "
               />
             </Link>
           </div>

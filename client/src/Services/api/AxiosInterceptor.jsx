@@ -12,7 +12,8 @@ axiosInstance.interceptors.response.use(
   (error) => {
     const status = error.response ? error.response.status : null;
     if (status === 401) {
-      window.location.href = "/";
+      // window.location.href = "/";
+      console.log("unauthorized");
     } else if (status === 404) {
       // Handle not found errors
     } else {
