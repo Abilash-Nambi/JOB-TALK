@@ -7,21 +7,31 @@ import { Link } from "react-router-dom";
 import { userSignIn } from "../../Services/authServices";
 import useToast from "../../Hooks/useToast";
 import useRouter from "../../Hooks/useRouter";
+import useLocalStorage from "../../Hooks/useLocalStorage";
+import { useSelector, useDispatch } from "react-redux";
+import { logIn, logOut } from "../../Store/userAuthSlice";
+
 export const LogIn = () => {
   const { successToast, errorToast, warningToast } = useToast();
   const { navigate } = useRouter();
+  const { setStorage } = useLocalStorage();
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
+  const isAuthenticated = useSelector((state) => state.user);
+  //console.log("🚀 + LogIn + isAuthenticated:", isAuthenticated);
+  const dispatch = useDispatch();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (formData) => {
     try {
-      const response = await userSignIn(data, successToast, errorToast);
-      const { status } = response;
+      const response = await userSignIn(formData, successToast, errorToast);
+      const { status, data } = response;
       if (status === 200) {
+        setStorage("authToken", data.token);
+        dispatch(logIn(data));
         navigate("/");
       }
     } catch (error) {

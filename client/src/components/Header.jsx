@@ -5,10 +5,14 @@ import { FaAlignRight } from "react-icons/fa6";
 import { useState } from "react";
 import { FaXmark } from "react-icons/fa6";
 import DropDown from "./DropDown";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isTrue, setIsTrue] = useState(false);
   const [onHover, setOnHover] = useState(false);
+  const userDetials = useSelector((state) => state.user.user);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const userName = userDetials?.userName;
   const handleChange = () => {
     setIsTrue(!isTrue);
   };
@@ -31,19 +35,12 @@ const Header = () => {
       title: "Post A Job",
     },
   ];
+
   const dropDownMenu = [
-    {
-      path: "/sign-in",
-      title: "Employer login",
-    },
-    {
-      path: "/recruiter/sign-up",
-      title: "Employer Register",
-    },
-    {
-      path: "/recruiter/pricing-page",
-      title: "Pricing Page",
-    },
+    // {
+    //   path: "/sign-in",
+    //   title: "Log Out",
+    // },
   ];
 
   return (
@@ -56,37 +53,42 @@ const Header = () => {
         {/* nav items for large devices */}
 
         <ul className="hidden md:flex gap-12">
-          {navItems.map((data, i) => (
-            <li key={i} className="text-base">
-              <NavLink
-                to={`${data.path}`}
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                {data.title}
-              </NavLink>
-            </li>
-          ))}
+          {isAuthenticated &&
+            navItems.map((data, i) => (
+              <li key={i} className="text-base">
+                <NavLink
+                  to={`${data.path}`}
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
+                  {data.title}
+                </NavLink>
+              </li>
+            ))}
         </ul>
 
         {/* signin and signup */}
 
-        <div className="hidden text-base text-primary font-medium space-x-5 lg:block">
-          <Link className="py-2 px-5 border rounded" to="/sign-in">
-            Log in
-          </Link>
-          <Link
-            className="py-2 px-5 border rounded bg-blue text-white"
-            to="/sign-up"
-          >
-            Sign up
-          </Link>
-          {/* <Link
-            className="py-2 px-5 border rounded  text-primary"
-            to="/recruiter/sign-in"
-          >
-            For Employer
-          </Link> */}
-          <DropDown title="For Employer" dropDownMenu={dropDownMenu} />
+        <div className="hidden text-base text-primary font-medium space-x-5 md:block">
+          {!isAuthenticated ? (
+            <>
+              <Link className="py-2 px-5 border rounded" to="/sign-in">
+                Log in
+              </Link>
+              <Link
+                className="py-2 px-5 border rounded bg-blue text-white"
+                to="/sign-up"
+              >
+                Sign up
+              </Link>
+            </>
+          ) : (
+            <DropDown
+              title={`${userName}`}
+              avatar="true"
+              dropDownMenu={dropDownMenu}
+              avatarTitle={userName}
+            />
+          )}
         </div>
 
         {/* Mobile toggle */}

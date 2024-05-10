@@ -18,7 +18,6 @@ app.use(
 
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
-    secure: true,
   })
 );
 app.use(express.json());

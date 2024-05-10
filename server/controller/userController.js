@@ -95,6 +95,7 @@ const userSignIn = async (req, res) => {
       token,
       email: user.email,
       id: user._id,
+      userName: user.userName,
     });
   } catch (error) {
     // Handle errors

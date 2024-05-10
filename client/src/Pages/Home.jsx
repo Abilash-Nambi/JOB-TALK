@@ -12,7 +12,7 @@ const Home = () => {
   const [query, setQuerry] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(" ");
   const [jobs, setJobs] = useState([]);
-  console.log("🚀 + Home + jobs:", jobs);
+  //console.log("🚀 + Home + jobs:", jobs);
 
   useEffect(() => {
     fetchData();

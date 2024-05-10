@@ -21,7 +21,6 @@ const SignUp = () => {
   errorToast(errors?.password?.message);
 
   const onSubmit = async (data) => {
-    // console.log("🚀 + onSubmit + data:", data);
     try {
       const response = await userSignUp(data, successToast, errorToast);
       const { status } = response;
