@@ -1,4 +1,3 @@
-import { logOut } from "../Store/userAuthSlice";
 import { axiosInstance } from "./api/AxiosInterceptor";
 
 export const userSignUp = async (data, successToast, errorToast) => {
@@ -34,11 +33,10 @@ export const userSignOut = async (e, successToast, errorToast) => {
     const response = await axiosInstance.post("/user/sign-out", {
       withCredentials: true,
     });
-    console.log("🚀 + userSignUp + response:", response);
     successToast(response.data.message);
-    logOut();
     return response;
   } catch (error) {
+    //console.log("🚀 + userSignOut + error:", error);
     errorToast(error.response.data.message);
     return error;
   }

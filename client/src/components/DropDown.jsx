@@ -3,11 +3,17 @@ import { Link } from "react-router-dom";
 import Avatar from "./Avatar";
 import { userSignOut } from "../Services/authServices";
 import useToast from "../Hooks/useToast";
+import useRouter from "../Hooks/useRouter";
+import useLocalStorage from "../Hooks//useLocalStorage";
+import { logOut } from "../Store/userAuthSlice";
+import { useDispatch } from "react-redux";
 
 function DropDown({ title, dropDownMenu, avatar, avatarTitle }) {
   const [isOpen, setIsOpen] = useState(false);
   const { successToast, errorToast, warningToast } = useToast();
-
+  const { clearStorage } = useLocalStorage();
+  const { navigate } = useRouter();
+  const dispatch = useDispatch();
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -37,14 +43,20 @@ function DropDown({ title, dropDownMenu, avatar, avatarTitle }) {
       {isOpen && (
         <div className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            <form
-              onSubmit={(e) => {
-                userSignOut(e, successToast, errorToast);
-              }}
-            >
+            <form>
               <button
-                type="submit"
+                type="button"
                 className="block w-full px-4 py-2 text-sm text-gray-700"
+                onClick={async (e) => {
+                  try {
+                    await userSignOut(e, successToast, errorToast),
+                      dispatch(logOut()),
+                      clearStorage("authToken");
+                    navigate("/");
+                  } catch (error) {
+                    console.log("🚀 + DropDown + error:", error);
+                  }
+                }}
               >
                 Sign out
               </button>

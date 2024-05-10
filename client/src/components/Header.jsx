@@ -12,6 +12,7 @@ const Header = () => {
   const [onHover, setOnHover] = useState(false);
   const userDetials = useSelector((state) => state.user.user);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+
   const userName = userDetials?.userName;
   const handleChange = () => {
     setIsTrue(!isTrue);

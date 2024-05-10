@@ -6,7 +6,6 @@ const initialState = {
   isAuthenticated: false, //auth ? true : false,
   user: null,
 };
-console.log("🚀 + initialState:", initialState);
 
 const userAuthSlice = createSlice({
   name: "user",
@@ -22,6 +21,6 @@ const userAuthSlice = createSlice({
     },
   },
 });
-
+console.log("🚀 + initialState:", initialState);
 export const { logOut, login: logIn } = userAuthSlice.actions;
 export default userAuthSlice.reducer;

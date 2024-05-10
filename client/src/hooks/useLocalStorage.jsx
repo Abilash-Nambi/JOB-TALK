@@ -5,7 +5,7 @@ function useLocalStorage() {
     localStorage.setItem(key, value);
   };
   const getStorage = (key) => {
-    localStorage.getItem(key);
+    return localStorage.getItem(key);
   };
   const clearStorage = (key) => {
     localStorage.removeItem(key);
