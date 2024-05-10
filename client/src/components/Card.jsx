@@ -5,6 +5,8 @@ import { MdOutlineAccessTime } from "react-icons/md";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { SlCalender } from "react-icons/sl";
 import noImage from "../Assets/images/noImage.jpg";
+import { FaArrowRight } from "react-icons/fa6";
+import Button from "./Button";
 
 const Card = ({ data }) => {
   const {
@@ -51,6 +53,13 @@ const Card = ({ data }) => {
               </span>
             </div>
             <p className="text-base  text-primary/70">{description}</p>
+            <Link to="/job-details" className="justify-end flex">
+              <Button
+                title="VIEW JOB"
+                icon={<FaArrowRight />}
+                className="bg-blue text-white px-2 py-1  text-xs flex gap-2 items-center mt-2 rounded-sm "
+              />
+            </Link>
           </div>
         </Link>
       </section>

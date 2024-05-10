@@ -8,10 +8,10 @@ import { LogIn } from "../Pages/authPages/LogIn";
 import SignUp from "../Pages/authPages/SignUp";
 import HomeLayout from "../Layouts/HomeLayout";
 import AuthLayout from "../Layouts/AuthLayout";
-import RecruiterSignUp from "../Pages/RecruiterSignUp";
 import PricingPage from "../Pages/PricingPage";
 import ErrorLayout from "../Layouts/ErrorLayout";
 import Error404 from "../Pages/Error404";
+import JobPage from "../Pages/JobPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +34,10 @@ const router = createBrowserRouter([
         path: "/salary",
         element: <SalaryPage />,
       },
+      {
+        path: "/job-details",
+        element: <JobPage />,
+      },
     ],
   },
   {
@@ -47,10 +51,6 @@ const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <SignUp />,
-      },
-      {
-        path: "/recruiter/sign-up",
-        element: <RecruiterSignUp />,
       },
       {
         path: "/recruiter/pricing-page",

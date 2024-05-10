@@ -27,7 +27,6 @@ axiosInstance.interceptors.request.use(
   (config) => {
     const authToken = localStorage.getItem("authToken");
     if (authToken) {
-      config.withCredentials = true;
       config.headers.Authorization = `Bearer ${authToken}`;
     }
     return config;

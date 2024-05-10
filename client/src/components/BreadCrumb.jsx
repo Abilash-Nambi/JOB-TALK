@@ -1,5 +1,6 @@
 import React from "react";
 import useRouter from "../Hooks/useRouter";
+import { Link } from "react-router-dom";
 
 const BreadCrumb = ({ title }) => {
   const { location } = useRouter();
@@ -11,7 +12,10 @@ const BreadCrumb = ({ title }) => {
             {title}
           </h2>
           <p className="text-sm text-center ">
-            <a href="/">Home{location.pathname}</a>
+            <span>
+              <Link to="/">Home </Link>
+              {location.pathname}
+            </span>
           </p>
         </div>
       </div>

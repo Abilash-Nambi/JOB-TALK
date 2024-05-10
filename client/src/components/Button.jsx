@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ onClick, value, title, className, type, ...rest }) => {
+const Button = ({ onClick, value, title, className, type, icon, ...rest }) => {
   return (
     <div>
       <button
@@ -11,6 +11,7 @@ const Button = ({ onClick, value, title, className, type, ...rest }) => {
         {...rest}
       >
         {title}
+        {icon && <span className="">{icon}</span>}
       </button>
     </div>
   );
