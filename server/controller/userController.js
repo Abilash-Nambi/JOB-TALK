@@ -125,7 +125,7 @@ const getUser = async (req, res) => {
     const user = req.user;
     res.status(200).json({
       success: true,
-      user,
+      data: user,
     });
   } catch (error) {
     return res.status(400).json({ message: error.message });

@@ -45,7 +45,7 @@ const Banner = ({ query, handleInputChange }) => {
           </div>
 
           <Button
-            title="Sign Up"
+            title="Search"
             className="text-white bg-blue px-8 rounded py-2 rounded-s-sm md:rounded-none"
             onClick={(e) => handleSubmit(e)}
           />

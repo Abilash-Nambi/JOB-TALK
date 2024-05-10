@@ -10,6 +10,7 @@ import useRouter from "../../Hooks/useRouter";
 import useLocalStorage from "../../Hooks/useLocalStorage";
 import { useSelector, useDispatch } from "react-redux";
 import { logIn, logOut } from "../../Store/userAuthSlice";
+import { getProfile } from "../../Services/api/UserEndpoints";
 
 export const LogIn = () => {
   const { successToast, errorToast, warningToast } = useToast();
@@ -31,12 +32,16 @@ export const LogIn = () => {
       const { status, data } = response;
       if (status === 200) {
         setStorage("authToken", data.token);
-        dispatch(logIn(data));
         navigate("/");
+        getUser();
       }
     } catch (error) {
       console.log("🚀 + onSubmit + error:", error);
     }
+  };
+  const getUser = async () => {
+    const response = await getProfile();
+    dispatch(logIn(response.data.data));
   };
   return (
     <div className="container mx-auto px-4 md:px-24 h-screen justify-center items-center flex flex-col">

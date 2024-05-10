@@ -4,15 +4,18 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import Button from "../components/Button";
+import { useSelector } from "react-redux";
 
 const MyJobs = () => {
   const [jobs, setJobs] = useState([]);
+  const userDetials = useSelector((state) => state.user.user);
 
   useEffect(() => {
     fetch("jobs.json")
       .then((res) => res.json())
       .then((data) => setJobs(data));
   }, []);
+
   return (
     <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4  ">
       <h1 className="text-center p-4"> All My Jobs</h1>
@@ -35,17 +38,19 @@ const MyJobs = () => {
             <div className="rounded-t mb-0 px-4 py-3 border-0">
               <div className="flex flex-wrap items-center">
                 <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-                  <h3 className="font-semibold text-base text-blueGray-700">
+                  <h3 className="font-semibold text-base text-blueGray-700 ">
                     All jobs
                   </h3>
                 </div>
                 <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-                  <Link to="/post-job">
-                    <Button
-                      title="Post a new job"
-                      className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    />
-                  </Link>
+                  {userDetials.role === "Employer" && (
+                    <Link to="/post-job">
+                      <Button
+                        title="Post a new job"
+                        className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      />
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
