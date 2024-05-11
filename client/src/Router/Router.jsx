@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         element: <SalaryPage />,
       },
       {
-        path: "job-application",
+        path: "job-application/:id",
         element: <ApplicationForm />,
       },
       {

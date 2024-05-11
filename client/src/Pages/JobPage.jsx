@@ -84,7 +84,7 @@ const JobPage = () => {
                 "bg-blue text-white px-4 py-2 hover:bg-[#172554] rounded-sm"
               }
             />
-            <Link to="/job-application">
+            <Link to={`/job-application/${id}`}>
               <Button
                 title={"APPLY NOW"}
                 className={
