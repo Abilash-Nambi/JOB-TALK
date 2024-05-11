@@ -20,14 +20,12 @@ export const postApplication = async (
     );
 
     //console.log(res);
-
     successToast(res.data.message);
+    goBack();
     return res;
   } catch (error) {
     console.log("🚀 + postApplication + error:", error.response.data.message);
     errorToast(error.response.data.message);
     return error;
-  } finally {
-    goBack();
   }
 };
