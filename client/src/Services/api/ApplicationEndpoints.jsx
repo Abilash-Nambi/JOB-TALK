@@ -1,3 +1,4 @@
+import CustomLoader from "../../components/CustomLoader";
 import { axiosInstance } from "./AxiosInterceptor";
 
 export const postApplication = async (
@@ -6,7 +7,7 @@ export const postApplication = async (
   errorToast,
   goBack
 ) => {
-  console.log("🚀 + formData:", formData);
+  //console.log("🚀 + formData:", formData);
   try {
     const res = await axiosInstance.post(
       `/application/post-application`,
@@ -18,13 +19,15 @@ export const postApplication = async (
       }
     );
 
-    console.log(res);
+    //console.log(res);
+
     successToast(res.data.message);
-    goBack();
     return res;
   } catch (error) {
     console.log("🚀 + postApplication + error:", error.response.data.message);
     errorToast(error.response.data.message);
     return error;
+  } finally {
+    goBack();
   }
 };

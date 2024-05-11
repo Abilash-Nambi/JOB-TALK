@@ -9,6 +9,7 @@ import useRouter from "../Hooks/useRouter";
 const ApplicationForm = () => {
   const [data, setData] = useState({});
   const [file, setFile] = useState(null);
+
   const { successToast, errorToast } = useToast();
   const { goBack } = useRouter();
   let { id } = useParams();

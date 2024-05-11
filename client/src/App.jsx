@@ -8,7 +8,7 @@ import { useState } from "react";
 import CustomLoader from "./components/CustomLoader";
 function App() {
   const [loader, setLoader] = useState(true);
-  setTimeout(() => {
+  const timeout = setTimeout(() => {
     setLoader(false);
     return () => clearTimeout(timeout);
   }, 3000);
@@ -16,12 +16,11 @@ function App() {
   return (
     <>
       {loader ? (
-        <CustomLoader isLoading={true} />
+        <CustomLoader />
       ) : (
         <>
           <ToastContainer />
           <RouterProvider router={router} />
-          <CustomLoader isLoading={false} />
         </>
       )}
     </>
