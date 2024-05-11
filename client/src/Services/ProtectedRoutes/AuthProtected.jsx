@@ -9,15 +9,12 @@
 //   const { warningToast } = useToast();
 
 //   const token = getStorage("authToken");
-//   const unauthorized = () => {
-//     warningToast("Please login");
-//     navigate("/");
-//   };
 
 //   if (token) {
 //     return <div>{children}</div>;
 //   } else {
-//     unauthorized();
+//     warningToast("Please login");
+//     navigate("/");
 //   }
 // };
 

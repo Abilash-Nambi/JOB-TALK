@@ -99,12 +99,12 @@ const Header = () => {
         <div className="hidden text-base text-primary font-medium space-x-5 md:block">
           {!isAuthenticated ? (
             <>
-              <Link className="py-2 px-5 border rounded" to="/sign-in">
+              <Link className="py-2 px-5 border rounded" to="/auth/sign-in">
                 Log in
               </Link>
               <Link
                 className="py-2 px-5 border rounded bg-blue text-white"
-                to="/sign-up"
+                to="/auth/sign-up"
               >
                 Sign up
               </Link>
@@ -160,12 +160,12 @@ const Header = () => {
                 </li>
               ))}
           <li>
-            <Link to="/sign-in" className="text-white">
+            <Link to="/auth/sign-in" className="text-white">
               Log in
             </Link>
           </li>
           <li>
-            <Link to="/sign-up" className="text-white">
+            <Link to="/auth/sign-up" className="text-white">
               Sign up
             </Link>
           </li>

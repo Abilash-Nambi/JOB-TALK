@@ -138,7 +138,7 @@ export const LogIn = () => {
             />
             <p className="text-sm">
               Don't have account yet ?
-              <Link to="/sign-up">
+              <Link to="/auth/sign-up">
                 <span className="text-blue font-semibold mt-0"> Click me </span>
               </Link>
             </p>

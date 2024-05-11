@@ -25,7 +25,7 @@ const SignUp = () => {
       const response = await userSignUp(data, successToast, errorToast);
       const { status } = response;
       if (status === 200) {
-        navigate("/sign-in");
+        navigate("/auth/sign-in");
       }
     } catch (error) {
       console.log("🚀 + onSubmit + error:", error);

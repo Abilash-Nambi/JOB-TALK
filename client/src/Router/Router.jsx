@@ -25,19 +25,19 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/post-job",
+        path: "post-job",
         element: <CreateJob />,
       },
       {
-        path: "/my-job",
+        path: "my-job",
         element: <MyJobs />,
       },
       {
-        path: "/salary",
+        path: "salary",
         element: <SalaryPage />,
       },
       {
-        path: "/job-details/:id",
+        path: "job-details/:id",
         element: (
           <AuthProtected>
             <JobPage />
@@ -51,17 +51,17 @@ const router = createBrowserRouter([
     element: <AuthLayout />,
     children: [
       {
-        path: "/sign-in",
+        path: "sign-in",
         element: <LogIn />,
       },
       {
-        path: "/sign-up",
+        path: "sign-up",
         element: <SignUp />,
       },
-      {
-        path: "/recruiter/pricing-page",
-        element: <PricingPage />,
-      },
+      // {
+      //   path: "/recruiter/pricing-page",
+      //   element: <PricingPage />,
+      // },
     ],
   },
   {
@@ -69,7 +69,7 @@ const router = createBrowserRouter([
     element: <ErrorLayout />,
     children: [
       {
-        path: "/error404",
+        path: "error404",
         element: <Error404 />,
       },
     ],
