@@ -13,6 +13,7 @@ import ErrorLayout from "../Layouts/ErrorLayout";
 import Error404 from "../Pages/Error404";
 import JobPage from "../Pages/JobPage";
 import AuthProtected from "../Services/ProtectedRoutes/AuthProtected";
+import ApplicationForm from "../Pages/ApplicationForm";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "salary",
         element: <SalaryPage />,
+      },
+      {
+        path: "job-application",
+        element: <ApplicationForm />,
       },
       {
         path: "job-details/:id",
