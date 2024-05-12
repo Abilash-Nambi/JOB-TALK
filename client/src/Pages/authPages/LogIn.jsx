@@ -31,16 +31,20 @@ export const LogIn = () => {
 
   const onSubmit = async (formData) => {
     try {
-      setLoading(true);
       const response = await userSignIn(formData, successToast, errorToast);
       const { status, data } = response;
       if (status === 200) {
+        setLoading(true);
         setStorage("authToken", data.token);
         getUser();
+
+        setTimeout(() => {
+          setLoading(false);
+          navigate("/");
+        }, 3000);
       }
       setTimeout(() => {
         setLoading(false);
-        navigate("/");
       }, 3000);
     } catch (error) {
       console.log("🚀 + onSubmit + error:", error);

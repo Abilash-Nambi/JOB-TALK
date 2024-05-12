@@ -24,10 +24,10 @@ const SignUp = () => {
 
   const onSubmit = async (data) => {
     try {
-      setLoading(true);
       const response = await userSignUp(data, successToast, errorToast);
       const { status } = response;
       if (status === 200) {
+        setLoading(true);
         setTimeout(() => {
           setLoading(false);
           navigate("/auth/sign-in");
