@@ -9,7 +9,7 @@ import useToast from "../../Hooks/useToast";
 import useRouter from "../../Hooks/useRouter";
 import useLocalStorage from "../../Hooks/useLocalStorage";
 import { useSelector, useDispatch } from "react-redux";
-import { logIn, logOut } from "../../Store/userAuthSlice";
+import { logIn } from "../../Store/userAuthSlice";
 import { getProfile } from "../../Services/api/UserEndpoints";
 import CustomLoader from "../../components/CustomLoader";
 import { useState } from "react";
@@ -17,6 +17,7 @@ import { useState } from "react";
 export const LogIn = () => {
   const [loading, setLoading] = useState(false);
   const { successToast, errorToast, warningToast } = useToast();
+
   const { navigate } = useRouter();
   const { setStorage } = useLocalStorage();
   const {
@@ -54,6 +55,7 @@ export const LogIn = () => {
     try {
       const response = await getProfile();
       dispatch(logIn(response.data.data));
+      setStorage("user", JSON.stringify(response.data.data));
     } catch (error) {
       console.log("🚀 + getUser + error:", error);
     }

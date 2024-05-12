@@ -47,6 +47,7 @@ const jobSeekerDeleteApplication = async (req, res) => {
     }
 
     const { id } = req.params;
+    console.log("🚀 + jobSeekerDeleteApplication + id:", id);
     const application = await applicationModel.findById(id);
     if (!application) {
       return res.status(400).json({ message: "Application not found" });

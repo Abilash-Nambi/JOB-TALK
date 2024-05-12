@@ -22,16 +22,20 @@ const MyApplication = () => {
 
   const handleDelete = async (id) => {
     const res = await deleteApplication(id, successToast, errorToast);
+    console.log("🚀 + handleDelete + res:", res);
+    if (res.status === 200) {
+      fetchData();
+    }
   };
 
   return (
     <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4">
       <h1 className="text-center p-4"> My Application</h1>
 
-      {data?.map((data) => (
+      {data?.map((data, key) => (
         <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-10 mx-auto mt-5 border py-10">
           <div className="grid md:grid-cols-2 grid-rows-1 grid-cols-1 gap-4 ">
-            <div>
+            <div key={key}>
               <ul>
                 <li>Name : {data.name}</li>
                 <li>Email : {data.email}</li>

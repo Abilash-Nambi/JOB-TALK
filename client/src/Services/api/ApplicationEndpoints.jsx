@@ -40,7 +40,7 @@ export const getApplication = async () => {
 export const deleteApplication = async (id, successToast, errorToast) => {
   try {
     const res = await axiosInstance.delete(
-      `/application/jobseekeer/remove/${id}`
+      `/application/jobseeker/remove/${id}`
     );
     successToast(res.data.message);
 

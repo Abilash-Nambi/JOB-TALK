@@ -69,7 +69,7 @@ const Header = () => {
         {/* nav items for large devices */}
 
         <ul className="hidden md:flex gap-12">
-          {isAuthenticated && userDetials.role === "Employer"
+          {isAuthenticated && userDetials?.role === "Employer"
             ? navItemsEmployer.map((data, i) => (
                 <li key={i} className="text-base">
                   <NavLink
@@ -81,7 +81,7 @@ const Header = () => {
                 </li>
               ))
             : isAuthenticated &&
-              userDetials.role === "Job Seeker" &&
+              userDetials?.role === "Job Seeker" &&
               navItemsJodSeeker.map((data, i) => (
                 <li key={i} className="text-base">
                   <NavLink
@@ -111,10 +111,10 @@ const Header = () => {
             </>
           ) : (
             <DropDown
-              title={`${userName.toUpperCase()}`}
+              title={`${userName?.toUpperCase()}`}
               avatar="true"
               dropDownMenu={dropDownMenu}
-              avatarTitle={userName.slice(0, 2).toUpperCase()}
+              avatarTitle={userName?.slice(0, 2).toUpperCase()}
             />
           )}
         </div>
@@ -136,7 +136,7 @@ const Header = () => {
         className={`px-4 bg-black py-5 text-white ${isTrue ? "" : "hidden"}`}
       >
         <ul>
-          {isAuthenticated && userDetials.role === "Employer"
+          {isAuthenticated && userDetials?.role === "Employer"
             ? navItemsEmployer.map((data, i) => (
                 <li key={i} className="text-base">
                   <NavLink
@@ -148,7 +148,7 @@ const Header = () => {
                 </li>
               ))
             : isAuthenticated &&
-              userDetials.role === "Job Seeker" &&
+              userDetials?.role === "Job Seeker" &&
               navItemsJodSeeker.map((data, i) => (
                 <li key={i} className="text-base">
                   <NavLink
