@@ -14,7 +14,7 @@ export const userSignUp = async (data, successToast, errorToast) => {
 
 export const userSignIn = async (data, successToast, errorToast) => {
   try {
-    const response = await axiosInstance.post("/user/auth/sign-in", data);
+    const response = await axiosInstance.post("/user/sign-in", data);
     //console.log("🚀 + userSignUp + response:", response);
     successToast(response.data.message);
     return response;

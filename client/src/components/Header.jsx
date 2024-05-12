@@ -47,7 +47,7 @@ const Header = () => {
       title: "START A SEARCH",
     },
     {
-      path: "/my-job",
+      path: "/My-application",
       title: "MY APPLICATION",
     },
   ];

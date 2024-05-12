@@ -14,6 +14,7 @@ import Error404 from "../Pages/Error404";
 import JobPage from "../Pages/JobPage";
 import AuthProtected from "../Services/ProtectedRoutes/AuthProtected";
 import ApplicationForm from "../Pages/ApplicationForm";
+import MyApplication from "../Pages/MyApplication";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "post-job",
         element: <CreateJob />,
+      },
+      {
+        path: "My-application",
+        element: <MyApplication />,
       },
       {
         path: "my-job",

@@ -10,7 +10,7 @@ const { checkAuth } = require("../middleware/checkAuth");
 const router = express.Router();
 
 router.post("/register", userSignUp);
-router.post("/auth/sign-in", userSignIn);
+router.post("/sign-in", userSignIn);
 router.post("/sign-out", checkAuth, userSignOut);
 router.get("/get-user", checkAuth, getUser);
 

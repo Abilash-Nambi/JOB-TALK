@@ -29,3 +29,24 @@ export const postApplication = async (
     return error;
   }
 };
+export const getApplication = async () => {
+  try {
+    const res = await axiosInstance.get("/application/jobseeker/getall");
+    return res;
+  } catch (error) {
+    console.log("🚀 + postApplication + error:", error.response.data.message);
+  }
+};
+export const deleteApplication = async (id, successToast, errorToast) => {
+  try {
+    const res = await axiosInstance.delete(
+      `/application/jobseekeer/remove/${id}`
+    );
+    successToast(res.data.message);
+
+    return res;
+  } catch (error) {
+    console.log("🚀 + postApplication + error:", error.response.data.message);
+    errorToast(error.response.data.message);
+  }
+};
