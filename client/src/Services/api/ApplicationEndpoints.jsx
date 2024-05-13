@@ -28,7 +28,7 @@ export const postApplication = async (
     return error;
   }
 };
-export const getApplication = async () => {
+export const jobSeekerGetApplication = async () => {
   try {
     const res = await axiosInstance.get("/application/jobseeker/getall");
     return res;

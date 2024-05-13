@@ -115,6 +115,8 @@ const postApplication = async (req, res) => {
       user: jodDetails.postedBy,
       role: "Employer",
     };
+    // const jobTitle = jodDetails._id;
+    // console.log("🚀 + postApplication + jobTile:", jobTitle);
 
     if (
       !name ||
@@ -141,6 +143,7 @@ const postApplication = async (req, res) => {
         public_id: cloudinaryResponse.public_id,
         url: cloudinaryResponse.secure_url,
       },
+      jobTitle: jodDetails.jobTitle,
     });
 
     res

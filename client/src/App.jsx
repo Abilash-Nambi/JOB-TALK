@@ -7,7 +7,7 @@ import router from "./Router/Router";
 import { useState } from "react";
 import CustomLoader from "./components/CustomLoader";
 function App() {
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
   const timeout = setTimeout(() => {
     setLoader(false);
     return () => clearTimeout(timeout);

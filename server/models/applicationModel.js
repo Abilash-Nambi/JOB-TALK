@@ -59,6 +59,10 @@ const applicationSchema = new mongoose.Schema({
       required: true,
     },
   },
+  jobTitle: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Application", applicationSchema);
