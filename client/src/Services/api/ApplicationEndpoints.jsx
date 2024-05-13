@@ -1,4 +1,3 @@
-import CustomLoader from "../../components/CustomLoader";
 import { axiosInstance } from "./AxiosInterceptor";
 
 export const postApplication = async (
