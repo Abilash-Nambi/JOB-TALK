@@ -150,3 +150,9 @@ li {
 .create-job-input {
   @apply ring-1 ring-inset focus-within:ring-inset focus-within:ring-2 block w-full flex-1 bg-white py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm sm:leading-6;
 }
+
+.banner-background {
+  background-image: url("./Assets//images/slider.jpg");
+  padding-bottom: 155px;
+  padding-top: 239px;
+}

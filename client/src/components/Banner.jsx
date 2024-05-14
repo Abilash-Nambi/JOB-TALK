@@ -13,14 +13,16 @@ const Banner = ({ query, handleInputChange }) => {
   };
 
   return (
-    <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4 md:py-20 py-14">
-      <h1 className="text-5xl font-bold text-primary mb-3">
-        Find your <span className="text-blue">new job</span> today
-      </h1>
-      <p className="text-lg text-black/70 mb-8">
-        Thousands of jobs in the computer, engineering and technology sectors
-        are waiting for you
-      </p>
+    <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4 md:py-20 py-14 banner-background ">
+      <div className="py-28">
+        <h1 className="text-5xl font-bold text-primary mb-3 ">
+          Find your <span className="text-blue">new job</span> today
+        </h1>
+        <p className="text-lg text-black/70 mb-8">
+          Thousands of jobs in the computer, engineering and technology sectors
+          are waiting for you
+        </p>
+      </div>
 
       <form>
         <div className="flex gap-2 md:gap-0 flex-wrap">
