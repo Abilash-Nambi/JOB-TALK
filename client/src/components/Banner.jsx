@@ -18,7 +18,7 @@ const Banner = ({ query, handleInputChange }) => {
       <div className="absolute inset-0 bg-gradient-to-b from-[rgba(10,10,30,0.7)] to-[rgba(10,10,30,0.3)] "></div>
       <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4 md:py-20 py-14 banner-background ">
         <form>
-          <div className="md:py-28 relative z-1 ">
+          <div className=" md:pt-5 md:pb-40 relative z-1 ">
             <h1 className="text-5xl font-bold text-white mb-3 ">
               Find your <span className="text-blue">new job</span> today
             </h1>

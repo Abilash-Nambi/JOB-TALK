@@ -60,8 +60,8 @@ const Header = () => {
   ];
 
   return (
-    <header className="max-w-screen-2xl mx-auto xl:px-24 px-4 bg-transparent fixed shadow-md w-full z-50">
-      <nav className="flex justify-between py-4 items-center">
+    <header className="max-w-screen-2xl mx-auto xl:px-24 px-4 ">
+      <nav className="flex justify-between items-center">
         <Link to="/" className="flex items-center text-black gap-2 text-2xl">
           <img src={logo} alt="" className="w-20 h-20" />
           {/* <span>Job Talk</span> */}
@@ -120,7 +120,7 @@ const Header = () => {
         </div>
 
         {/* Mobile toggle */}
-        <div className="md:hidden block">
+        <div className="md:hidden block relative">
           <button onClick={handleChange}>
             {isTrue ? (
               <FaXmark className="w-5 h-5 text-primary" />
@@ -133,7 +133,9 @@ const Header = () => {
 
       {/* mobile menu*/}
       <div
-        className={`px-4 bg-black py-5 text-white ${isTrue ? "" : "hidden"}`}
+        className={`absolute z-10 w-full px-4 bg-black py-5 text-white ${
+          isTrue ? "" : "hidden"
+        }`}
       >
         <ul>
           {isAuthenticated && userDetials?.role === "Employer"

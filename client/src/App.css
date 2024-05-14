@@ -153,6 +153,12 @@ li {
 
 .banner-background {
   background-image: url("./Assets//images/slider.jpg");
-  padding-bottom: 155px;
+  padding-bottom: 179px;
   padding-top: 239px;
+}
+@media screen and (max-width: 768px) {
+  .banner-background {
+    padding-bottom: 100px;
+    padding-top: 100px;
+  }
 }
