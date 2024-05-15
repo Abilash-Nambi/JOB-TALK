@@ -8,6 +8,7 @@ import Sidebar from "../components/sidebar/Sidebar";
 import NewsLetter from "../components/NewsLetter";
 import axios from "axios";
 import { getAllJob } from "../Services/api/JobEndPoints";
+import Category from "../components/Category";
 
 const Home = () => {
   const [query, setQuerry] = useState("");
@@ -84,6 +85,7 @@ const Home = () => {
   return (
     <div>
       <Banner query={query} handleInputChange={handleInputChange} />
+      <Category />
       <div className="bg-[#FAFAFA] md:grid grid-cols-4 gap-8 lg:px-4 py-12">
         <div className="bg-white p-4 rounded">
           <Sidebar
