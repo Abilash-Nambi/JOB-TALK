@@ -47,12 +47,12 @@ const Header = () => {
       title: "HOME",
     },
     {
-      path: "/My-application",
-      title: "MY APPLICATION",
-    },
-    {
       path: "/all-jobs",
       title: "FIND YOUR NEXT JOB",
+    },
+    {
+      path: "/My-application",
+      title: "MY APPLICATION",
     },
   ];
 

@@ -9,6 +9,7 @@ import { useState } from "react";
 // import axios from "axios";
 // import { getAllJob } from "../Services/api/JobEndPoints";
 import Category from "../components/Category";
+import IntroSection from "../components/IntroSection";
 
 const Home = () => {
   const [query, setQuerry] = useState("");
@@ -86,6 +87,7 @@ const Home = () => {
     <div>
       <Banner query={query} handleInputChange={handleInputChange} />
       <Category />
+      <IntroSection />
       {/* <div className="bg-[#FAFAFA] md:grid grid-cols-4 gap-8 lg:px-4 py-12">
         <div className="bg-white p-4 rounded">
           <Sidebar
