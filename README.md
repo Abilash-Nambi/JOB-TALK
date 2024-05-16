@@ -24,7 +24,7 @@ This project is currently in development. While the core functionality is being 
 
 As the project is still under development, certain features may not be available or fully functional. However, you can still explore the existing functionality and provide feedback. Follow the instructions below to get started:
 
-1. **Clone the Repository**: Clone this repository to your local machine using `git clone https://github.com/your-username/job-portal.git`.
+1. **Clone the Repository**: Clone this repository to your local machine using `git clone https://github.com/Abilash-Nambi/job-portal.git`.
 
 2. **Install Dependencies**: Navigate to the project directory and install the necessary dependencies using `npm install`.
 
@@ -46,4 +46,4 @@ We welcome contributions from the community to help improve this project. Whethe
 
 ## Contact
 
-If you have any questions, feedback, or suggestions regarding this project, please feel free to reach out to us at [your-email@example.com](mailto:your-email@example.com).
+If you have any questions, feedback, or suggestions regarding this project, please feel free to reach out to us at abilashn2704@gmail.com(mailto:abilashn2704@gmail.com).
