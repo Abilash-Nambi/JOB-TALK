@@ -15,6 +15,7 @@ import JobPage from "../Pages/JobPage";
 import AuthProtected from "../Services/ProtectedRoutes/AuthProtected";
 import ApplicationForm from "../Pages/ApplicationForm";
 import MyApplication from "../Pages/MyApplication";
+import Jobs from "../Pages/Jobs";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "salary",
         element: <SalaryPage />,
+      },
+      {
+        path: "all-jobs",
+        element: <Jobs />,
       },
       {
         path: "job-application/:id",
