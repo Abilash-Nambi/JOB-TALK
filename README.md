@@ -1,6 +1,6 @@
-# Job Portal (Work in Progress)
+# Job Talk (Work in Progress)
 
-Welcome to the Job Portal project! This is an ongoing project aimed at creating a comprehensive job portal where users can find job listings, apply for jobs, manage applications, and employers can post jobs and manage applications.
+Welcome to the Job Talk project! This is an ongoing project aimed at creating a comprehensive job portal where users can find job listings, apply for jobs, manage applications, and employers can post jobs and manage applications.
 
 ## Current Status
 
