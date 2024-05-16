@@ -14,19 +14,19 @@ const Category = () => {
           Recruitment Made Easy in 100 seconds
         </h2>
       </div>
-      <div className="grid md:grid-cols-4 sm:grid-cols-1 gap-6">
+      <div className="grid md:grid-cols-4 sm:grid-cols-1 gap-6 ">
         {jobCategory.map((data) => (
-          //   <div>{data.name}</div>
           <div className="flex justify-center">
-            <div className="block max-w-[18rem] rounded-lg bg-secondary text-primary shadow-secondary-1">
-              <div className=" px-6 py-3">{data.name}</div>
-              <div className="p-6">
+            <div className="block min-w-[18rem] rounded-lg bg-secondary text-primary shadow-secondary-1 border hover:bg-blue hover:cursor-pointer ">
+              <div className="p-6 hover:text-white">
                 <h5 className="mb-2 text-xl font-medium leading-tight">
-                  Secondary card title
+                  {data.name}
                 </h5>
-                <p className="text-base">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                <p className="  text-sm ">
+                  {data.jobsAvailable} Jobs available
+                </p>
+                <p className=" pt-2 text-sm pr-3 pb-3 hover:text-white">
+                  Explore more
                 </p>
               </div>
             </div>
