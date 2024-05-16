@@ -86,7 +86,7 @@ const Home = () => {
     <div>
       <Banner query={query} handleInputChange={handleInputChange} />
       <Category />
-      <div className="bg-[#FAFAFA] md:grid grid-cols-4 gap-8 lg:px-4 py-12">
+      {/* <div className="bg-[#FAFAFA] md:grid grid-cols-4 gap-8 lg:px-4 py-12">
         <div className="bg-white p-4 rounded">
           <Sidebar
             handleClick={handleClick}
@@ -101,7 +101,7 @@ const Home = () => {
         <div className="bg-white p-4 rounded">
           <NewsLetter />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

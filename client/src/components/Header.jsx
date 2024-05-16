@@ -22,7 +22,7 @@ const Header = () => {
   const navItemsEmployer = [
     {
       path: "/",
-      title: "START A SEARCH",
+      title: "HOME",
     },
     {
       path: "/my-job",
@@ -44,11 +44,15 @@ const Header = () => {
   const navItemsJodSeeker = [
     {
       path: "/",
-      title: "START A SEARCH",
+      title: "HOME",
     },
     {
       path: "/My-application",
       title: "MY APPLICATION",
+    },
+    {
+      path: "/all-jobs",
+      title: "FIND YOUR NEXT JOB",
     },
   ];
 
