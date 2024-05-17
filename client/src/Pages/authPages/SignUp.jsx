@@ -180,11 +180,10 @@ const SignUp = () => {
                   value="Sign up"
                 />
                 <p className="text-sm">
-                  Are you a Employer looking for list your job?
-                  <Link to="/recruiter/sign-up">
+                  Already you registered ?
+                  <Link to="/auth/sign-in">
                     <span className="text-blue font-semibold mt-0">
-                      {" "}
-                      Click me{" "}
+                      Click me
                     </span>
                   </Link>
                 </p>
