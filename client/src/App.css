@@ -162,3 +162,19 @@ li {
     padding-top: 100px;
   }
 }
+
+.map-avatar {
+  position: absolute;
+  width: 53.39px;
+  height: 53.39px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0px 10px 25px rgba(71, 92, 133, 0.1);
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.3s ease-in-out;
+}
+
+.map-avatar img {
+  border-radius: 50%;
+}

@@ -11,7 +11,7 @@ const Category = () => {
     <div className="max-w-screen-2xl mx-auto xl:px-24 px-4">
       <div className="md:pt-16 md:pb-10 pt-5 pb-5">
         <h1 className="text-4xl font-bold">Browse by category</h1>
-        <h2 className="text-primary/70 pt-3">
+        <h2 className="text-primary/70 pt-3 text-[19px]">
           Recruitment Made Easy in 100 seconds
         </h2>
       </div>
