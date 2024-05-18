@@ -18,7 +18,7 @@ const Category = () => {
       <div className="grid md:grid-cols-4 sm:grid-cols-1 gap-6 ">
         {jobCategory.map((data) => (
           <div className="flex justify-center ">
-            <div className="block min-w-[18rem] rounded-lg bg-secondary text-primary shadow-secondary-1 border hover:bg-blue hover:cursor-pointer transition-colors duration-300 ease-in-out bg-[#fafafa]">
+            <div className="block min-w-[18rem] rounded-lg bg-secondary text-primary shadow-secondary-1 border hover:bg-blue hover:cursor-pointer transition-colors duration-300 ease-in-out bg-[#f5f5f5]">
               <div className="p-6 hover:text-white group">
                 <h5 className="mb-2 text-xl font-medium leading-tight group-hover:text-white">
                   {data.name}
