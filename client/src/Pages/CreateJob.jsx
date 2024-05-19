@@ -4,9 +4,14 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import { postJob } from "../Services/api/JobEndPoints";
+import useToast from "../Hooks/useToast";
+import useRouter from "../Hooks/useRouter";
 
 const CreateJob = () => {
   const [imageUrl, setImageUrl] = useState("");
+  const { successToast, errorToast } = useToast();
+  const { goBack } = useRouter();
   // console.log("🚀 + CreateJob + imageUrl:", imageUrl);
   const animatedComponents = makeAnimated();
   const CLOUDINARY_UPLOAD_PRESET = "ml_default";
@@ -20,14 +25,14 @@ const CreateJob = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    // try {
-    //   const res = await axios.post("http://localhost:7000/api/job/addjob", {
-    //     data: { ...data, companyLogo: imageUrl },
-    //   });
-    //   console.log("🚀 + onSubmit + res:", res);
-    // } catch (error) {
-    //   console.log("🚀 + onSubmit + error:", error);
-    // }
+    const response = await postJob(
+      data,
+      imageUrl,
+      successToast,
+      errorToast,
+      goBack
+    );
+    // console.log("🚀 + onSubmit + response:", response);
   };
 
   const options = [

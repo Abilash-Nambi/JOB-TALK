@@ -30,7 +30,7 @@ const postJob = async (req, res) => {
       experienceLevel,
       employmentType,
       description,
-    } = req.body;
+    } = req.body.data;
 
     if (
       !companyName ||

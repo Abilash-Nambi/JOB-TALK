@@ -18,11 +18,24 @@ export const getSingleJob = async (id) => {
   }
 };
 
-export const postJob = async () => {
+export const postJob = async (
+  data,
+  imageUrl,
+  successToast,
+  errorToast,
+  goBack
+) => {
+  console.log("🚀 + postJob + data:", data);
   try {
-    const data = await axiosInstance.post(`/job/addjob`);
-    return data;
+    const res = await axiosInstance.post(`/job/post-job`, {
+      data: { ...data, companyLogo: imageUrl },
+    });
+    successToast(res.data.message);
+    goBack();
+    return res;
   } catch (error) {
-    return error;
+    if (error.response) {
+      errorToast(error.response.data.message);
+    } else return error;
   }
 };

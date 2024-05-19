@@ -8,6 +8,6 @@ export default {
         blue: "#3575E2",
       },
     },
-    plugins: [],
+    plugins: [require("@tailwindcss/line-clamp")],
   },
 };
