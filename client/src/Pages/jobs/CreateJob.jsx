@@ -7,6 +7,7 @@ import makeAnimated from "react-select/animated";
 import { postJob } from "../../Services/api/JobEndPoints";
 import useToast from "../../Hooks/useToast";
 import useRouter from "../../Hooks/useRouter";
+import BreadCrumb from "../../components/BreadCrumb";
 
 const CreateJob = () => {
   const [imageUrl, setImageUrl] = useState("");
@@ -65,7 +66,10 @@ const CreateJob = () => {
   };
   return (
     <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4">
-      <div className="bg-[#FAFAFA] py-10 px-4 lg:px-16 ">
+      <div>
+        <BreadCrumb title={"Job Adding Page"} />
+      </div>
+      <div className="bg-[#FAFAFA] py-10 px-4 lg:px-16 mt-2">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
           <div className="flex w-full justify-between flex-wrap">
             <div className="md:w-[32em] w-full relative">

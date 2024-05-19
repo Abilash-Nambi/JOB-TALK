@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Button from "../../components/Button";
 import { useSelector } from "react-redux";
+import BreadCrumb from "../../components/BreadCrumb";
 
 const MyJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -18,6 +19,9 @@ const MyJobs = () => {
 
   return (
     <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4  ">
+      <div>
+        <BreadCrumb title={"My Job  Page"} />
+      </div>
       <h1 className="text-center p-4"> All My Jobs</h1>
       <div className="p-2 text-center ">
         <input

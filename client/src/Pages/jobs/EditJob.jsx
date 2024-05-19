@@ -1,6 +1,7 @@
 import React from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import BreadCrumb from "../../components/BreadCrumb";
 
 const EditJob = () => {
   const animatedComponents = makeAnimated();
@@ -14,7 +15,10 @@ const EditJob = () => {
   ];
   return (
     <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4">
-      <div className="bg-[#FAFAFA] py-10 px-4 lg:px-16 ">
+      <div>
+        <BreadCrumb title={"Job Edit Page"} />
+      </div>
+      <div className="bg-[#FAFAFA] py-10 px-4 lg:px-16 mt-2">
         <form onSubmit={handleSubmit} className="space-y-3">
           <div className="flex w-full justify-between flex-wrap">
             <div className="md:w-[32em] w-full relative">
