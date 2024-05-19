@@ -25,6 +25,10 @@ const Header = () => {
       title: "HOME",
     },
     {
+      path: "/all-jobs",
+      title: "ALL JOBS",
+    },
+    {
       path: "/my-job",
       title: "VIEW YOUR JOBS",
     },

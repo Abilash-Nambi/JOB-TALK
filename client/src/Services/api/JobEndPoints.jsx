@@ -17,3 +17,12 @@ export const getSingleJob = async (id) => {
     return error;
   }
 };
+
+export const postJob = async () => {
+  try {
+    const data = await axiosInstance.post(`/job/addjob`);
+    return data;
+  } catch (error) {
+    return error;
+  }
+};

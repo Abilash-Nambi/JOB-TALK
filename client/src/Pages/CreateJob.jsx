@@ -20,14 +20,14 @@ const CreateJob = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    try {
-      const res = await axios.post("http://localhost:7000/api/job/addjob", {
-        data: { ...data, companyLogo: imageUrl },
-      });
-      console.log("🚀 + onSubmit + res:", res);
-    } catch (error) {
-      console.log("🚀 + onSubmit + error:", error);
-    }
+    // try {
+    //   const res = await axios.post("http://localhost:7000/api/job/addjob", {
+    //     data: { ...data, companyLogo: imageUrl },
+    //   });
+    //   console.log("🚀 + onSubmit + res:", res);
+    // } catch (error) {
+    //   console.log("🚀 + onSubmit + error:", error);
+    // }
   };
 
   const options = [
@@ -272,12 +272,13 @@ const CreateJob = () => {
               })}
             />
           </div>
-
-          <input
-            type="submit"
-            value="Submit"
-            className=" block mt-2 bg-blue text-white font-semibold px-8 py-2 rounded-sm cursor-pointer"
-          />
+          <div className="flex-row flex justify-end">
+            <input
+              type="submit"
+              value="Submit"
+              className=" block mt-2 bg-blue text-white font-semibold px-8 py-2 rounded-sm cursor-pointer "
+            />
+          </div>
         </form>
       </div>
     </div>
