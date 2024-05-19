@@ -10,6 +10,8 @@ import { TbUsersGroup } from "react-icons/tb";
 import { MdOutlineGroups } from "react-icons/md";
 import { TbTargetArrow } from "react-icons/tb";
 import { FaArrowsDownToPeople } from "react-icons/fa6";
+import Counter from "../components/Counter";
+
 const IntroSection = () => {
   return (
     <section className="max-w-screen-2xl mx-auto xl:px-24 px-4 bg-[#FAFAFA] mt-[4em]">
@@ -19,7 +21,7 @@ const IntroSection = () => {
             <div className="space-y-6">
               <div className="group-heading">
                 <h4 className="text-4xl font-bold">
-                  What can I do with Jobtex?
+                  What can I do with Jobtalk?
                 </h4>
                 <p className="text-primary/70 pt-3 text-[19px]">
                   Streamline your hiring process with strategic channels to{" "}
@@ -105,6 +107,7 @@ const IntroSection = () => {
                   <h6 className="text-[20px] font-bold ">
                     Pipeline Management on Your Terms
                   </h6>
+
                   <p>
                     Take full control of how you manage job postings, candidate
                     pools and outreach campaigns. Choose to use the
@@ -118,69 +121,51 @@ const IntroSection = () => {
           </div>
         </div>
       </div>
-      <div class="tf-container">
-        <div class="background1 wrap-count">
-          <div class="row align-item-center">
-            <div class="col-lg-3 col-md-6 wow fadeInUp">
-              <div class="wd-counter widget-counter">
-                <div class="inner wrap-counter">
-                  <h2>
-                    <span
-                      class="counter-number"
-                      data-speed="2000"
-                      data-to="25"
-                    ></span>
-                    <span>M+</span>
-                  </h2>
-                </div>
-                <p class="description">Jobs Available</p>
-              </div>
+
+      <div className="py-16">
+        <div className="grid md:grid-cols-4 grid-rows-1 gap-9  ">
+          <div className="items-center flex flex-col">
+            <div className="">
+              <h2>
+                <span className="text-5xl flex ">
+                  <Counter id={"counter-job"} end={25} /> M+
+                </span>
+              </h2>
             </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-              <div class="wd-counter widget-counter">
-                <div class="inner wrap-counter">
-                  <h2>
-                    <span
-                      class="counter-number"
-                      data-speed="2000"
-                      data-to="177"
-                    ></span>
-                    <span>k+</span>
-                  </h2>
-                </div>
-                <p class="description">New Jobs This Week!</p>
-              </div>
+            <p className="description">Jobs Available</p>
+          </div>
+
+          <div className="items-center flex flex-col">
+            <div className="">
+              <h2>
+                <span className="text-5xl flex ">
+                  <Counter id={"counter-week"} end={177} /> k+
+                </span>
+              </h2>
             </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
-              <div class="wd-counter widget-counter">
-                <div class="inner wrap-counter">
-                  <h2>
-                    <span
-                      class="counter-number"
-                      data-speed="2000"
-                      data-to="298"
-                    ></span>
-                    <span>k+</span>
-                  </h2>
-                </div>
-                <p class="description">Companies Hiring</p>
-              </div>
+            <p className="">New Jobs This Week!</p>
+          </div>
+
+          <div className="items-center flex flex-col">
+            <div className="">
+              <h2>
+                <span className="text-5xl  flex">
+                  <Counter id={"counter-hiring"} end={295} /> k+
+                </span>
+              </h2>
             </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-              <div class="wd-counter widget-counter">
-                <div class="inner wrap-counter">
-                  <h2>
-                    <span
-                      class="counter-number"
-                      data-speed="2000"
-                      data-to="5"
-                    ></span>
-                    <span>M+</span>
-                  </h2>
-                </div>
-                <p class="description">Candidates</p>
-              </div>
+            <p className="">Companies Hiring</p>
+          </div>
+
+          <div className="items-center flex flex-col">
+            <div className="">
+              <h2>
+                <span className="text-5xl flex">
+                  <Counter id={"counter-cand"} end={5} /> M+
+                </span>
+              </h2>
             </div>
+            <p className="">Candidates</p>
           </div>
         </div>
       </div>

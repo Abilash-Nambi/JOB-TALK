@@ -4,6 +4,7 @@ import { CiLocationOn } from "react-icons/ci";
 import Button from "./Button";
 import useToast from "../Hooks/useToast";
 import DropDown from "./DropDown";
+import CustomDropDown from "./CustomDropDown";
 
 const Banner = ({ query, handleInputChange }) => {
   const { successToast, errorToast, warningToast } = useToast();
@@ -12,6 +13,21 @@ const Banner = ({ query, handleInputChange }) => {
     e.preventDefault();
     warningToast("done");
   };
+
+  const dropDownMenu = [
+    {
+      path: "",
+      title: "Trivandrum",
+    },
+    {
+      path: "",
+      title: "Chennai",
+    },
+    {
+      path: "",
+      title: "Bengaluru",
+    },
+  ];
 
   return (
     <div className="relative">
@@ -37,7 +53,7 @@ const Banner = ({ query, handleInputChange }) => {
                   onChange={handleInputChange}
                 />
                 <IoIosSearch className="absolute mt-2.5 ml-2 text-grey-400" />
-                <DropDown title={"Location"} />
+                {/* <DropDown title={"Location"} dropDownMenu={dropDownMenu} /> */}
               </div>
 
               {/* <div className="flex rounded shadow-sm  md:w-1/3 w-full ring-1 ring-inset focus-within:ring-inset focus-within:ring-2 rounded-e-none">
