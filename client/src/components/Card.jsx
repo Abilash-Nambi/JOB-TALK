@@ -33,7 +33,9 @@ const Card = ({ data }) => {
           )}
 
           <div>
-            <h4 className="text-blue mb-1 ">{companyName}</h4>
+            <h4 className="text-blue mb-1 	text-transform: capitalize">
+              {companyName}
+            </h4>
             <h3 className="text-lg font-bold mb-2 text-primary">{jobTitle}</h3>
             <div className="flex items-center gap-2 mb-2 flex-wrap">
               <span className="flex items-center gap-2 text-primary/70">
@@ -53,7 +55,9 @@ const Card = ({ data }) => {
                 {postingDate}
               </span>
             </div>
-            <p className="text-base  text-primary/70">{description}</p>
+            <p className="text-base line-clamp-2  text-primary/70">
+              {description}
+            </p>
             <Link to={`/job-details/${_id}`} className="justify-end flex">
               <Button
                 title="VIEW JOB"
