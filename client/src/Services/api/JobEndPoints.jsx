@@ -25,7 +25,6 @@ export const postJob = async (
   errorToast,
   goBack
 ) => {
-  console.log("🚀 + postJob + data:", data);
   try {
     const res = await axiosInstance.post(`/job/post-job`, {
       data: { ...data, companyLogo: imageUrl },

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import BreadCrumb from "../components/BreadCrumb";
+import BreadCrumb from "../../components/BreadCrumb";
 import { FaSuitcase } from "react-icons/fa";
-import Button from "../components/Button";
+import Button from "../../components/Button";
 import { useEffect } from "react";
-import { getSingleJob } from "../Services/api/JobEndPoints";
+import { getSingleJob } from "../../Services/api/JobEndPoints";
 import { Link, useParams } from "react-router-dom";
 import { CiLocationOn } from "react-icons/ci";
 import { MdOutlineAccessTime } from "react-icons/md";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { SlCalender } from "react-icons/sl";
-import { date } from "../Utils/dateFormat";
+import { date } from "../../Utils/dateFormat";
 import { AiTwotoneHourglass } from "react-icons/ai";
 
 const JobPage = () => {

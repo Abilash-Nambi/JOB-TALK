@@ -1,9 +1,9 @@
 import React from "react";
-import InputField from "../components/InputField";
+import InputField from "../../components/InputField";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
-import Button from "../components/Button";
+import Button from "../../components/Button";
 import { useSelector } from "react-redux";
 
 const MyJobs = () => {
@@ -97,7 +97,7 @@ const MyJobs = () => {
                         ${data.minPrice}-${data.maxPrice}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        <Link to="/post-job">
+                        <Link to="/edit-job">
                           <Button
                             title="EDIT"
                             className="bg-yellow-200 text-black active:bg-yellow-400 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"

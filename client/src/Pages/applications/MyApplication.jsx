@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import {
   deleteApplication,
   jobSeekerGetApplication,
-} from "../Services/api/ApplicationEndpoints";
+} from "../../Services/api/ApplicationEndpoints";
 import { useEffect } from "react";
-import Button from "../components/Button";
-import useToast from "../Hooks/useToast";
+import Button from "../../components/Button";
+import useToast from "../../Hooks/useToast";
 
 const MyApplication = () => {
   const [data, setData] = useState([]);

@@ -4,9 +4,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-import { postJob } from "../Services/api/JobEndPoints";
-import useToast from "../Hooks/useToast";
-import useRouter from "../Hooks/useRouter";
+import { postJob } from "../../Services/api/JobEndPoints";
+import useToast from "../../Hooks/useToast";
+import useRouter from "../../Hooks/useRouter";
 
 const CreateJob = () => {
   const [imageUrl, setImageUrl] = useState("");
