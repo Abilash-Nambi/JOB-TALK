@@ -1,10 +1,10 @@
 import React from "react";
 import { IoIosSearch } from "react-icons/io";
 import { CiLocationOn } from "react-icons/ci";
-import Button from "./Button";
-import useToast from "../Hooks/useToast";
-import DropDown from "./DropDown";
-import CustomDropDown from "./CustomDropDown";
+import Button from "../Button";
+import useToast from "../../Hooks/useToast";
+import DropDown from "../DropDown";
+import CustomDropDown from "../CustomDropDown";
 
 const Banner = ({ query, handleInputChange }) => {
   const { successToast, errorToast, warningToast } = useToast();

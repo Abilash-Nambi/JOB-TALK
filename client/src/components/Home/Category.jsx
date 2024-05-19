@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import jobCategory from "../Assets/datas/dataCategory";
+import jobCategory from "../../Assets/datas/dataCategory";
 import { FcAdvance } from "react-icons/fc";
 
 const Category = () => {

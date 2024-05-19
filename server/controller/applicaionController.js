@@ -63,7 +63,6 @@ const jobSeekerDeleteApplication = async (req, res) => {
 };
 
 const postApplication = async (req, res) => {
-  console.log("🚀 + postApplication + req:", req.body);
   try {
     const { role } = req.user;
     if (role === "Employer") {

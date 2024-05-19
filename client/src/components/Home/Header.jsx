@@ -1,10 +1,10 @@
 import React from "react";
-import logo from "../../public/images/logo.jpg";
+import logo from "../../../public/images/logo.jpg";
 import { Link, NavLink } from "react-router-dom";
 import { FaAlignRight } from "react-icons/fa6";
 import { useState } from "react";
 import { FaXmark } from "react-icons/fa6";
-import DropDown from "./DropDown";
+import DropDown from "../DropDown";
 import { useSelector } from "react-redux";
 
 const Header = () => {
@@ -55,6 +55,16 @@ const Header = () => {
       title: "MY APPLICATION",
     },
   ];
+  const navItemsAllUser = [
+    {
+      path: "/",
+      title: "HOME",
+    },
+    {
+      path: "/all-jobs",
+      title: "FIND YOUR NEXT JOB",
+    },
+  ];
 
   const dropDownMenu = [
     {
@@ -96,6 +106,17 @@ const Header = () => {
                   </NavLink>
                 </li>
               ))}
+          {!isAuthenticated &&
+            navItemsAllUser.map((data, i) => (
+              <li key={i} className="text-base">
+                <NavLink
+                  to={`${data.path}`}
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
+                  {data.title}
+                </NavLink>
+              </li>
+            ))}
         </ul>
 
         {/* signin and signup */}

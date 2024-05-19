@@ -1,5 +1,5 @@
 import React from "react";
-import Banner from "../components/Banner";
+import Banner from "../components/Home/Banner";
 import { useState } from "react";
 // import { useEffect } from "react";
 // import Card from "../components/Card";
@@ -8,8 +8,8 @@ import { useState } from "react";
 // import NewsLetter from "../components/NewsLetter";
 // import axios from "axios";
 // import { getAllJob } from "../Services/api/JobEndPoints";
-import Category from "../components/Category";
-import IntroSection from "../components/IntroSection";
+import Category from "../components/Home/Category";
+import IntroSection from "../components/Home/IntroSection";
 
 const Home = () => {
   const [query, setQuerry] = useState("");

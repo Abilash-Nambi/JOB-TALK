@@ -32,39 +32,13 @@ const MyApplication = () => {
     <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4 space-y-3 flex items-center flex-col">
       <h1 className="text-center p-4"> My Application</h1>
 
-      {/* {data?.map((data, key) => (
-        <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-10 mx-auto mt-5 border py-10">
-          <div className="grid md:grid-cols-2 grid-rows-1 grid-cols-1 gap-4 ">
-            <div key={key}>
-              <ul>
-                <li>Name : {data.name}</li>
-                <li>Email : {data.email}</li>
-                <li>Phone : {data.phone}</li>
-                <li>Address : {data.address}</li>
-                <li>Cover letter : {data.coverLetter}</li>
-              </ul>
-            </div>
-            <div>
-              <img src={data?.resume?.url} className="min-h-13" />
-              <div className="text-right pt-3">
-                <Button
-                  title="Delete Application"
-                  className="bg-blue text-white px-1 py-1 rounded-sm"
-                  onClick={() => handleDelete(data._id)}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      ))} */}
-
       {data.map((data, key) => (
-        <div className="relative xl:w-8/12 flex bg-clip-border rounded-xl bg-white text-gray-700 shadow-md  max-w-[48rem] flex-col md:flex-row ">
-          <div className="relative w-2/5 m-0 overflow-hidden text-gray-700 bg-white rounded-r-none bg-clip-border rounded-xl shrink-0 ">
+        <div className="relative xl:w-8/12 flex bg-clip-border rounded-xl bg-[#FAFAFA] text-gray-700 shadow-md  max-w-[48rem] flex-col md:flex-row border hover: cursor-pointer">
+          <div className="relative w-2/5 m-0 overflow-hidden text-gray-700 bg-orange-100 rounded-r-none bg-clip-border rounded-xl shrink-0 ">
             <img
               src={data?.resume?.url}
               alt="card-image"
-              className="object-cover w-fit h-full"
+              className="object-cover min-w-[215px] h-[280px] "
             />
           </div>
           <div className="p-6">

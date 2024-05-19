@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import Card from "../components/Card";
-import Sidebar from "../components/sidebar/Sidebar";
+import Sidebar from "../components/Sidebar/Sidebar";
 import NewsLetter from "../components/NewsLetter";
 import { getAllJob } from "../Services/api/JobEndPoints";
 import { useState } from "react";

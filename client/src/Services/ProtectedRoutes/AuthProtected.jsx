@@ -13,7 +13,7 @@ const AuthProtected = ({ children }) => {
 
     if (!token) {
       warningToast("Please login");
-      navigate("/");
+      navigate("/all-jobs");
     }
   }, [getStorage, navigate, warningToast]);
 
