@@ -105,7 +105,8 @@ const updateJob = async (req, res) => {
       return res.status(400).json({ message: "Job Id is required" });
     }
 
-    const updatedData = req.body;
+    const { updatedData } = req.body;
+    console.log("🚀 + updateJob + updatedData:", updatedData);
 
     // Validate updatedData
     if (!updatedData || Object.keys(updatedData).length === 0) {

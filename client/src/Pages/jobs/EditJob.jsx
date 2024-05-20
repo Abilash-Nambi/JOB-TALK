@@ -3,15 +3,20 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import BreadCrumb from "../../components/BreadCrumb";
 import { useParams } from "react-router-dom";
-import { getSingleJob } from "../../Services/api/JobEndPoints";
+import { editJob, getSingleJob } from "../../Services/api/JobEndPoints";
 import { useEffect } from "react";
 import { cloudinaryImage } from "../../Utils/cloudinary";
+import useToast from "../../Hooks/useToast";
+import useRouter from "../../Hooks/useRouter";
 
 const EditJob = () => {
-  const animatedComponents = makeAnimated();
-
   const [job, setJob] = useState({});
+  console.log("🚀 + EditJob + job:", job);
   const [imageUrl, setImageUrl] = useState("");
+  console.log("🚀 + EditJob + imageUrl:", imageUrl);
+  const { successToast, errorToast } = useToast();
+  const { goBack } = useRouter();
+  const animatedComponents = makeAnimated();
 
   let { id } = useParams();
 
@@ -34,13 +39,12 @@ const EditJob = () => {
 
   const handleChangeImage = async (e) => {
     cloudinaryImage(e, setImageUrl);
-    if (imageUrl) {
-      setJob((prev) => ({ ...prev, companyLogo: imageUrl }));
-    }
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert();
+    const updatedJob = { ...job, companyLogo: imageUrl };
+    setJob(updatedJob);
+    const res = await editJob(id, updatedJob, successToast, errorToast, goBack);
   };
 
   const options = [
@@ -110,7 +114,7 @@ const EditJob = () => {
                 onChange={(e) => handleChange("salaryType", e.target.value)}
               >
                 <option value=" ">Choose salary type</option>
-                <option value="Yearly">Hourly</option>
+                <option value="Hourly">Hourly</option>
                 <option value="Yearly">Yearly</option>
                 <option value="Monthly">Monthly</option>
               </select>
@@ -227,7 +231,7 @@ const EditJob = () => {
             <input
               type="submit"
               value="Submit"
-              className=" block mt-2 bg-blue text-white font-semibold px-8 py-2 rounded-sm cursor-pointer "
+              className=" block mt-2 bg-blue text-white font-semibold px-8 py-2 rounded-sm cursor-pointer"
             />
           </div>
         </form>
