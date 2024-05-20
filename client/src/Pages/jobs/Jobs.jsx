@@ -5,10 +5,12 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import NewsLetter from "../../components/NewsLetter";
 import { getAllJob } from "../../Services/api/JobEndPoints";
 import { useState } from "react";
+import CardSkeleton from "../../components/Skeleton/CardSkeleton";
 
 const Jobs = () => {
   const [selectedCategory, setSelectedCategory] = useState(" ");
   const [jobs, setJobs] = useState([]);
+  const [skeleton, setskeleton] = useState(false);
   //console.log("🚀 + Home + jobs:", jobs);
 
   useEffect(() => {
@@ -16,9 +18,13 @@ const Jobs = () => {
   }, []);
 
   const fetchData = async () => {
+    setskeleton(true);
     try {
       const response = await getAllJob();
       setJobs(response.data.data);
+      setTimeout(() => {
+        setskeleton(false);
+      }, 2000);
     } catch (error) {
       console.log("🚀 + fetchData + error:", error);
     }
@@ -85,9 +91,10 @@ const Jobs = () => {
 
         <div className="bg-white p-4  rounded-sm col-span-2">
           <h3 className="text-lg font-bold mb-2">{jobs.length} Jobs</h3>
-          {jobs.map((data, i) => (
-            <Card key={i} data={data} />
-          ))}
+
+          {jobs.map((data, i) =>
+            skeleton ? <CardSkeleton /> : <Card key={i} data={data} />
+          )}
         </div>
 
         <div className="bg-white p-4 rounded">
