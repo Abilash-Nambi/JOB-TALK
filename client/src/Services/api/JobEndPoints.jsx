@@ -46,3 +46,15 @@ export const postJob = async (
     } else return error;
   }
 };
+export const deleteJob = async (id, successToast, errorToast) => {
+  try {
+    const res = await axiosInstance.delete(`/job/remove-job/${id}`);
+    successToast(res.data.message);
+
+    return res;
+  } catch (error) {
+    if (error.response) {
+      errorToast(error.response.data.message);
+    } else return error;
+  }
+};

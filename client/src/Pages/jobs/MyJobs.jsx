@@ -6,11 +6,15 @@ import { useEffect } from "react";
 import Button from "../../components/Button";
 import { useSelector } from "react-redux";
 import BreadCrumb from "../../components/BreadCrumb";
-import { myAllJobs } from "../../Services/api/JobEndPoints";
+import { deleteJob, myAllJobs } from "../../Services/api/JobEndPoints";
 import ConfirmationModal from "../../components/ConfirmationModal";
+import useToast from "../../Hooks/useToast";
 
 const MyJobs = () => {
   const [jobs, setJobs] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [jobId, setJobId] = useState(null);
+  const { successToast, errorToast } = useToast();
   const userDetials = useSelector((state) => state.user.user);
 
   useEffect(() => {
@@ -20,10 +24,17 @@ const MyJobs = () => {
   const fetchData = async () => {
     const res = await myAllJobs();
     setJobs(res.data.data);
-    console.log("🚀 + fetchData + res:", res.data.data);
   };
-  const handleDelete = (id) => {
-    <ConfirmationModal />;
+  const handleDeleteButton = (id) => {
+    setJobId(id);
+    setIsModalOpen(!isModalOpen);
+  };
+  const handleDelete = async () => {
+    const res = await deleteJob(jobId, successToast, errorToast);
+    if (res.status === 200) {
+      setIsModalOpen(false);
+      fetchData();
+    }
   };
 
   return (
@@ -92,7 +103,6 @@ const MyJobs = () => {
                     </th>
                   </tr>
                 </thead>
-
                 <tbody>
                   {jobs.map((data, i) => (
                     <tr key={i}>
@@ -122,7 +132,7 @@ const MyJobs = () => {
                           <Button
                             title="DELETE"
                             className="bg-red-600 text-white active:bg-red-800 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                            onClick={() => handleDelete(data._id)}
+                            onClick={() => handleDeleteButton(data._id)}
                           />
                         </Link>
                       </td>
@@ -130,6 +140,11 @@ const MyJobs = () => {
                   ))}
                 </tbody>
               </table>
+              <ConfirmationModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onConfirm={handleDelete}
+              />
             </div>
           </div>
         </div>
