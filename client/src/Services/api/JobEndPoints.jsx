@@ -18,6 +18,14 @@ export const getSingleJob = async (id) => {
   }
 };
 
+export const myAllJobs = async () => {
+  try {
+    const res = await axiosInstance.get(`/job//my-jobs`);
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
 export const postJob = async (
   data,
   imageUrl,

@@ -6,16 +6,25 @@ import { useEffect } from "react";
 import Button from "../../components/Button";
 import { useSelector } from "react-redux";
 import BreadCrumb from "../../components/BreadCrumb";
+import { myAllJobs } from "../../Services/api/JobEndPoints";
+import ConfirmationModal from "../../components/ConfirmationModal";
 
 const MyJobs = () => {
   const [jobs, setJobs] = useState([]);
   const userDetials = useSelector((state) => state.user.user);
 
   useEffect(() => {
-    fetch("jobs.json")
-      .then((res) => res.json())
-      .then((data) => setJobs(data));
+    fetchData();
   }, []);
+
+  const fetchData = async () => {
+    const res = await myAllJobs();
+    setJobs(res.data.data);
+    console.log("🚀 + fetchData + res:", res.data.data);
+  };
+  const handleDelete = (id) => {
+    <ConfirmationModal />;
+  };
 
   return (
     <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4  ">
@@ -109,10 +118,11 @@ const MyJobs = () => {
                         </Link>
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        <Link to="/post-job">
+                        <Link to="">
                           <Button
                             title="DELETE"
                             className="bg-red-600 text-white active:bg-red-800 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                            onClick={() => handleDelete(data._id)}
                           />
                         </Link>
                       </td>
