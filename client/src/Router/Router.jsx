@@ -53,7 +53,7 @@ const router = createBrowserRouter([
         element: <ApplicationForm />,
       },
       {
-        path: "edit-job",
+        path: "edit-job/:id",
         element: <EditJob />,
       },
       {

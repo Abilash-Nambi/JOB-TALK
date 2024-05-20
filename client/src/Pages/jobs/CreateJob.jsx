@@ -8,15 +8,14 @@ import { postJob } from "../../Services/api/JobEndPoints";
 import useToast from "../../Hooks/useToast";
 import useRouter from "../../Hooks/useRouter";
 import BreadCrumb from "../../components/BreadCrumb";
+import { cloudinaryImage } from "../../Utils/cloudinary";
 
 const CreateJob = () => {
   const [imageUrl, setImageUrl] = useState("");
   const { successToast, errorToast } = useToast();
   const { goBack } = useRouter();
-  // console.log("🚀 + CreateJob + imageUrl:", imageUrl);
+
   const animatedComponents = makeAnimated();
-  const CLOUDINARY_UPLOAD_PRESET = "ml_default";
-  const cloudinaryUploadUrl = import.meta.env.VITE_CLOUDINARY_IMAGE_UPLOAD_URL;
 
   const {
     register,
@@ -44,25 +43,7 @@ const CreateJob = () => {
   ];
 
   const handleChangeImage = (e) => {
-    setImageUrl(URL.createObjectURL(e.target.files[0]));
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
-
-    fetch(cloudinaryUploadUrl, {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.secure_url !== "") {
-          const uploadedFileUrl = data.secure_url;
-          console.log("🚀 + .then + uploadedFileUrl:", uploadedFileUrl);
-          setImageUrl(uploadedFileUrl);
-        }
-      })
-      .catch((err) => console.error(err));
+    cloudinaryImage(e, setImageUrl);
   };
   return (
     <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4">
@@ -240,9 +221,9 @@ const CreateJob = () => {
                 className="create-job-input"
               >
                 <option value=" ">Select job type</option>
-                <option value="Yearly">Full-time</option>
-                <option value="Yearly">Part-time</option>
-                <option value="Monthly">Temporary</option>
+                <option value="Full time">Full-time</option>
+                <option value="Part time">Part-time</option>
+                <option value="Temporary">Temporary</option>
               </select>
             </div>
           </div>
@@ -262,7 +243,10 @@ const CreateJob = () => {
             />
           </div>
           <div className="w-[32em] relative">
-            <label className="block mb-2 ">Owner email</label>
+            <label className="block mb-2 ">
+              Owner email{" "}
+              <span className="text-green-500 text-sm ml-3">Optional*</span>
+            </label>
 
             {errors.ownerEmail && (
               <span className="text-red-500 text-xs absolute top-3 right-1">
@@ -272,13 +256,13 @@ const CreateJob = () => {
             <input
               className="create-job-input"
               type="email"
-              {...register("ownerEmail", {
-                required: "Email Address is required",
-                pattern: {
-                  value: /^\S+@\S+$/i,
-                  message: "Invalid email address",
-                },
-              })}
+              // {...register("ownerEmail", {
+              //   // required: "Email Address is required",
+              //   pattern: {
+              //     value: /^\S+@\S+$/i,
+              //     message: "Invalid email address",
+              //   },
+              // })}
             />
           </div>
           <div className="flex-row flex justify-end">

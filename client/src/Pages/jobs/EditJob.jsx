@@ -1,11 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import BreadCrumb from "../../components/BreadCrumb";
+import { useParams } from "react-router-dom";
+import { getSingleJob } from "../../Services/api/JobEndPoints";
+import { useEffect } from "react";
+import { cloudinaryImage } from "../../Utils/cloudinary";
 
 const EditJob = () => {
   const animatedComponents = makeAnimated();
-  const handleSubmit = () => {};
+
+  const [job, setJob] = useState({});
+  const [imageUrl, setImageUrl] = useState("");
+
+  let { id } = useParams();
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await getSingleJob(id);
+      setJob(response?.data?.data);
+    } catch (error) {
+      console.log("🚀 + fetchData + error:", error);
+    }
+  };
+
+  const handleChange = (key, value) => {
+    setJob((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleChangeImage = async (e) => {
+    cloudinaryImage(e, setImageUrl);
+    if (imageUrl) {
+      setJob((prev) => ({ ...prev, companyLogo: imageUrl }));
+    }
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert();
+  };
 
   const options = [
     { value: "React", label: "React" },
@@ -24,31 +60,55 @@ const EditJob = () => {
             <div className="md:w-[32em] w-full relative">
               <label className="block mb-2">Job Title</label>
 
-              <input className="create-job-input" placeholder="Web develeper" />
+              <input
+                className="create-job-input"
+                placeholder="Web developer"
+                value={job?.jobTitle}
+                onChange={(e) => handleChange("jobTitle", e.target.value)}
+              />
             </div>
             <div className="md:w-[32em] w-full relative">
               <label className="block mb-2 ">Company Name</label>
 
-              <input className="create-job-input" placeholder="Ex: Microsoft" />
+              <input
+                value={job?.companyName}
+                className="create-job-input"
+                placeholder="Ex: Microsoft"
+                onChange={(e) => handleChange("companyName", e.target.value)}
+              />
             </div>
           </div>
           <div className="flex w-full justify-between flex-wrap">
             <div className="md:w-[32em] w-full relative ">
               <label className="block mb-2">Minimum Salary</label>
 
-              <input className="create-job-input" placeholder="$100,00" />
+              <input
+                value={job?.minPrice}
+                className="create-job-input"
+                placeholder="$100,00"
+                onChange={(e) => handleChange("minPrice", e.target.value)}
+              />
             </div>
             <div className="md:w-[32em] w-full relative">
               <label className="block mb-2 ">Maximum Salary</label>
 
-              <input className="create-job-input" placeholder="$500,000" />
+              <input
+                value={job?.maxPrice}
+                className="create-job-input"
+                placeholder="$500,000"
+                onChange={(e) => handleChange("maxPrice", e.target.value)}
+              />
             </div>
           </div>
           <div className="flex w-full justify-between flex-wrap">
             <div className="md:w-[32em] w-full relative ">
               <label className="block mb-2">Salary Type</label>
 
-              <select className="create-job-input">
+              <select
+                className="create-job-input"
+                value={job?.salaryType || ""}
+                onChange={(e) => handleChange("salaryType", e.target.value)}
+              >
                 <option value=" ">Choose salary type</option>
                 <option value="Yearly">Hourly</option>
                 <option value="Yearly">Yearly</option>
@@ -58,7 +118,12 @@ const EditJob = () => {
             <div className="md:w-[32em] w-full relative">
               <label className="block mb-2 ">Job location</label>
 
-              <input className="create-job-input" placeholder="Ex: New york" />
+              <input
+                value={job?.jobLocation}
+                className="create-job-input"
+                placeholder="Ex: New york"
+                onChange={(e) => handleChange("jobLocation", e.target.value)}
+              />
             </div>
           </div>
           <div className="flex w-full justify-between flex-wrap">
@@ -66,16 +131,22 @@ const EditJob = () => {
               <label className="block mb-2 ">Job Posting Date</label>
 
               <input
+                value={job?.jobPostedOn}
                 type="date"
                 className="create-job-input"
                 placeholder="Ex: 2024-04-24"
               />
             </div>
-            <div className="md:w-[32em] w-full  relative">
+            <div className="md:w-[32em] w-full relative">
               <label className="block mb-2">Experience Level</label>
-
-              <select className="create-job-input">
-                <option value=" ">Choose you experience</option>
+              <select
+                className="create-job-input"
+                value={job?.experienceLevel || ""}
+                onChange={(e) =>
+                  handleChange("experienceLevel", e.target.value)
+                }
+              >
+                <option value="">Choose your experience</option>
                 <option value="Internship">Internship</option>
                 <option value="Any experience">Any experience</option>
                 <option value="Work remotely">Work remotely</option>
@@ -98,6 +169,13 @@ const EditJob = () => {
           <div className="flex w-full justify-between flex-wrap">
             <div className="md:w-[32em] w-full relative">
               <label className="block mb-2">Company Logo</label>
+              <div className="pb-3">
+                <img
+                  src={imageUrl ? imageUrl : job?.companyLogo}
+                  alt="ompany-logo"
+                />
+              </div>
+
               <input
                 className="create-job-input"
                 id="file_input"
@@ -107,13 +185,24 @@ const EditJob = () => {
               />
             </div>
             <div className="md:w-[32em] w-full relative">
-              <label className="block mb-2 ">Employement Type</label>
-
-              <select className="create-job-input">
-                <option value=" ">Select job type</option>
-                <option value="Yearly">Full-time</option>
-                <option value="Yearly">Part-time</option>
-                <option value="Monthly">Temporary</option>
+              <label className="block mb-2">Employment Type</label>
+              <select
+                className="create-job-input"
+                value={job?.employmentType || ""}
+                onChange={(e) => handleChange("employmentType", e.target.value)}
+              >
+                <option value="">Select job type</option>
+                <option value="Full Time">Full-time</option>
+                <option value="Part Time">Part-time</option>
+                <option value="Temporary">Temporary</option>
+                {job?.employmentType &&
+                  !["Full Time", "Part Time", "Temporary"].includes(
+                    job.employmentType
+                  ) && (
+                    <option value={job.employmentType}>
+                      {job.employmentType}
+                    </option>
+                  )}
               </select>
             </div>
           </div>
@@ -125,12 +214,14 @@ const EditJob = () => {
               className="w-full pl-3 py-1.5 focus:outline-none"
               rows={6}
               placeholder="Job description"
+              value={job?.description}
+              onChange={(e) => handleChange("description", e.target.value)}
             />
           </div>
           <div className="w-[32em] relative">
-            <label className="block mb-2 ">Owner email</label>
+            {/* <label className="block mb-2 ">Owner email</label>
 
-            <input className="create-job-input" type="email" />
+            <input className="create-job-input" type="email" /> */}
           </div>
           <div className="flex-row flex justify-end">
             <input
