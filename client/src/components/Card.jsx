@@ -32,7 +32,7 @@ const Card = ({ data }) => {
             <img src={noImage} alt="" className="w-20 h-20" />
           )}
 
-          <div>
+          <div className="md:w-[32em]">
             <h4 className="text-blue mb-1 	text-transform: capitalize">
               {companyName}
             </h4>
