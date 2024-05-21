@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { cloudinaryImage } from "../../Utils/cloudinary";
 import useToast from "../../Hooks/useToast";
 import useRouter from "../../Hooks/useRouter";
+import CheckBox from "../../components/CheckBox";
 
 const EditJob = () => {
   const [job, setJob] = useState({});
@@ -189,6 +190,26 @@ const EditJob = () => {
               />
             </div>
             <div className="md:w-[32em] w-full relative">
+              <label className="block mb-2">Job Expired</label>
+              <select
+                className="create-job-input"
+                value={job?.expired || ""}
+                onChange={(e) => handleChange("expired", e.target.value)}
+              >
+                <option value="true">True</option>
+                <option value="false">False</option>
+
+                {/* {job?.employmentType &&
+                  !["Full Time", "Part Time", "Temporary"].includes(
+                    job.employmentType
+                  ) && (
+                    <option value={job.employmentType}>
+                      {job.employmentType}
+                    </option>
+                  )} */}
+              </select>
+            </div>
+            <div className="md:w-[32em] w-full relative">
               <label className="block mb-2">Employment Type</label>
               <select
                 className="create-job-input"
@@ -222,11 +243,7 @@ const EditJob = () => {
               onChange={(e) => handleChange("description", e.target.value)}
             />
           </div>
-          <div className="w-[32em] relative">
-            {/* <label className="block mb-2 ">Owner email</label>
 
-            <input className="create-job-input" type="email" /> */}
-          </div>
           <div className="flex-row flex justify-end">
             <input
               type="submit"
