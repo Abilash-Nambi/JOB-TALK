@@ -198,15 +198,6 @@ const EditJob = () => {
               >
                 <option value="true">True</option>
                 <option value="false">False</option>
-
-                {/* {job?.employmentType &&
-                  !["Full Time", "Part Time", "Temporary"].includes(
-                    job.employmentType
-                  ) && (
-                    <option value={job.employmentType}>
-                      {job.employmentType}
-                    </option>
-                  )} */}
               </select>
             </div>
             <div className="md:w-[32em] w-full relative">
