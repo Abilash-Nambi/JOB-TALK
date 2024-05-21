@@ -193,7 +193,7 @@ const EditJob = () => {
               <label className="block mb-2">Job Expired</label>
               <select
                 className="create-job-input"
-                value={job?.expired || ""}
+                value={job?.expired}
                 onChange={(e) => handleChange("expired", e.target.value)}
               >
                 <option value="true">True</option>
