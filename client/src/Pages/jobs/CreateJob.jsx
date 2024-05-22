@@ -13,7 +13,7 @@ import { cloudinaryImage } from "../../Utils/cloudinary";
 const CreateJob = () => {
   const [imageUrl, setImageUrl] = useState("");
   const { successToast, errorToast } = useToast();
-  const { goBack } = useRouter();
+  const { goBack, navigate } = useRouter();
 
   const animatedComponents = makeAnimated();
 
@@ -30,7 +30,8 @@ const CreateJob = () => {
       imageUrl,
       successToast,
       errorToast,
-      goBack
+      goBack,
+      navigate
     );
     // console.log("🚀 + onSubmit + response:", response);
   };

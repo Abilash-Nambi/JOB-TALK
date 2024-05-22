@@ -31,14 +31,16 @@ export const postJob = async (
   imageUrl,
   successToast,
   errorToast,
-  goBack
+  goBack,
+  navigate
 ) => {
   try {
     const res = await axiosInstance.post(`/job/post-job`, {
       data: { ...data, companyLogo: imageUrl },
     });
     successToast(res.data.message);
-    goBack();
+    navigate("/all-jobs");
+    //goBack();
     return res;
   } catch (error) {
     if (error.response) {
