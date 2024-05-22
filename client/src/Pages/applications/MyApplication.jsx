@@ -7,14 +7,15 @@ import { useEffect } from "react";
 import Button from "../../components/Button";
 import useToast from "../../Hooks/useToast";
 import ResumeModal from "../../components/Application/ResumeModal";
+import ConfirmationModal from "../../components/ConfirmationModal";
 
 const MyApplication = () => {
   const [data, setData] = useState([]);
   const { errorToast, successToast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
-  console.log("🚀 + MyApplication + imageUrl:", imageUrl);
-  console.log(data?.resume?.url);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [applicationId, setapplication] = useState(null);
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
@@ -27,11 +28,16 @@ const MyApplication = () => {
     fetchData();
   }, []);
 
-  const handleDelete = async (id) => {
-    const res = await deleteApplication(id, successToast, errorToast);
+  const handleDelete = async () => {
+    const res = await deleteApplication(
+      applicationId,
+      successToast,
+      errorToast
+    );
     console.log("🚀 + handleDelete + res:", res);
     if (res.status === 200) {
       fetchData();
+      setIsModalOpen(false);
     }
   };
 
@@ -89,6 +95,9 @@ const MyApplication = () => {
           </div>
           <div className="flex md:flex-col-reverse flex-row-reverse pr-4 pb-3">
             <Button
+              onClick={() => {
+                setapplication(data._id), setIsModalOpen(true);
+              }}
               title="DELETE"
               className="bg-red-600 text-white active:bg-red-800 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
             />
@@ -96,6 +105,11 @@ const MyApplication = () => {
         </div>
       ))}
       <ResumeModal isOpen={isOpen} onClose={closeModal} imageUrl={imageUrl} />
+      <ConfirmationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={handleDelete}
+      />
     </div>
   );
 };
