@@ -27,7 +27,7 @@ export const LogIn = () => {
     formState: { errors },
   } = useForm();
   const isAuthenticated = useSelector((state) => state.user);
-  console.log("🚀 + LogIn + isAuthenticated:", isAuthenticated);
+  // console.log("🚀 + LogIn + isAuthenticated:", isAuthenticated);
   const dispatch = useDispatch();
 
   const onSubmit = async (formData) => {

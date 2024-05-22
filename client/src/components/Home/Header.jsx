@@ -41,7 +41,7 @@ const Header = () => {
       title: "POST A JOB",
     },
     {
-      path: " ",
+      path: "/My-application",
       title: "APPLICANTS APPLICATION",
     },
   ];

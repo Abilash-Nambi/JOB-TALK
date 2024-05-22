@@ -36,6 +36,14 @@ export const jobSeekerGetApplication = async () => {
     console.log("🚀 + postApplication + error:", error.response.data.message);
   }
 };
+export const employerGetApplication = async () => {
+  try {
+    const res = await axiosInstance.get("/application/employer/getall");
+    return res;
+  } catch (error) {
+    console.log("🚀 + postApplication + error:", error.response.data.message);
+  }
+};
 export const deleteApplication = async (id, successToast, errorToast) => {
   try {
     const res = await axiosInstance.delete(

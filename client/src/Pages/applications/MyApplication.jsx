@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   deleteApplication,
+  employerGetApplication,
   jobSeekerGetApplication,
 } from "../../Services/api/ApplicationEndpoints";
 import { useEffect } from "react";
@@ -8,7 +9,7 @@ import Button from "../../components/Button";
 import useToast from "../../Hooks/useToast";
 import ResumeModal from "../../components/Application/ResumeModal";
 import ConfirmationModal from "../../components/ConfirmationModal";
-
+import { useSelector } from "react-redux";
 const MyApplication = () => {
   const [data, setData] = useState([]);
   const { errorToast, successToast } = useToast();
@@ -17,15 +18,26 @@ const MyApplication = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [applicationId, setapplication] = useState(null);
 
+  const userDetials = useSelector((state) => state.user.user);
+  console.log("🚀 + MyApplication + userDetials:", userDetials.role);
+
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  const fetchData = async () => {
+  const fetchDataUser = async () => {
     const res = await jobSeekerGetApplication();
     setData(res.data.data);
   };
+  const fetchDataEmployer = async () => {
+    const res = await employerGetApplication();
+    setData(res.data.data);
+  };
   useEffect(() => {
-    fetchData();
+    if (userDetials?.role == "Employer") {
+      fetchDataEmployer();
+    } else {
+      fetchDataUser();
+    }
   }, []);
 
   const handleDelete = async () => {

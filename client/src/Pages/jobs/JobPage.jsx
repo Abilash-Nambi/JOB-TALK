@@ -59,7 +59,7 @@ const JobPage = () => {
               <MdOutlineAccessTime />
               {job.employmentType}
             </span>
-            <span className="flex items-center gap-2 text-primary/70">
+            <span className="flex items-center gap-2 text-primary/70 text-transform: capitalize">
               <CiLocationOn />
               {job.jobLocation}
             </span>
