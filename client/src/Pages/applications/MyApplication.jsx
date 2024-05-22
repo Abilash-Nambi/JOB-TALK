@@ -51,7 +51,7 @@ const MyApplication = () => {
               }}
             />
           </div>
-          <div className="p-6 ">
+          <div className="p-6 md:w-[25rem]">
             <h6 className="block mb-4 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-gray-700 uppercase">
               {data?.jobTitle}
             </h6>
@@ -87,7 +87,7 @@ const MyApplication = () => {
               </li>
             </ul>
           </div>
-          <div>
+          <div className="flex md:flex-col-reverse flex-row-reverse pr-4 pb-3">
             <Button
               title="DELETE"
               className="bg-red-600 text-white active:bg-red-800 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
