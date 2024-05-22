@@ -6,6 +6,7 @@ import NewsLetter from "../../components/NewsLetter";
 import { getAllJob } from "../../Services/api/JobEndPoints";
 import { useState } from "react";
 import CardSkeleton from "../../components/Skeleton/CardSkeleton";
+import Pagination from "../../components/Pagination";
 
 const Jobs = () => {
   const [selectedCategory, setSelectedCategory] = useState(" ");
@@ -95,6 +96,7 @@ const Jobs = () => {
           {jobs.map((data, i) =>
             skeleton ? <CardSkeleton /> : <Card key={i} data={data} />
           )}
+          <Pagination />
         </div>
 
         <div className="bg-white p-4 rounded">

@@ -1,10 +1,21 @@
 const jobModel = require("../models/jobModel");
-const { findByIdAndUpdate } = require("../models/userModel");
 
 const getAllJobs = async (req, res) => {
+  const pageLimit = 4;
+  const page = parseInt(req.query.page) - 1 || 0;
+  const skipCount = page * pageLimit;
   try {
-    const jobList = await jobModel.find({ expired: false });
-    res.status(200).json({ message: "Success", data: jobList });
+    const jobList = await jobModel
+      .find({ expired: false })
+      .skip(skipCount)
+      .limit(pageLimit);
+    const count = await jobModel.find({ expired: false }).countDocuments();
+    console.log("🚀 + getAllJobs + count:", count);
+    const totalPage = Math.ceil(count / pageLimit);
+
+    res
+      .status(200)
+      .json({ message: "Success", data: jobList, totalPage: totalPage });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

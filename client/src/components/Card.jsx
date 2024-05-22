@@ -70,7 +70,7 @@ const Card = ({ data }) => {
               <Button
                 title="VIEW JOB"
                 icon={<FaArrowRight />}
-                className="bg-blue text-white px-2 py-1  text-xs flex gap-2 items-center mt-2 rounded-sm hover:bg-[#172554] "
+                className="bg-blue text-white px-2 py-2  text-xs flex gap-2 items-center mt-2 rounded-sm hover:bg-[#172554] "
               />
             </Link>
           </div>

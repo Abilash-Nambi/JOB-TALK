@@ -88,22 +88,6 @@ const Home = () => {
       <Banner query={query} handleInputChange={handleInputChange} />
       <Category />
       <IntroSection />
-      {/* <div className="bg-[#FAFAFA] md:grid grid-cols-4 gap-8 lg:px-4 py-12">
-        <div className="bg-white p-4 rounded">
-          <Sidebar
-            handleClick={handleClick}
-            handleRadioChange={handleRadioChange}
-          />
-        </div>
-
-        <div className="bg-white p-4  rounded-sm col-span-2">
-          <Jobs result={result} />
-        </div>
-
-        <div className="bg-white p-4 rounded">
-          <NewsLetter />
-        </div>
-      </div> */}
     </div>
   );
 };
