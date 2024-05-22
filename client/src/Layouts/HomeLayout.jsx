@@ -7,7 +7,9 @@ const HomeLayout = () => {
   return (
     <div>
       <Header />
+
       <Outlet />
+
       <Footer />
     </div>
   );

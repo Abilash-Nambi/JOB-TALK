@@ -94,12 +94,13 @@ const Jobs = () => {
           />
         </div>
 
-        <div className="bg-white p-4  rounded-sm col-span-2">
+        <div className="bg-white p-4  rounded-sm col-span-2 ">
           <h3 className="text-lg font-bold mb-2">{jobs?.length} Jobs</h3>
 
           {jobs?.map((data, i) =>
             skeleton ? <CardSkeleton /> : <Card key={i} data={data} />
           )}
+
           <Pagination
             totalPages={totalPage}
             currentPage={currentPage}
