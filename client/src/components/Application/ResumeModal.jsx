@@ -1,4 +1,5 @@
 import React from "react";
+import { SlClose } from "react-icons/sl";
 
 const ResumeModal = ({ isOpen, onClose, imageUrl }) => {
   console.log("🚀 + ResumeModal + children:", imageUrl);
@@ -10,7 +11,7 @@ const ResumeModal = ({ isOpen, onClose, imageUrl }) => {
           onClick={onClose}
           className="absolute top-0 right-0 m-2 text-gray-600 hover:text-gray-800"
         >
-          &times;
+          <SlClose className="text-xl" />
         </button>
         <div className="p-4">
           <img src={imageUrl} alt="Resume" className="w-[27rem]" />
