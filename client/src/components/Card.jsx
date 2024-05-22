@@ -8,6 +8,7 @@ import noImage from "../Assets/images/noImage.jpg";
 import { FaArrowRight } from "react-icons/fa6";
 import Button from "./Button";
 import { date } from "../Utils/dateFormat";
+import Chip from "./Chip";
 const Card = ({ data }) => {
   const {
     companyName,
@@ -22,6 +23,7 @@ const Card = ({ data }) => {
     employmentType,
     jobPostedOn,
     _id,
+    experienceLevel,
   } = data;
   return (
     <div>
@@ -38,6 +40,7 @@ const Card = ({ data }) => {
               {companyName}
             </h4>
             <h3 className="text-lg font-bold mb-2 text-primary">{jobTitle}</h3>
+
             <div className="flex items-center gap-2 mb-2 flex-wrap">
               <span className="flex items-center gap-2 text-primary/70 text-transform: capitalize">
                 <CiLocationOn />
@@ -55,6 +58,10 @@ const Card = ({ data }) => {
                 <SlCalender />
                 {date(jobPostedOn)}
               </span>
+            </div>
+            <div className="pb-2 flex gap-2">
+              <Chip title={`${employmentType}`} />
+              <Chip title={`${experienceLevel}`} />
             </div>
             <p className="text-base line-clamp-2  text-primary/70">
               {description}
