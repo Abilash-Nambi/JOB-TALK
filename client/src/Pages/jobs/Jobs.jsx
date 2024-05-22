@@ -9,20 +9,24 @@ import CardSkeleton from "../../components/Skeleton/CardSkeleton";
 import Pagination from "../../components/Pagination";
 
 const Jobs = () => {
-  const [selectedCategory, setSelectedCategory] = useState(" ");
+  //const [selectedCategory, setSelectedCategory] = useState(" ");
   const [jobs, setJobs] = useState([]);
+  const [totalPage, setTotalPage] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  console.log("🚀 + Jobs + currentPage:", currentPage);
   const [skeleton, setskeleton] = useState(false);
   //console.log("🚀 + Home + jobs:", jobs);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [currentPage]);
 
   const fetchData = async () => {
     setskeleton(true);
     try {
-      const response = await getAllJob();
-      setJobs(response.data.data);
+      const response = await getAllJob(currentPage);
+      setJobs(response?.data?.data);
+      setTotalPage(response?.data?.totalPage);
       setTimeout(() => {
         setskeleton(false);
       }, 2000);
@@ -91,12 +95,16 @@ const Jobs = () => {
         </div>
 
         <div className="bg-white p-4  rounded-sm col-span-2">
-          <h3 className="text-lg font-bold mb-2">{jobs.length} Jobs</h3>
+          <h3 className="text-lg font-bold mb-2">{jobs?.length} Jobs</h3>
 
-          {jobs.map((data, i) =>
+          {jobs?.map((data, i) =>
             skeleton ? <CardSkeleton /> : <Card key={i} data={data} />
           )}
-          <Pagination />
+          <Pagination
+            totalPages={totalPage}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
 
         <div className="bg-white p-4 rounded">

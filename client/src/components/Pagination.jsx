@@ -1,6 +1,11 @@
 import React from "react";
 
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+const Pagination = ({
+  currentPage,
+  totalPages,
+  onPageChange,
+  setCurrentPage,
+}) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= totalPages; i++) {
@@ -16,7 +21,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             : "text-gray-700 bg-white hover:bg-gray-100"
         }`}
         disabled={currentPage === 1}
-        onClick={() => onPageChange(currentPage - 1)}
+        onClick={() => setCurrentPage((prev) => prev - 1)}
       >
         Prev
       </button>
@@ -40,7 +45,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             : "text-gray-700 bg-white hover:bg-gray-100"
         }`}
         disabled={currentPage === totalPages}
-        onClick={() => onPageChange(currentPage + 1)}
+        onClick={() => setCurrentPage((prev) => prev + 1)}
       >
         Next
       </button>

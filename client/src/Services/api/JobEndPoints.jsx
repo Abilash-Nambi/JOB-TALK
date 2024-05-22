@@ -1,9 +1,9 @@
 import { axiosInstance } from "./AxiosInterceptor";
 
 // all job
-export const getAllJob = async () => {
+export const getAllJob = async (currentPage) => {
   try {
-    const data = await axiosInstance.get(`/job`);
+    const data = await axiosInstance.get(`/job?page=${currentPage}`);
     return data;
   } catch (error) {
     return error;
