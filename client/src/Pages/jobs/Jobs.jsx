@@ -21,7 +21,7 @@ const Jobs = () => {
   const employment = useSelector((state) => state.filter.employment);
   const experience = useSelector((state) => state.filter.experience);
   const salary = useSelector((state) => state.filter.salary);
-  //console.log("🚀 + Jobs + experience:", salary);
+  console.log("🚀 + Jobs + experience:", salary);
 
   useEffect(() => {
     fetchData();
