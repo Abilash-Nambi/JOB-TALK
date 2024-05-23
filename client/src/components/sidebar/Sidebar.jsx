@@ -10,10 +10,10 @@ const Sidebar = ({ handleRadioChange, handleClick }) => {
     <div className="space-y-5">
       <h3 className="text-lg font-bold mb-2">Filters</h3>
       {/* <Location handleRadioChange={handleRadioChange} /> */}
-      {/* <Salary handleRadioChange={handleRadioChange} handleClick={handleClick} /> */}
-      <JobPostingDate handleRadioChange={handleRadioChange} />
-      <WorkExperience handleRadioChange={handleRadioChange} />
-      <EmployementType handleRadioChange={handleRadioChange} />
+      <Salary />
+      <JobPostingDate />
+      <WorkExperience />
+      <EmployementType />
     </div>
   );
 };

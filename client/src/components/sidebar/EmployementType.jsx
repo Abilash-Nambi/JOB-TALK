@@ -1,7 +1,13 @@
 import React from "react";
 import InputField from "../InputField";
+import { useDispatch } from "react-redux";
+import { setEmployment } from "../../Store/filterSlice";
 
-const EmployementType = ({ handleRadioChange }) => {
+const EmployementType = () => {
+  const dispatch = useDispatch();
+  const handleRadioChange = (e) => {
+    dispatch(setEmployment(e.target.value));
+  };
   return (
     <div>
       <h4 className="text-lg font-medium mb-2">Type of Employement</h4>
@@ -9,14 +15,7 @@ const EmployementType = ({ handleRadioChange }) => {
       <div>
         <InputField
           onChange={handleRadioChange}
-          value=" "
-          title="Any experience"
-          name="test5"
-          id="test5"
-        />
-        <InputField
-          onChange={handleRadioChange}
-          value="Full-time"
+          value="Full time"
           title="Full-time"
           name="test5"
           id="test5"
@@ -30,7 +29,7 @@ const EmployementType = ({ handleRadioChange }) => {
         />
         <InputField
           onChange={handleRadioChange}
-          value="Part-time"
+          value="Part time"
           title="Part-time"
           name="test5"
           id="test5"

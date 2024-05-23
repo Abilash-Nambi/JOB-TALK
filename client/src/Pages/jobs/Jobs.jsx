@@ -8,27 +8,39 @@ import { useState } from "react";
 import CardSkeleton from "../../components/Skeleton/CardSkeleton";
 import Pagination from "../../components/Pagination";
 import useScrollToTop from "../../Hooks/useScrollToTop";
+import { useSelector } from "react-redux";
 
 const Jobs = () => {
-  //const [selectedCategory, setSelectedCategory] = useState(" ");
+  const [selectedCategory, setSelectedCategory] = useState(" ");
+  console.log("🚀 + Jobs + selectedCategory:", selectedCategory);
   const [jobs, setJobs] = useState([]);
   const [totalPage, setTotalPage] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  console.log("🚀 + Jobs + currentPage:", currentPage);
+  const [count, setCount] = useState(0);
   const [skeleton, setskeleton] = useState(false);
-  //console.log("🚀 + Home + jobs:", jobs);
+  const employment = useSelector((state) => state.filter.employment);
+  const experience = useSelector((state) => state.filter.experience);
+  const salary = useSelector((state) => state.filter.salary);
+  //console.log("🚀 + Jobs + experience:", salary);
 
   useEffect(() => {
     fetchData();
     useScrollToTop();
-  }, [currentPage]);
+  }, [currentPage, employment, experience, salary]);
 
   const fetchData = async () => {
     setskeleton(true);
     try {
-      const response = await getAllJob(currentPage);
+      const response = await getAllJob(
+        currentPage,
+        employment,
+        experience,
+        salary
+      );
       setJobs(response?.data?.data);
       setTotalPage(response?.data?.totalPage);
+      setCount(response?.data.count);
+
       setTimeout(() => {
         setskeleton(false);
       }, 2000);
@@ -36,12 +48,6 @@ const Jobs = () => {
       console.log("🚀 + fetchData + error:", error);
     }
   };
-
-  // filtered jobs
-  // const filteredJobs = jobs?.filter((data) =>
-  //   data?.jobTitle.toLowerCase().includes(query.toLowerCase())
-  // );
-  //Radio filtering
 
   const handleRadioChange = (e) => {
     setSelectedCategory(e.target.value);
@@ -52,42 +58,8 @@ const Jobs = () => {
     setSelectedCategory(e.target.value);
   };
 
-  //main func
-  // const filteredItems = () => {
-  //   let filteredData = jobs;
-  //   // if (query) {
-  //   //   filteredData = filteredJobs;
-  //   // }
-  //   if (selectedCategory !== " ") {
-  //     console.log("🚀 + filteredItems + selectedCategory:", selectedCategory);
-  //     filteredData = filteredData.filter(
-  //       ({
-  //         jobLocation,
-  //         salaryType,
-  //         maxPrice,
-  //         employmentType,
-  //         postingDate,
-  //         experienceLevel,
-  //       }) => {
-  //         return (
-  //           jobLocation.toLowerCase() === selectedCategory.toLowerCase() ||
-  //           salaryType.toLowerCase() === selectedCategory.toLowerCase() ||
-  //           experienceLevel.toLowerCase() === selectedCategory.toLowerCase() ||
-  //           employmentType.toLowerCase() === selectedCategory.toLowerCase() ||
-  //           parseInt(maxPrice) <= parseInt(selectedCategory) ||
-  //           postingDate >= selectedCategory
-  //         );
-  //       }
-  //     );
-  //   }
-
-  //   return filteredData?.map((data, i) => <Card key={i} data={data} />);
-  // };
-
-  // const result = filteredItems(jobs, selectedCategory, query);
   return (
     <div>
-      {/* <section> {result}</section> */}
       <div className="bg-[#FAFAFA] md:grid grid-cols-4 gap-8 lg:px-4 py-12">
         <div className="bg-white p-4 rounded">
           <Sidebar
@@ -97,7 +69,7 @@ const Jobs = () => {
         </div>
 
         <div className="bg-white p-4  rounded-sm col-span-2 ">
-          <h3 className="text-lg font-bold mb-2">{jobs?.length} Jobs</h3>
+          <h3 className="text-lg font-bold mb-2">{count} Jobs</h3>
 
           {jobs?.map((data, i) =>
             skeleton ? <CardSkeleton /> : <Card key={i} data={data} />

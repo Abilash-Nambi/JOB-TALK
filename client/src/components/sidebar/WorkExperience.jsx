@@ -1,7 +1,13 @@
 import React from "react";
 import InputField from "../InputField";
+import { useDispatch } from "react-redux";
+import { setExperience } from "../../Store/filterSlice";
 
-const WorkExperience = ({ handleRadioChange }) => {
+const WorkExperience = () => {
+  const dispatch = useDispatch();
+  const handleRadioChange = (e) => {
+    dispatch(setExperience(e.target.value));
+  };
   return (
     <div>
       <h4 className="text-lg font-medium mb-2"> Experience</h4>

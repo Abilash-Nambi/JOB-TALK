@@ -1,9 +1,31 @@
 import { axiosInstance } from "./AxiosInterceptor";
 
 // all job
-export const getAllJob = async (currentPage) => {
+export const getAllJob = async (
+  currentPage,
+  employment,
+  experience,
+  salary
+) => {
   try {
-    const data = await axiosInstance.get(`/job?page=${currentPage}`);
+    let url = `/job?page=${currentPage}`;
+    let params = [];
+
+    if (employment) {
+      params.push(`employment=${employment}`);
+    }
+    if (experience) {
+      params.push(`experience=${experience}`);
+    }
+    if (salary) {
+      params.push(`salary=${salary}`);
+    }
+
+    if (params.length > 0) {
+      url += `&${params.join("&")}`;
+    }
+
+    const data = await axiosInstance.get(url);
     return data;
   } catch (error) {
     return error;

@@ -1,12 +1,18 @@
 import React from "react";
 import Button from "../Button";
 import InputField from "../InputField";
+import { useDispatch } from "react-redux";
+import { setSalary } from "../../Store/filterSlice";
 
-const Salary = ({ handleRadioChange, handleClick }) => {
+const Salary = () => {
+  const dispatch = useDispatch();
+  const handleRadioChange = (e) => {
+    dispatch(setSalary(e.target.value));
+  };
   return (
     <div>
       <h4 className="text-lg font-medium mb-2">Salary</h4>
-      <div className="flex flex-wrap mb-2">
+      {/* <div className="flex flex-wrap mb-2">
         <Button
           onClick={handleClick}
           value=" "
@@ -25,7 +31,7 @@ const Salary = ({ handleRadioChange, handleClick }) => {
           title="Yearly"
           className="px-4 border text-base hover:bg-blue hover:text-white"
         />
-      </div>
+      </div> */}
 
       <div>
         <InputField
@@ -37,29 +43,29 @@ const Salary = ({ handleRadioChange, handleClick }) => {
         />
         <InputField
           onChange={handleRadioChange}
-          value={30}
-          title="< 30000k"
+          value={30000}
+          title="> 30000k"
           name="test2"
           id="test2"
         />
         <InputField
           onChange={handleRadioChange}
-          value={50}
-          title="< 50000k"
+          value={50000}
+          title="> 50000k"
           name="test2"
           id="test2"
         />
         <InputField
           onChange={handleRadioChange}
-          value={80}
-          title="< 80000k"
+          value={80000}
+          title="> 80000k"
           name="test2"
           id="test2"
         />
         <InputField
           onChange={handleRadioChange}
-          value={100}
-          title="< 100000k"
+          value={100000}
+          title="> 100000k"
           name="test2"
           id="test2"
         />

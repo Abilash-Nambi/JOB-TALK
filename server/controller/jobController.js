@@ -227,7 +227,12 @@ const getAllFiltredJobs = async (req, res) => {
 
     res
       .status(200)
-      .json({ message: "Success", data: jobList, totalPage: totalPage });
+      .json({
+        message: "Success",
+        data: jobList,
+        totalPage: totalPage,
+        count: count,
+      });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
