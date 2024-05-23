@@ -6,6 +6,7 @@ const {
   updateJob,
   removeJob,
   getSingleJob,
+  getAllFiltredJobs,
 } = require("../controller/jobController");
 const { checkAuth } = require("../middleware/checkAuth");
 const router = express.Router();
@@ -16,5 +17,6 @@ router.post("/post-job", checkAuth, postJob);
 router.put("/update-job/:id", checkAuth, updateJob);
 router.delete("/remove-job/:id", checkAuth, removeJob);
 router.get("/single-job/:id", checkAuth, getSingleJob);
+router.get("/filter", checkAuth, getAllFiltredJobs);
 
 module.exports = router;

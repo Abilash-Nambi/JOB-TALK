@@ -7,6 +7,7 @@ import { getAllJob } from "../../Services/api/JobEndPoints";
 import { useState } from "react";
 import CardSkeleton from "../../components/Skeleton/CardSkeleton";
 import Pagination from "../../components/Pagination";
+import useScrollToTop from "../../Hooks/useScrollToTop";
 
 const Jobs = () => {
   //const [selectedCategory, setSelectedCategory] = useState(" ");
@@ -19,6 +20,7 @@ const Jobs = () => {
 
   useEffect(() => {
     fetchData();
+    useScrollToTop();
   }, [currentPage]);
 
   const fetchData = async () => {

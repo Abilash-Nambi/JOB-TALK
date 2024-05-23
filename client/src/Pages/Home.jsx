@@ -10,6 +10,8 @@ import { useState } from "react";
 // import { getAllJob } from "../Services/api/JobEndPoints";
 import Category from "../components/Home/Category";
 import IntroSection from "../components/Home/IntroSection";
+import useScrollToTop from "../Hooks/useScrollToTop";
+import { useEffect } from "react";
 
 const Home = () => {
   const [query, setQuerry] = useState("");
@@ -17,9 +19,9 @@ const Home = () => {
   // const [jobs, setJobs] = useState([]);
   // //console.log("🚀 + Home + jobs:", jobs);
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    useScrollToTop();
+  }, []);
 
   // const fetchData = async () => {
   //   try {

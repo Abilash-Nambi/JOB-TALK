@@ -10,7 +10,7 @@ const getAllJobs = async (req, res) => {
       .skip(skipCount)
       .limit(pageLimit);
     const count = await jobModel.find({ expired: false }).countDocuments();
-    console.log("🚀 + getAllJobs + count:", count);
+
     const totalPage = Math.ceil(count / pageLimit);
 
     res
@@ -64,7 +64,7 @@ const postJob = async (req, res) => {
     }
 
     const postedBy = req.user._id;
-    console.log("🚀 + postJob + postedBy:", postedBy);
+    // console.log("🚀 + postJob + postedBy:", postedBy);
 
     const newJob = await jobModel.create({
       companyName,
@@ -111,13 +111,13 @@ const updateJob = async (req, res) => {
       });
     }
     const { id } = req.params;
-    console.log("🚀 + updateJob + jobId:", id);
+    // console.log("🚀 + updateJob + jobId:", id);
     if (!id) {
       return res.status(400).json({ message: "Job Id is required" });
     }
 
     const { updatedData } = req.body;
-    console.log("🚀 + updateJob + updatedData:", updatedData);
+    // console.log("🚀 + updateJob + updatedData:", updatedData);
 
     // Validate updatedData
     if (!updatedData || Object.keys(updatedData).length === 0) {
@@ -177,7 +177,7 @@ const removeJob = async (req, res) => {
 
 const getSingleJob = async (req, res) => {
   const { id } = req.params;
-  console.log("🚀 + getSingleJob + id:", id);
+  // console.log("🚀 + getSingleJob + id:", id);
   try {
     const job = await jobModel.findById(id);
     if (!job) {
@@ -191,6 +191,30 @@ const getSingleJob = async (req, res) => {
     return res.status(400).json({ message: error.message });
   }
 };
+
+const getAllFiltredJobs = async (req, res) => {
+  const pageLimit = 4;
+  const page = parseInt(req.query.page) - 1 || 0;
+  const skipCount = page * pageLimit;
+  const salary = req.query.salary || "";
+  console.log("🚀 + getAllFiltredJobs + salary:", salary);
+  try {
+    const jobList = await jobModel
+      .find({ expired: false })
+      .skip(skipCount)
+      .limit(pageLimit);
+    const count = await jobModel.find({ expired: false }).countDocuments();
+    // console.log("🚀 + getAllJobs + count:", count);
+    const totalPage = Math.ceil(count / pageLimit);
+
+    res
+      .status(200)
+      .json({ message: "Success", data: jobList, totalPage: totalPage });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getAllJobs,
   postJob,
@@ -198,4 +222,5 @@ module.exports = {
   updateJob,
   removeJob,
   getSingleJob,
+  getAllFiltredJobs,
 };

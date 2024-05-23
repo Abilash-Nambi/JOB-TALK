@@ -51,8 +51,7 @@ const Card = ({ data }) => {
                 {employmentType}
               </span>
               <span className="flex items-center gap-2">
-                <RiMoneyDollarCircleLine />
-                {minPrice}-{maxPrice}k
+                <RiMoneyDollarCircleLine />${minPrice}-${maxPrice}
               </span>
               <span className="flex items-center gap-2">
                 <SlCalender />

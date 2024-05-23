@@ -9,7 +9,7 @@ const Sidebar = ({ handleRadioChange, handleClick }) => {
   return (
     <div className="space-y-5">
       <h3 className="text-lg font-bold mb-2">Filters</h3>
-      <Location handleRadioChange={handleRadioChange} />
+      {/* <Location handleRadioChange={handleRadioChange} /> */}
       <Salary handleRadioChange={handleRadioChange} handleClick={handleClick} />
       <JobPostingDate handleRadioChange={handleRadioChange} />
       <WorkExperience handleRadioChange={handleRadioChange} />

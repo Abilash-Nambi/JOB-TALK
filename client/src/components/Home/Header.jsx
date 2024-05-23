@@ -78,7 +78,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="max-w-screen-2xl mx-auto xl:px-24 px-4 ">
+    <header className="max-w-screen-2xl  xl:px-24 px-4 ">
       <nav className="flex justify-between items-center">
         <Link to="/" className="flex items-center text-black gap-2 text-2xl">
           <img src={logo} alt="" className="w-20 h-20" />
