@@ -64,7 +64,7 @@ const postJob = async (req, res) => {
     }
 
     const postedBy = req.user._id;
-    // console.log("🚀 + postJob + postedBy:", postedBy);
+    // // console.log("🚀 + postJob + postedBy:", postedBy);
 
     const newJob = await jobModel.create({
       companyName,
@@ -111,13 +111,13 @@ const updateJob = async (req, res) => {
       });
     }
     const { id } = req.params;
-    // console.log("🚀 + updateJob + jobId:", id);
+    // // console.log("🚀 + updateJob + jobId:", id);
     if (!id) {
       return res.status(400).json({ message: "Job Id is required" });
     }
 
     const { updatedData } = req.body;
-    // console.log("🚀 + updateJob + updatedData:", updatedData);
+    // // console.log("🚀 + updateJob + updatedData:", updatedData);
 
     // Validate updatedData
     if (!updatedData || Object.keys(updatedData).length === 0) {
@@ -177,7 +177,7 @@ const removeJob = async (req, res) => {
 
 const getSingleJob = async (req, res) => {
   const { id } = req.params;
-  // console.log("🚀 + getSingleJob + id:", id);
+  // // console.log("🚀 + getSingleJob + id:", id);
   try {
     const job = await jobModel.findById(id);
     if (!job) {
@@ -196,25 +196,38 @@ const getAllFiltredJobs = async (req, res) => {
   const pageLimit = 4;
   const page = parseInt(req.query.page) - 1 || 0;
   const skipCount = page * pageLimit;
+
   const salary = req.query.salary || "";
+  const experience = req.query.experience || "";
+  const employment = req.query.employment || "";
+
+  // Build the query object based on the filters provided
+  const query = { expired: false };
+
+  if (salary) {
+    query.minPrice = { $gte: salary };
+  }
+
+  if (experience) {
+    query.experienceLevel = experience;
+  }
+
+  if (employment) {
+    query.employmentType = employment;
+  }
 
   try {
-    if (salary) {
-      const jobList = await jobModel
-        .find({ expired: false, minPrice: { $gte: salary } })
-        .skip(skipCount)
-        .limit(pageLimit);
-      console.log("🚀 + getAllFiltredJobs + jobList:", jobList);
-      const count = await jobModel
-        .find({ expired: false, minPrice: { $gt: salary } })
-        .countDocuments();
+    // Find jobs based on the query
+    const jobList = await jobModel.find(query).skip(skipCount).limit(pageLimit);
 
-      const totalPage = Math.ceil(count / pageLimit);
+    // Count total jobs based on the same query
+    const count = await jobModel.find(query).countDocuments();
 
-      res
-        .status(200)
-        .json({ message: "Success", data: jobList, totalPage: totalPage });
-    }
+    const totalPage = Math.ceil(count / pageLimit);
+
+    res
+      .status(200)
+      .json({ message: "Success", data: jobList, totalPage: totalPage });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
