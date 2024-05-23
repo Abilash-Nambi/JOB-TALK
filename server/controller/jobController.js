@@ -197,19 +197,24 @@ const getAllFiltredJobs = async (req, res) => {
   const page = parseInt(req.query.page) - 1 || 0;
   const skipCount = page * pageLimit;
   const salary = req.query.salary || "";
-  console.log("🚀 + getAllFiltredJobs + salary:", salary);
-  try {
-    const jobList = await jobModel
-      .find({ expired: false })
-      .skip(skipCount)
-      .limit(pageLimit);
-    const count = await jobModel.find({ expired: false }).countDocuments();
-    // console.log("🚀 + getAllJobs + count:", count);
-    const totalPage = Math.ceil(count / pageLimit);
 
-    res
-      .status(200)
-      .json({ message: "Success", data: jobList, totalPage: totalPage });
+  try {
+    if (salary) {
+      const jobList = await jobModel
+        .find({ expired: false, minPrice: { $gte: salary } })
+        .skip(skipCount)
+        .limit(pageLimit);
+      console.log("🚀 + getAllFiltredJobs + jobList:", jobList);
+      const count = await jobModel
+        .find({ expired: false, minPrice: { $gt: salary } })
+        .countDocuments();
+
+      const totalPage = Math.ceil(count / pageLimit);
+
+      res
+        .status(200)
+        .json({ message: "Success", data: jobList, totalPage: totalPage });
+    }
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
