@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div>
-      <footer className="bg-white rounded-lg shadow m-4">
+      {/* <footer className="bg-white rounded-lg shadow m-4">
         <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
           <div className="sm:flex sm:items-center sm:justify-between">
             <Link
@@ -49,6 +49,14 @@ const Footer = () => {
             </Link>
             . All Rights Reserved.
           </span>
+        </div>
+      </footer> */}
+      <footer>
+        <div>
+          <div>
+            <img src={logo} className="w-24" />
+          </div>
+          <div></div>
         </div>
       </footer>
     </div>
