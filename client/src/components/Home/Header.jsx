@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../../public/images/logo.jpg";
+import logo from "../../../public/images/logo.png";
 import { Link, NavLink } from "react-router-dom";
 import { FaAlignRight } from "react-icons/fa6";
 import { useState } from "react";

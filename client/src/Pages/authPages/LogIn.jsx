@@ -1,6 +1,6 @@
 import React from "react";
 import loginImg from "../../Assets/images/loginImg.png";
-import logo from "../../../public/images/logo.jpg";
+import logo from "../../../public/images/logo.png";
 import Button from "../../components/Button";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";

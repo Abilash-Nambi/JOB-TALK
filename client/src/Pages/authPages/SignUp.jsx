@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import signUp from "../../Assets/images/signUpImg.png";
-import logo from "../../../public/images/logo.jpg";
+import logo from "../../../public/images/logo.png";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { userSignUp } from "../../Services/authServices";
