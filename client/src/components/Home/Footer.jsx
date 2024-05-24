@@ -55,7 +55,7 @@ const Footer = () => {
           </span>
         </div>
       </footer> */}
-      <footer className="bg-[#f5f5f5] pb-5">
+      <footer className="bg-[#f5f5f5] pb-5 footer-custom">
         <div className="flex md:flex-row justify-between px-20 mt-6 items-center flex-col  ">
           <div className="md:pl-12">
             <img src={logo} className="w-24" />

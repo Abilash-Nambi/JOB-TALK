@@ -178,3 +178,7 @@ li {
 .map-avatar img {
   border-radius: 50%;
 }
+
+.footer-custom ul li a:hover {
+  color: #3575e2;
+}
