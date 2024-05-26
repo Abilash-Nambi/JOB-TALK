@@ -57,6 +57,10 @@ const router = createBrowserRouter([
         element: <EditJob />,
       },
       {
+        path: "pricing",
+        element: <PricingPage />,
+      },
+      {
         path: "job-details/:id",
         element: (
           <AuthProtected>

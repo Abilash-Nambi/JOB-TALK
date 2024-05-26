@@ -44,6 +44,10 @@ const Header = () => {
       path: "/My-application",
       title: "APPLICANTS APPLICATION",
     },
+    {
+      path: "/pricing",
+      title: "SUBSCRIPTION",
+    },
   ];
   const navItemsJodSeeker = [
     {
