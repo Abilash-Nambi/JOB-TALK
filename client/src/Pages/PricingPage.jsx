@@ -54,7 +54,7 @@ const PricingPage = () => {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  <span>No setup, or hidden fees</span>
+                  <span>3 featured job</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <svg
@@ -69,10 +69,7 @@ const PricingPage = () => {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  <span>
-                    Team size:{" "}
-                    <span className="font-semibold">1 developer</span>
-                  </span>
+                  <span>Job displayed for 15 days</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <svg
