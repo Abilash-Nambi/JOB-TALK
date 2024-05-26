@@ -7,7 +7,7 @@ const PricingPage = () => {
         <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
           <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-              Designed for business teams like yours
+              "Flexible Plans for Your Recruitment Needs
             </h2>
             <p className="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">
               Here at Flowbite we focus on markets where technology, innovation,
@@ -170,11 +170,7 @@ const PricingPage = () => {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  <span>
-                    <span className="font-semibold">
-                      Job displayed for 30 days
-                    </span>
-                  </span>
+                  <span>Job displayed for 30 days</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <svg
@@ -245,7 +241,7 @@ const PricingPage = () => {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  <span>Individual configuration</span>
+                  <span>20 Job posting</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <svg
@@ -260,7 +256,7 @@ const PricingPage = () => {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  <span>No setup, or hidden fees</span>
+                  <span>20 featured job</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <svg
@@ -275,10 +271,7 @@ const PricingPage = () => {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  <span>
-                    Team size:{" "}
-                    <span className="font-semibold">100+ developers</span>
-                  </span>
+                  <span>Job displayed for 60 days</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <svg
