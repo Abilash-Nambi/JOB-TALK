@@ -10,8 +10,8 @@ const PricingPage = () => {
               "Flexible Plans for Your Recruitment Needs
             </h2>
             <p className="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">
-              Here at Flowbite we focus on markets where technology, innovation,
-              and capital can unlock long-term value and drive economic growth.
+              Choose the perfect plan to attract top talent and streamline your
+              hiring process.
             </p>
           </div>
           <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
