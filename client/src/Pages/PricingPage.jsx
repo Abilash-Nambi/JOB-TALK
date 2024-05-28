@@ -9,7 +9,7 @@ const PricingPage = () => {
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold  dark:text-white">
               "Flexible Plans for Your Recruitment Needs
             </h2>
-            <p className="mb-5 font-light text-blue sm:text-xl ">
+            <p className="mb-5 font-light text-primary sm:text-xl ">
               Choose the perfect plan to attract top talent and streamline your
               hiring process.
             </p>
@@ -41,7 +41,7 @@ const PricingPage = () => {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  <span>30 Job posting</span>
+                  <span className=" text-primary">30 Job posting</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <svg
@@ -56,7 +56,7 @@ const PricingPage = () => {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  <span>3 featured job</span>
+                  <span className=" text-primary">3 featured job</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <svg
@@ -71,7 +71,9 @@ const PricingPage = () => {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  <span>Job displayed for 15 days</span>
+                  <span className=" text-primary">
+                    Job displayed for 15 days
+                  </span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <svg
@@ -86,7 +88,7 @@ const PricingPage = () => {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  <span>
+                  <span className=" text-primary">
                     Premium support:{" "}
                     <span className="font-semibold">6 months</span>
                   </span>
