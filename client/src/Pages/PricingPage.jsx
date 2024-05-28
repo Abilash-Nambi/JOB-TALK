@@ -106,7 +106,7 @@ const PricingPage = () => {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  <span>
+                  <span className=" text-primary">
                     Free updates:{" "}
                     <span className="font-semibold">6 months</span>
                   </span>
@@ -114,7 +114,7 @@ const PricingPage = () => {
               </ul>
               <a
                 href="#"
-                className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900"
+                className="text-primary bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
               >
                 Get started
               </a>
