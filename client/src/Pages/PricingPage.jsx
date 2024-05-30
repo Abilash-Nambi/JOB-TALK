@@ -1,6 +1,11 @@
 import React from "react";
+import { orderPayment } from "../Services/api/PaymentEndpoints";
+import Button from "../components/Button";
 
 const PricingPage = () => {
+  const handleSubmit = async (data) => {
+    await orderPayment();
+  };
   return (
     <div>
       <section className="bg-#f5f5f5">
@@ -112,12 +117,11 @@ const PricingPage = () => {
                   </span>
                 </li>
               </ul>
-              <a
-                href="#"
-                className="text-primary bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
-              >
-                Get started
-              </a>
+              <Button
+                type="button"
+                title="Get started"
+                className="text-white bg-blue hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+              ></Button>
             </div>
 
             <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-[#f5f5f5]  rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8">
@@ -217,12 +221,11 @@ const PricingPage = () => {
                   </span>
                 </li>
               </ul>
-              <a
-                href="#"
-                className="text-primary  hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
-              >
-                Get started
-              </a>
+              <Button
+                type="button"
+                title="Get started"
+                className="text-white bg-blue hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+              ></Button>
             </div>
 
             <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-[#f5f5f5] rounded-lg border  shadow dark:border-gray-600 xl:p-8  ">
@@ -322,12 +325,11 @@ const PricingPage = () => {
                   </span>
                 </li>
               </ul>
-              <a
-                href="#"
-                className="text-primary bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
-              >
-                Get started
-              </a>
+              <Button
+                type="button"
+                title="Get started"
+                className="text-white bg-blue hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+              ></Button>
             </div>
           </div>
         </div>
