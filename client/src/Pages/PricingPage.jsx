@@ -7,9 +7,12 @@ import Button from "../components/Button";
 import logo from "../../public/images/logo.png";
 import useToast from "../Hooks/useToast";
 import useRouter from "../Hooks/useRouter";
+import useLocalStorage from "../Hooks/useLocalStorage";
+import { getProfile } from "../Services/api/UserEndpoints";
 const PricingPage = () => {
   const { errorToast, successToast } = useToast();
   const { navigate } = useRouter();
+  const { setStorage } = useLocalStorage();
   const handleClick = async (price) => {
     const response = await orderPayment(price);
     if ((response.status = 200)) {
@@ -31,6 +34,10 @@ const PricingPage = () => {
           const { data } = res;
           if (data.msg === "success") {
             successToast("Payment is Successfull");
+
+            const response = await getProfile();
+            setStorage("user", JSON.stringify(response.data.data));
+
             setTimeout(() => {
               navigate("/");
             }, 4000);
