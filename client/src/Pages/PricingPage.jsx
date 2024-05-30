@@ -6,8 +6,10 @@ import {
 import Button from "../components/Button";
 import logo from "../../public/images/logo.png";
 import useToast from "../Hooks/useToast";
+import useRouter from "../Hooks/useRouter";
 const PricingPage = () => {
-  const { errorToast } = useToast();
+  const { errorToast, successToast } = useToast();
+  const { navigate } = useRouter();
   const handleClick = async (price) => {
     const response = await orderPayment(price);
     if ((response.status = 200)) {
@@ -25,7 +27,14 @@ const PricingPage = () => {
           // alert(response.razorpay_payment_id);
           // alert(response.razorpay_order_id);
           // alert(response.razorpay_signature);
-          await validatePayment(response);
+          const res = await validatePayment(response);
+          const { data } = res;
+          if (data.msg === "success") {
+            successToast("Payment is Successfull");
+            setTimeout(() => {
+              navigate("/");
+            }, 4000);
+          }
         },
         prefill: {
           name: "Abilash N",

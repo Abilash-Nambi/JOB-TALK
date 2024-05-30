@@ -1,5 +1,6 @@
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
+const userModel = require("../models/userModel");
 
 var instance = new Razorpay({
   //key_id: process.env.RAZOR_PAY_KEYID,
@@ -13,6 +14,12 @@ const createOrder = async (req, res) => {
   const { amount, currency, receipt } = req.body;
 
   try {
+    const { role } = req.user;
+    if (role === "Job Seeker") {
+      return res.status(400).json({
+        message: "Job Seeker not allowed to access this resource.",
+      });
+    }
     const order = await instance.orders.create({
       amount,
       currency,
@@ -39,6 +46,7 @@ const validateOrder = async (req, res) => {
     if (digest !== razorpay_signature) {
       return res.status(400).json({ message: "Transaction is not legit!" });
     }
+    await userModel.findByIdAndUpdate(req.user._id, { subscribed: true });
 
     res.json({
       msg: "success",

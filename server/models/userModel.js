@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const { subscribe } = require("../routes/user");
 
 const userSchema = new mongoose.Schema(
   {
@@ -33,6 +34,10 @@ const userSchema = new mongoose.Schema(
     createdAt: {
       type: Date,
       default: Date.now,
+    },
+    subscribed: {
+      type: Boolean,
+      default: false,
     },
     // jobs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Job" }],
   }
