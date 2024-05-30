@@ -9,10 +9,15 @@ import useToast from "../Hooks/useToast";
 import useRouter from "../Hooks/useRouter";
 import useLocalStorage from "../Hooks/useLocalStorage";
 import { getProfile } from "../Services/api/UserEndpoints";
+import { logIn } from "../Store/userAuthSlice";
+import { useDispatch, useSelector } from "react-redux";
 const PricingPage = () => {
   const { errorToast, successToast } = useToast();
   const { navigate } = useRouter();
   const { setStorage } = useLocalStorage();
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.user);
+  console.log("🚀 + PricingPage + isAuthenticated:", isAuthenticated);
   const handleClick = async (price) => {
     const response = await orderPayment(price);
     if ((response.status = 200)) {
@@ -37,6 +42,7 @@ const PricingPage = () => {
 
             const response = await getProfile();
             setStorage("user", JSON.stringify(response.data.data));
+            dispatch(logIn(response.data.data));
 
             setTimeout(() => {
               navigate("/");
