@@ -1,14 +1,18 @@
 import React from "react";
-import { orderPayment } from "../Services/api/PaymentEndpoints";
+import {
+  orderPayment,
+  validatePayment,
+} from "../Services/api/PaymentEndpoints";
 import Button from "../components/Button";
 import logo from "../../public/images/logo.png";
-
+import useToast from "../Hooks/useToast";
 const PricingPage = () => {
+  const { errorToast } = useToast();
   const handleClick = async (price) => {
     const response = await orderPayment(price);
     if ((response.status = 200)) {
       const { data } = response;
-      console.log("🚀 + handleClick + data:", data);
+      console.log("🚀 + handleClick + data:", data.amount);
       var options = {
         key: "rzp_test_pYbplgWljckWIm", // Enter the Key ID generated from the Dashboard
         amount: data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -17,7 +21,12 @@ const PricingPage = () => {
         description: "Test Transaction",
         image: logo,
         order_id: data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-        callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
+        handler: async function (response) {
+          // alert(response.razorpay_payment_id);
+          // alert(response.razorpay_order_id);
+          // alert(response.razorpay_signature);
+          await validatePayment(response);
+        },
         prefill: {
           name: "Abilash N",
           email: "gaurav.kumar@example.com",
@@ -30,15 +39,16 @@ const PricingPage = () => {
           color: "#3399cc",
         },
       };
-      var rzp1 = new window.Razorpay(options);
+      var rzp1 = new Razorpay(options);
       rzp1.on("payment.failed", function (response) {
-        alert(response.error.code);
-        alert(response.error.description);
-        alert(response.error.source);
-        alert(response.error.step);
-        alert(response.error.reason);
-        alert(response.error.metadata.order_id);
-        alert(response.error.metadata.payment_id);
+        errorToast(response.error.description);
+        //alert(response.error.code);
+        //alert(response.error.description);
+        //alert(response.error.source);
+        //alert(response.error.step);
+        // a0lert(response.error.reason);
+        // alert(response.error.metadata.order_id);
+        // alert(response.error.metadata.payment_id);
       });
 
       rzp1.open();
@@ -156,7 +166,7 @@ const PricingPage = () => {
                 </li>
               </ul>
               <Button
-                onClick={() => handleClick(450)}
+                onClick={() => handleClick(45000)}
                 type="button"
                 title="Get started"
                 className="text-white bg-blue hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
@@ -261,7 +271,7 @@ const PricingPage = () => {
                 </li>
               </ul>
               <Button
-                onClick={() => handleClick(1500)}
+                onClick={() => handleClick(150000)}
                 type="button"
                 title="Get started"
                 className="text-white bg-blue hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
@@ -366,7 +376,7 @@ const PricingPage = () => {
                 </li>
               </ul>
               <Button
-                onClick={() => handleClick(3000)}
+                onClick={() => handleClick(300000)}
                 type="button"
                 title="Get started"
                 className="text-white bg-blue hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
