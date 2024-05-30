@@ -7,13 +7,16 @@ var instance = new Razorpay({
   key_secret: "kNSBbDBZsb2j7e7Foxc1LpgP",
 });
 
-console.log(process.env.RAZOR_PAY_KEYID, "4645");
-
 const createOrder = async (req, res) => {
-  const { options } = req.body;
-  console.log("🚀 + createOrder + options:", options);
+  console.log("🚀 + createOrder + req:", req);
+  const { amount, currency, receipt } = req.body;
+
   try {
-    const order = await instance.orders.create(options);
+    const order = await instance.orders.create({
+      amount,
+      currency,
+      receipt,
+    });
 
     if (!order) {
       return res.status(500).json({ message: "no options provided " });
@@ -26,12 +29,3 @@ const createOrder = async (req, res) => {
 };
 
 module.exports = { createOrder };
-// {
-//     amount: 50000,
-//     currency: "INR",
-//     receipt: "receipt#1",
-//     notes: {
-//       key1: "value3",
-//       key2: "value2",
-//     },
-//   }

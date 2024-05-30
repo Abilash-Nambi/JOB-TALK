@@ -1,10 +1,48 @@
 import React from "react";
 import { orderPayment } from "../Services/api/PaymentEndpoints";
 import Button from "../components/Button";
+import logo from "../../public/images/logo.png";
 
 const PricingPage = () => {
-  const handleSubmit = async (data) => {
-    await orderPayment();
+  const handleClick = async (price) => {
+    const response = await orderPayment(price);
+    if ((response.status = 200)) {
+      const { data } = response;
+      console.log("🚀 + handleClick + data:", data);
+      var options = {
+        key: "rzp_test_pYbplgWljckWIm", // Enter the Key ID generated from the Dashboard
+        amount: data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        currency: "INR",
+        name: "Job Talk",
+        description: "Test Transaction",
+        image: logo,
+        order_id: data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
+        prefill: {
+          name: "Abilash N",
+          email: "gaurav.kumar@example.com",
+          contact: "9000090000",
+        },
+        notes: {
+          address: "Razorpay Corporate Office",
+        },
+        theme: {
+          color: "#3399cc",
+        },
+      };
+      var rzp1 = new window.Razorpay(options);
+      rzp1.on("payment.failed", function (response) {
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+      });
+
+      rzp1.open();
+    }
   };
   return (
     <div>
@@ -118,6 +156,7 @@ const PricingPage = () => {
                 </li>
               </ul>
               <Button
+                onClick={() => handleClick(450)}
                 type="button"
                 title="Get started"
                 className="text-white bg-blue hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
@@ -222,6 +261,7 @@ const PricingPage = () => {
                 </li>
               </ul>
               <Button
+                onClick={() => handleClick(1500)}
                 type="button"
                 title="Get started"
                 className="text-white bg-blue hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
@@ -326,6 +366,7 @@ const PricingPage = () => {
                 </li>
               </ul>
               <Button
+                onClick={() => handleClick(3000)}
                 type="button"
                 title="Get started"
                 className="text-white bg-blue hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center "

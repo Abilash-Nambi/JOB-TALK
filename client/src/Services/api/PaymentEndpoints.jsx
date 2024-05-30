@@ -1,7 +1,8 @@
 import { axiosInstance } from "./AxiosInterceptor";
 
 export const orderPayment = async (data) => {
-  const amount = 500;
+  console.log("🚀 + orderPayment + data:", data);
+  const amount = data;
   const currency = "INR";
   const receiptId = "qwsaq1";
 
@@ -12,5 +13,9 @@ export const orderPayment = async (data) => {
   };
   try {
     const response = await axiosInstance.post("/payment/create", options);
-  } catch (error) {}
+    return response;
+  } catch (error) {
+    console.log("🚀 + orderPayment + error:", error);
+    return error;
+  }
 };
