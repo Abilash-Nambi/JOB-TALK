@@ -24,7 +24,8 @@ function DropDown({ title, dropDownMenu, avatar, avatarTitle }) {
         onClick={toggleMenu}
         className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 items-center "
       >
-        {avatar === "true" && <Avatar title={avatarTitle} />} {title}
+        {avatar === "true" && <Avatar title={avatarTitle} />}
+        {title.length <= 10 ? title : title.slice(0, 10)}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="-mr-1 h-5 w-5 text-gray-400"
