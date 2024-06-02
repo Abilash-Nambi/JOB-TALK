@@ -45,7 +45,7 @@ const MyJobs = () => {
       </div>
 
       {jobs.length === 0 ? (
-        <NoData />
+        <NoData text={"No Jobs Posted Yet..."} />
       ) : (
         <>
           {" "}
