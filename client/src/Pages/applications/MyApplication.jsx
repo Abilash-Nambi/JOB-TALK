@@ -56,15 +56,15 @@ const MyApplication = () => {
   };
 
   return (
-    <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4 space-y-3 flex items-center flex-col">
+    <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4 space-y-3 ">
       <div>
-        <BreadCrumb title={"My Application Page"} />
+        <BreadCrumb title={"My Applications Page"} />
       </div>
       {data.length === 0 ? (
-        <NoData />
+        <NoData text={"No Application found"} />
       ) : (
-        <>
-          <h1 className="text-center p-4"> My Application</h1>
+        <div className="flex flex-col items-center gap-2">
+          <h1 className="text-center p-4"> Applications</h1>
           {data.map((data, key) => (
             <div className="relative min-w-[19em] xl:w-8/12 flex bg-clip-border rounded-xl bg-[#FAFAFA] text-gray-700 shadow-md  max-w-[48rem] flex-col md:flex-row border hover: cursor-pointer">
               <div className="relative  md:w-2/5 m-0 overflow-hidden text-gray-700 bg-orange-100 rounded-r-none bg-clip-border rounded-xl shrink-0 ">
@@ -134,7 +134,7 @@ const MyApplication = () => {
             onClose={() => setIsModalOpen(false)}
             onConfirm={handleDelete}
           />
-        </>
+        </div>
       )}
     </div>
   );
