@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import jobCategory from "../../Assets/datas/dataCategory";
 import { FcAdvance } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 const Category = () => {
   const [dataBlock] = useState({
@@ -18,28 +19,31 @@ const Category = () => {
       <div className="grid md:grid-cols-4 sm:grid-cols-1 gap-6 ">
         {jobCategory.map((data) => (
           <div className="flex justify-center ">
-            <div className="block min-w-[18rem] rounded-lg bg-secondary text-primary shadow-secondary-1 border hover:bg-blue hover:cursor-pointer transition-colors duration-300 ease-in-out bg-[#f5f5f5]">
-              <div className="p-6 hover:text-white group">
-                <h5 className="mb-2 text-xl font-medium leading-tight group-hover:text-white">
-                  {data.name}
-                </h5>
-                <p className="text-sm group-hover:text-white">
-                  {data.jobsAvailable} Jobs available
-                </p>
-                <p className="pt-2 text-sm pr-3 pb-3 flex items-center text-blue group-hover:text-white">
-                  Explore more
-                  <span className="pl-4 text-sm">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-3 w-3 fill-current group-hover:text-white"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
-                    </svg>
-                  </span>
-                </p>
+            <Link to="/all-jobs">
+              <div className="block min-w-[18rem] rounded-lg bg-secondary text-primary shadow-secondary-1 border hover:bg-blue hover:cursor-pointer transition-colors duration-300 ease-in-out bg-[#f5f5f5]">
+                <div className="p-6 hover:text-white group">
+                  <h5 className="mb-2 text-xl font-medium leading-tight group-hover:text-white">
+                    {data.name}
+                  </h5>
+                  <p className="text-sm group-hover:text-white">
+                    {data.jobsAvailable} Jobs available
+                  </p>
+
+                  <p className="pt-2 text-sm pr-3 pb-3 flex items-center text-blue group-hover:text-white">
+                    Explore more
+                    <span className="pl-4 text-sm">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-3 w-3 fill-current group-hover:text-white"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
+                      </svg>
+                    </span>
+                  </p>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         ))}
       </div>
