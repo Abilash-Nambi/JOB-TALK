@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../Assets/images/NoData.png";
+import image from "../Assets/images/Nodata.png";
 
 const NoData = () => {
   return (
