@@ -31,7 +31,7 @@ const SalaryPage = () => {
 
       <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-12 my-12 items-center ">
         {data.map((data) => (
-          <div className="shadow px-4 py-8">
+          <div className="shadow px-4 py-8 hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] delay-150 ">
             <h4 className="font-semibold text-xl">{data.title}</h4>
             <p className="my-2 font-medium text-blue text-lg">{data.salary}</p>
           </div>

@@ -62,6 +62,10 @@ const Header = () => {
       path: "/My-application",
       title: "MY APPLICATION",
     },
+    {
+      path: "/salary",
+      title: "SALARY ESTIMATE",
+    },
   ];
   const navItemsAllUser = [
     {
