@@ -225,19 +225,18 @@ const getAllFiltredJobs = async (req, res) => {
 
     const totalPage = Math.ceil(count / pageLimit);
 
-    res
-      .status(200)
-      .json({
-        message: "Success",
-        data: jobList,
-        totalPage: totalPage,
-        count: count,
-      });
+    res.status(200).json({
+      message: "Success",
+      data: jobList,
+      totalPage: totalPage,
+      count: count,
+    });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
+const searchJobs = (async = (req, res) => {});
 module.exports = {
   getAllJobs,
   postJob,
@@ -246,4 +245,5 @@ module.exports = {
   removeJob,
   getSingleJob,
   getAllFiltredJobs,
+  searchJobs,
 };
