@@ -236,7 +236,22 @@ const getAllFiltredJobs = async (req, res) => {
   }
 };
 
-const searchJobs = (async = (req, res) => {});
+const searchJobs = (async = (req, res) => {
+  const { id } = req.params;
+  try {
+    const job = await jobModel.findById(id);
+    if (!job) {
+      return res.status(400).json({ message: "Job not found." });
+    }
+    res.status(200).json({
+      success: true,
+      data: job,
+    });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+});
+
 module.exports = {
   getAllJobs,
   postJob,
