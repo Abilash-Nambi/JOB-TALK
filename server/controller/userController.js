@@ -1,6 +1,10 @@
 const userModel = require("../models/userModel");
 const { generatePasswordHash, comparePassword } = require("../utils/bcrypt");
 const { generateToken } = require("../utils/jwt");
+const { resetPasswordNodeMailer } = require("../utils/nodemailer");
+const { generateVerificationCode } = require("../utils/verificationCode");
+
+let PasscodeVerificationData = {};
 
 const userSignUp = async (req, res) => {
   console.log("🚀 + userSignUp + req:", req);
@@ -132,4 +136,74 @@ const getUser = async (req, res) => {
   }
 };
 
-module.exports = { getUser, userSignUp, userSignIn, userSignOut };
+const forgetPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+    //console.log("🚀 + forgetPassword + email:", email);
+    const exist = await userModel.findOne({ email: email });
+
+    if (!exist) {
+      res
+        .status(400)
+        .json({ message: `No user found with email: ${email} 👎🏻` });
+      return;
+    }
+    const code = generateVerificationCode();
+    PasscodeVerificationData.userId = exist._id;
+    PasscodeVerificationData.code = code;
+    console.log("🚀 + PasscodeVerificationData:", PasscodeVerificationData);
+    const result = await resetPasswordNodeMailer(email, code);
+    console.log("🚀 + forgetPassword + result:", result);
+
+    // Check if email was sent successfully
+    if (result && result.accepted.length > 0) {
+      res
+        .status(200)
+        .json({ message: "Password reset email sent successfully" });
+    } else {
+      res.status(500).json({ message: "Failed to send password reset email" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const resetPassword = async (req, res) => {
+  try {
+    const { data } = req.body;
+    console.log("🚀 + resetPassword + data:", data);
+    console.log(
+      "🚀 + resetPassword + PasscodeVerificationData:",
+      PasscodeVerificationData
+    );
+    const parsedCode = parseInt(data.resetCode);
+    if (parsedCode === PasscodeVerificationData.code) {
+      const hashPass = await generatePasswordHash(data.newPassword);
+      const update = await userModel.findByIdAndUpdate(
+        PasscodeVerificationData.userId,
+        {
+          password: hashPass,
+        },
+        { new: true }
+      );
+      PasscodeVerificationData = {}; // Clear verification data
+      res.status(200).json({ message: "Password reset successfully." });
+    } else {
+      res.status(401).json({ message: "You entered the wrong reset code." });
+    }
+  } catch (error) {
+    console.error("Error resetting password:", error);
+    res
+      .status(500)
+      .json({ message: "An error occurred while resetting the password." });
+  }
+};
+
+module.exports = {
+  getUser,
+  userSignUp,
+  userSignIn,
+  userSignOut,
+  forgetPassword,
+  resetPassword,
+};
