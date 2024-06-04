@@ -12,7 +12,6 @@ const Banner = ({ query, handleInputChange, data }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    warningToast("done");
   };
 
   const dropDownMenu = [
