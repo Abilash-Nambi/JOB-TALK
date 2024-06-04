@@ -237,7 +237,11 @@ const getAllFiltredJobs = async (req, res) => {
 };
 
 const searchJobs = async (req, res) => {
-  const search = req.query;
+  const { search } = req.query;
+  console.log("🚀 + searchJobs + search:", search);
+  if (!search) {
+    return res.status(400).json({ message: "Enter the Job Title" });
+  }
   try {
     const job = await jobModel.find({ jobTitle: search });
     if (!job) {
