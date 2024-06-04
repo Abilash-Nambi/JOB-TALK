@@ -21,7 +21,7 @@ const MyApplication = () => {
   const [applicationId, setapplication] = useState(null);
 
   const userDetials = useSelector((state) => state.user.user);
-  console.log("🚀 + MyApplication + userDetials:", userDetials.role);
+  //console.log("🚀 + MyApplication + userDetials:", userDetials.role);
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
@@ -48,7 +48,7 @@ const MyApplication = () => {
       successToast,
       errorToast
     );
-    console.log("🚀 + handleDelete + res:", res);
+    //console.log("🚀 + handleDelete + res:", res);
     if (res.status === 200) {
       fetchData();
       setIsModalOpen(false);

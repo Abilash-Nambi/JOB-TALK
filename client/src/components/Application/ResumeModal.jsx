@@ -2,7 +2,7 @@ import React from "react";
 import { SlClose } from "react-icons/sl";
 
 const ResumeModal = ({ isOpen, onClose, imageUrl }) => {
-  console.log("🚀 + ResumeModal + children:", imageUrl);
+  //console.log("🚀 + ResumeModal + children:", imageUrl);
   if (!isOpen) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">

@@ -16,7 +16,7 @@ export const cloudinaryImage = (e, setImageUrl) => {
     .then((data) => {
       if (data.secure_url !== "") {
         const uploadedFileUrl = data.secure_url;
-        console.log("🚀 + .then + uploadedFileUrl:", uploadedFileUrl);
+        // console.log("🚀 + .then + uploadedFileUrl:", uploadedFileUrl);
         setImageUrl(uploadedFileUrl);
       }
     })

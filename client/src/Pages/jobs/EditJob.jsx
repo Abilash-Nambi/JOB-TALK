@@ -12,9 +12,9 @@ import CheckBox from "../../components/CheckBox";
 
 const EditJob = () => {
   const [job, setJob] = useState({});
-  console.log("🚀 + EditJob + job:", job);
+  // console.log("🚀 + EditJob + job:", job);
   const [imageUrl, setImageUrl] = useState("");
-  console.log("🚀 + EditJob + imageUrl:", imageUrl);
+  //console.log("🚀 + EditJob + imageUrl:", imageUrl);
   const { successToast, errorToast } = useToast();
   const { goBack } = useRouter();
   const animatedComponents = makeAnimated();

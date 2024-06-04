@@ -22,7 +22,7 @@ const PricingPage = () => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.user);
   const { user } = isAuthenticated;
-  console.log("🚀 + PricingPage + user:", user);
+  //console.log("🚀 + PricingPage + user:", user);
 
   useEffect(() => {
     user?.subscribed === true ? setIsSubscribed(true) : setIsSubscribed(false);
@@ -32,7 +32,7 @@ const PricingPage = () => {
     const response = await orderPayment(price);
     if ((response.status = 200)) {
       const { data } = response;
-      console.log("🚀 + handleClick + data:", data.amount);
+      // console.log("🚀 + handleClick + data:", data.amount);
       var options = {
         key: "rzp_test_pYbplgWljckWIm", // Enter the Key ID generated from the Dashboard
         amount: data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise

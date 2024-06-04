@@ -17,7 +17,7 @@ const Home = () => {
 
   const fetchData = async () => {
     const res = await searchJob(query);
-    console.log("🚀 + useEffect + res:", res);
+    //console.log("🚀 + useEffect + res:", res);
     setData(res);
   };
 
