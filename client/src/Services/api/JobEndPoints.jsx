@@ -97,3 +97,16 @@ export const editJob = async (id, job, successToast, errorToast, goBack) => {
     } else return error;
   }
 };
+
+export const searchJob = async (querry) => {
+  console.log("🚀 + searchJob + querry:", querry);
+  if (querry.length >= 1) {
+    try {
+      const res = await axiosInstance.get(`job/search?search=${querry}`);
+      //console.log("🚀 + searchJob + res:", res.data);
+      return res.data.data;
+    } catch (error) {
+      console.log("🚀 + searchJob + error:", error);
+    }
+  }
+};

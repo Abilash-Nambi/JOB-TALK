@@ -243,9 +243,14 @@ const searchJobs = async (req, res) => {
     return res.status(400).json({ message: "Enter the Job Title" });
   }
   try {
-    const job = await jobModel.find({ jobTitle: search });
-    if (!job) {
-      return res.status(400).json({ message: "Job not found." });
+    const job = await jobModel.find(
+      {
+        jobTitle: { $regex: search, $options: "i" },
+      },
+      { jobTitle: 1 }
+    );
+    if (job.length === 0) {
+      return res.status(404).json({ message: "Job not found." });
     }
     res.status(200).json({
       success: true,
