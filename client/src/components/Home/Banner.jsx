@@ -5,8 +5,9 @@ import Button from "../Button";
 import useToast from "../../Hooks/useToast";
 import DropDown from "../DropDown";
 import CustomDropDown from "../CustomDropDown";
+import { Link } from "react-router-dom";
 
-const Banner = ({ query, handleInputChange }) => {
+const Banner = ({ query, handleInputChange, data }) => {
   const { successToast, errorToast, warningToast } = useToast();
 
   const handleSubmit = (e) => {
@@ -72,6 +73,22 @@ const Banner = ({ query, handleInputChange }) => {
                 onClick={(e) => handleSubmit(e)}
               />
             </div>
+            {data?.length >= 1 && (
+              <div>
+                <ul className="bg-white lg:w-[50%] mt-1 p-3  rounded-md cursor-pointer">
+                  {data?.map((data) => (
+                    <li>
+                      <Link
+                        to={`/job-details/${data._id}`}
+                        className="hover:text-blue"
+                      >
+                        {data.jobTitle}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </form>
       </div>

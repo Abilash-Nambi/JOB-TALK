@@ -18,6 +18,7 @@ const Home = () => {
   const fetchData = async () => {
     const res = await searchJob(query);
     console.log("🚀 + useEffect + res:", res);
+    setData(res);
   };
 
   useEffect(() => {
@@ -30,7 +31,7 @@ const Home = () => {
 
   return (
     <div>
-      <Banner query={query} handleInputChange={handleInputChange} />
+      <Banner query={query} handleInputChange={handleInputChange} data={data} />
       <Category />
       <IntroSection />
     </div>
