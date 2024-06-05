@@ -1,18 +1,50 @@
 import React from "react";
 import logo from "../../../public/images/logo.png";
-import forgotPassword from "../../Assets/images/Forgot-password.png";
+import forgotPasswordImg from "../../Assets/images/Forgot-password.png";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { forgotPassword, resetPassword } from "../../Services/authServices";
+import useToast from "../../Hooks/useToast";
+import useRouter from "../../Hooks/useRouter";
+import CustomOtpInput from "../../components/OtpInput";
+import { useState } from "react";
 
 const ForgetPassword = () => {
+  const { successToast, errorToast } = useToast();
+  const { navigate } = useRouter();
+  const [otp, setOtp] = useState("");
+  //console.log("🚀 + ForgetPassword + otp:", otp);
+  const [showOtp, setShowOtp] = useState(false);
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
+    reset,
   } = useForm();
+
   const onSubmit = async (formData) => {
     console.log("🚀 + onSubmit + formData:", formData);
+    const { email } = formData;
+    console.log("🚀 + onSubmit + email:", email);
+    if (email) {
+      const res = await forgotPassword(email, successToast, errorToast);
+      if (res?.status === 200) {
+        setShowOtp(true);
+        reset();
+      }
+    } else {
+      const { password } = formData;
+      console.log("🚀 + onSubmit + password:", password);
+      const data = {
+        resetCode: otp,
+        newPassword: password,
+      };
+      const res = await resetPassword(data, successToast, errorToast);
+      if (res?.status === 200) {
+        navigate("sign-in");
+      }
+    }
   };
   return (
     <div>
@@ -20,7 +52,7 @@ const ForgetPassword = () => {
         <h1 className="text-2xl font-semibold">Reset Password</h1>
         <div className="grid md:grid-cols-2 shadow-2xl px-5 py-5 md:items-center">
           <div className="hidden md:block ">
-            <img src={forgotPassword} alt="" className="w-[25em]" />
+            <img src={forgotPasswordImg} alt="" className="w-[25em]" />
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -29,33 +61,80 @@ const ForgetPassword = () => {
                 {" "}
                 <img src={logo} alt="" className="h-22 w-20" />
               </Link>
+              {!showOtp ? (
+                <div>
+                  <div className="relative">
+                    {errors.email && (
+                      <span className="text-red-500 text-xs absolute top-[-15px] right-[0px]">
+                        {errors.email.message}
+                      </span>
+                    )}
+                    <input
+                      placeholder="email@gmail.com"
+                      className={`border block px-3 py-2 placeholder:text-xs${
+                        errors.password
+                          ? "border-red-500 placeholder:text-xs"
+                          : ""
+                      }`}
+                      type="email"
+                      {...register("email", {
+                        required: "Email Address is required",
+                        pattern: {
+                          value: /^\S+@\S+$/i,
+                          message: "Invalid email address",
+                        },
+                      })}
+                    />
+                  </div>
 
-              <div className="relative">
-                {errors.email && (
-                  <span className="text-red-500 text-xs absolute top-[-15px] right-[0px]">
-                    {errors.email.message}
-                  </span>
-                )}
-                <input
-                  placeholder="email@gmail.com"
-                  className={`border block px-3 py-2 placeholder:text-xs${
-                    errors.password ? "border-red-500 placeholder:text-xs" : ""
-                  }`}
-                  type="email"
-                  {...register("email", {
-                    required: "Email Address is required",
-                    pattern: {
-                      value: /^\S+@\S+$/i,
-                      message: "Invalid email address",
-                    },
-                  })}
-                />
-              </div>
-              <input
-                type="submit"
-                className="py-1 px-4 border rounded bg-blue text-white text-sm capitalize w-[262px]"
-                value="RESET PASSWORD"
-              />
+                  <input
+                    type="submit"
+                    className="py-1 px-4 border rounded bg-blue text-white text-sm capitalize w-[262px] mt-2"
+                    value="SEND OTP"
+                  />
+                </div>
+              ) : (
+                <div className="text-center justify-center items-center flex flex-col gap-3">
+                  <CustomOtpInput otp={otp} setOtp={setOtp} />
+
+                  <div className="relative">
+                    {errors.password && (
+                      <span className="text-red-500 text-xs absolute top-[-15px] right-[0px] w-max">
+                        {errors.password.message}
+                      </span>
+                    )}
+                    <input
+                      {...register("password", {
+                        required: "Password is required",
+                        minLength: {
+                          value: 5,
+                          message:
+                            "Password must be at least 5 characters long",
+                        },
+                        // pattern: {
+                        //   value:
+                        //     /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{5,}$/,
+                        //   message:
+                        //     "Password must contain at least one uppercase letter, one numeric digit, and one special character",
+                        // },
+                      })}
+                      className={`border block px-3 py-2 placeholder:text-xs${
+                        errors.password
+                          ? "border-red-500 placeholder:text-xs"
+                          : ""
+                      }`}
+                      type="password"
+                      placeholder="Enter New Password"
+                    />
+                  </div>
+                  <input
+                    type="submit"
+                    className="py-1 px-4 border rounded bg-blue text-white text-sm capitalize w-[262px] mt-2"
+                    value="SUMBIT OTP"
+                  />
+                </div>
+              )}
+
               <p className="text-sm">
                 Back to
                 <Link to="/auth/sign-in">

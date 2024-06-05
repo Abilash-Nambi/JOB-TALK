@@ -35,3 +35,28 @@ export const userSignOut = async (e, successToast, errorToast) => {
     return error;
   }
 };
+
+export const forgotPassword = async (email, successToast, errorToast) => {
+  try {
+    const response = await axiosInstance.post("/user/forgot-password", {
+      email,
+    });
+    successToast(response.data.message);
+    return response;
+  } catch (error) {
+    errorToast(error.response.data.message);
+    return error;
+  }
+};
+export const resetPassword = async (data, successToast, errorToast) => {
+  try {
+    const response = await axiosInstance.post("/user/reset-password", {
+      data,
+    });
+    successToast(response.data.message);
+    return response;
+  } catch (error) {
+    errorToast(error.response.data.message);
+    return error;
+  }
+};
