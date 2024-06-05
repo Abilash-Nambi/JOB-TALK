@@ -8,6 +8,7 @@ import useToast from "../../Hooks/useToast";
 import useRouter from "../../Hooks/useRouter";
 import CustomOtpInput from "../../components/OtpInput";
 import { useState } from "react";
+import { Loader } from "../../components/CustomLoader";
 
 const ForgetPassword = () => {
   const { successToast, errorToast } = useToast();
@@ -15,6 +16,7 @@ const ForgetPassword = () => {
   const [otp, setOtp] = useState("");
   //console.log("🚀 + ForgetPassword + otp:", otp);
   const [showOtp, setShowOtp] = useState(false);
+  const [loader, setLoader] = useState(false);
   const {
     register,
     handleSubmit,
@@ -28,13 +30,18 @@ const ForgetPassword = () => {
     const { email } = formData;
     console.log("🚀 + onSubmit + email:", email);
     if (email) {
+      setLoader(true);
       const res = await forgotPassword(email, successToast, errorToast);
       if (res?.status === 200) {
-        setShowOtp(true);
-        reset();
+        setTimeout(() => {
+          setShowOtp(true);
+          reset();
+          setLoader(false);
+        }, 4000);
       }
     } else {
       const { password } = formData;
+      setLoader(true);
       console.log("🚀 + onSubmit + password:", password);
       const data = {
         resetCode: otp,
@@ -42,7 +49,10 @@ const ForgetPassword = () => {
       };
       const res = await resetPassword(data, successToast, errorToast);
       if (res?.status === 200) {
-        navigate("sign-in");
+        setTimeout(() => {
+          navigate("/auth/sign-in");
+          setLoader(false);
+        }, 4000);
       }
     }
   };
@@ -61,6 +71,8 @@ const ForgetPassword = () => {
                 {" "}
                 <img src={logo} alt="" className="h-22 w-20" />
               </Link>
+              {loader && <Loader />}
+
               {!showOtp ? (
                 <div>
                   <div className="relative">

@@ -21,3 +21,9 @@ const CustomLoader = () => {
 };
 
 export default CustomLoader;
+
+import "ldrs/dotWave";
+
+export const Loader = () => {
+  return <l-dot-wave size="47" speed="1" color="#3575e2"></l-dot-wave>;
+};
