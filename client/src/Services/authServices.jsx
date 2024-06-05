@@ -19,10 +19,12 @@ export const userSignIn = async (data, successToast, errorToast) => {
     successToast(response.data.message);
     return response;
   } catch (error) {
+    console.log("🚀 + userSignIn + error:", error);
     errorToast(error.response.data.message);
     return error;
   }
 };
+
 export const userSignOut = async (e, successToast, errorToast) => {
   try {
     e.preventDefault;
