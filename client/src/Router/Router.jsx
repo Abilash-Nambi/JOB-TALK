@@ -17,6 +17,7 @@ import ApplicationForm from "../Pages/applications/ApplicationForm";
 import MyApplication from "../Pages/applications/MyApplication";
 import Jobs from "../Pages/jobs/Jobs";
 import EditJob from "../Pages/jobs/EditJob";
+import ForgetPassword from "../Pages/authPages/ForgetPassword";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -81,10 +82,10 @@ const router = createBrowserRouter([
         path: "sign-up",
         element: <SignUp />,
       },
-      // {
-      //   path: "/recruiter/pricing-page",
-      //   element: <PricingPage />,
-      // },
+      {
+        path: "forget-password",
+        element: <ForgetPassword />,
+      },
     ],
   },
   {
