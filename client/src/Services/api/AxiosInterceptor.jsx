@@ -24,13 +24,25 @@ axiosInstance.interceptors.response.use(
   }
 );
 
+// axiosInstance.interceptors.request.use(
+//   (config) => {
+//     const authToken = localStorage.getItem("authToken");
+//     if (authToken) {
+//       config.headers.Authorization = `Bearer ${authToken}`;
+//     }
+//     return config;
+//   },
+//   (error) => error
+// );
+
 axiosInstance.interceptors.request.use(
   (config) => {
     const authToken = localStorage.getItem("authToken");
     if (authToken) {
       config.headers.Authorization = `Bearer ${authToken}`;
     }
+    config.withCredentials = true; // Add this line to include credentials in the request
     return config;
   },
-  (error) => error
+  (error) => Promise.reject(error)
 );

@@ -1,4 +1,5 @@
 const express = require("express");
+const http = require("http");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
@@ -15,12 +16,13 @@ const app = express();
 
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL],
+    origin: process.env.FRONTEND_URL,
 
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
 );
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(
@@ -32,7 +34,7 @@ app.use(
 connectDb();
 
 const PORT = 7000;
-
+const server = http.createServer(app);
 app.use("/api/user", userRouter);
 app.use("/api/job", jobRouter);
 app.use("/api/application", applicationRouter);
@@ -42,6 +44,6 @@ app.all("*", (req, res) => {
   res.status(404).json("This page does not exist");
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Your port is running on ${PORT}`);
 });
