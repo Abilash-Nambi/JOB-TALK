@@ -72,9 +72,9 @@ const Banner = ({ query, handleInputChange, data }) => {
                 onClick={(e) => handleSubmit(e)}
               />
             </div>
-            {data?.length >= 1 && (
+            {data?.length >= 1 && query.length >= 1 && (
               <div>
-                <ul className="bg-white lg:w-[50%] mt-1 p-3  rounded-md cursor-pointer">
+                <ul className="bg-white lg:w-[50%] mt-1 p-3  rounded-md cursor-pointer absolute">
                   {data?.map((data) => (
                     <li>
                       <Link
