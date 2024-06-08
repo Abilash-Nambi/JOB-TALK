@@ -1,10 +1,10 @@
 import React from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 import Card from "../../components/Card";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import NewsLetter from "../../components/NewsLetter";
 import { getAllJob } from "../../Services/api/JobEndPoints";
-import { useState } from "react";
 import CardSkeleton from "../../components/Skeleton/CardSkeleton";
 import Pagination from "../../components/Pagination";
 import useScrollToTop from "../../Hooks/useScrollToTop";
