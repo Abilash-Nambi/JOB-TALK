@@ -1,8 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import loginImg from "../../Assets/images/loginImg.png";
-import logo from "../../../public/images/logo.png";
 import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 import { userSignIn } from "../../Services/authServices";
@@ -13,6 +11,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { logIn } from "../../Store/userAuthSlice";
 import { getProfile } from "../../Services/api/UserEndpoints";
 import CustomLoader from "../../components/CustomLoader";
+import loginImg from "../../Assets/images/loginImg.png";
+import logo from "../../../public/images/logo.png";
 
 export const LogIn = () => {
   const [loading, setLoading] = useState(false);
