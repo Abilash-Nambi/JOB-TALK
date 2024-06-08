@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../Pages/Home";
-import CreateJob from "../Pages/jobs/CreateJob";
-import MyJobs from "../Pages/jobs/MyJobs";
+import CreateJob from "../Pages/jobsPages/CreateJob";
+import MyJobs from "../Pages/jobsPages/MyJobs";
 import SalaryPage from "../Pages/SalaryPage";
 import { LogIn } from "../Pages/authPages/LogIn";
 import SignUp from "../Pages/authPages/SignUp";
@@ -11,12 +11,12 @@ import AuthLayout from "../Layouts/AuthLayout";
 import PricingPage from "../Pages/PricingPage";
 import ErrorLayout from "../Layouts/ErrorLayout";
 import Error404 from "../Pages/Error404";
-import JobPage from "../Pages/jobs/JobPage";
+import JobPage from "../Pages/jobsPages/JobPage";
 import AuthProtected from "../Services/ProtectedRoutes/AuthProtected";
 import ApplicationForm from "../Pages/applications/ApplicationForm";
 import MyApplication from "../Pages/applications/MyApplication";
-import Jobs from "../Pages/jobs/Jobs";
-import EditJob from "../Pages/jobs/EditJob";
+import Jobs from "../Pages/jobsPages/Jobs";
+import EditJob from "../Pages/jobsPages/EditJob";
 import ForgetPassword from "../Pages/authPages/ForgetPassword";
 const router = createBrowserRouter([
   {
