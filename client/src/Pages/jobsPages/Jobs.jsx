@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import Card from "../../components/Card";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import Sidebar from "../../components/sidebar/Sidebar";
 import NewsLetter from "../../components/NewsLetter";
 import { getAllJob } from "../../Services/api/JobEndPoints";
 import CardSkeleton from "../../components/Skeleton/CardSkeleton";
