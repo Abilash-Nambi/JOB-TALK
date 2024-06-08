@@ -1,11 +1,11 @@
 import React from "react";
-import Banner from "../components/Home/Banner";
+import { useEffect } from "react";
 import { useState } from "react";
+import Banner from "../components/Home/Banner";
 import Category from "../components/Home/Category";
 import IntroSection from "../components/Home/IntroSection";
-import useScrollToTop from "../Hooks/useScrollToTop";
-import { useEffect } from "react";
 import { searchJob } from "../Services/api/JobEndPoints";
+import useScrollToTop from "../Hooks/useScrollToTop";
 
 const Home = () => {
   const [query, setQuerry] = useState("");
