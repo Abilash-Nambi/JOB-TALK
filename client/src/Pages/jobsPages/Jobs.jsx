@@ -7,7 +7,7 @@ import NewsLetter from "../../components/NewsLetter";
 import { getAllJob } from "../../Services/api/JobEndPoints";
 import CardSkeleton from "../../components/Skeleton/CardSkeleton";
 import Pagination from "../../components/Pagination";
-import useScrollToTop from "../../Hooks/useScrollToTop";
+import useScrollToTop from "../../hooks/useScrollToTop";
 import { useSelector } from "react-redux";
 
 const Jobs = () => {

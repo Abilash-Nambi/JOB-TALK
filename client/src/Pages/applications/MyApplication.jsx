@@ -6,7 +6,7 @@ import {
 } from "../../Services/api/ApplicationEndpoints";
 import { useEffect } from "react";
 import Button from "../../components/Button";
-import useToast from "../../Hooks/useToast";
+import useToast from "../../hooks/useToast";
 import ResumeModal from "../../components/Application/ResumeModal";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import { useSelector } from "react-redux";

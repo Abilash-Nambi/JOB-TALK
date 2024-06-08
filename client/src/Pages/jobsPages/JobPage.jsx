@@ -12,7 +12,7 @@ import { SlCalender } from "react-icons/sl";
 import { date } from "../../Utils/dateFormat";
 import { AiTwotoneHourglass } from "react-icons/ai";
 import JobSkeleton from "../../components/Skeleton/JobSkeleton";
-import useScrollToTop from "../../Hooks/useScrollToTop";
+import useScrollToTop from "../../hooks/useScrollToTop";
 
 const JobPage = () => {
   const [job, setJob] = useState({});

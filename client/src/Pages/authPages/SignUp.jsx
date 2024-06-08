@@ -4,8 +4,8 @@ import logo from "../../../public/images/logo.png";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { userSignUp } from "../../Services/authServices";
-import useToast from "../../Hooks/useToast";
-import useRouter from "../../Hooks/useRouter";
+import useToast from "../../hooks/useToast";
+import useRouter from "../../hooks/useRouter";
 import CustomLoader from "../../components/CustomLoader";
 const SignUp = () => {
   const [loading, setLoading] = useState(false);

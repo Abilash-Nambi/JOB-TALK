@@ -6,8 +6,8 @@ import { useParams } from "react-router-dom";
 import { editJob, getSingleJob } from "../../Services/api/JobEndPoints";
 import { useEffect } from "react";
 import { cloudinaryImage } from "../../Utils/cloudinary";
-import useToast from "../../Hooks/useToast";
-import useRouter from "../../Hooks/useRouter";
+import useToast from "../../hooks/useToast";
+import useRouter from "../../hooks/useRouter";
 import CheckBox from "../../components/CheckBox";
 
 const EditJob = () => {

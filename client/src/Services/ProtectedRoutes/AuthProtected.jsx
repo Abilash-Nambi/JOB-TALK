@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import useLocalStorage from "../../Hooks/useLocalStorage";
-import useRouter from "../../Hooks/useRouter";
-import useToast from "../../Hooks/useToast";
+import useLocalStorage from "../../hooks/useLocalStorage";
+import useRouter from "../../hooks/useRouter";
+import useToast from "../../hooks/useToast";
 
 const AuthProtected = ({ children }) => {
   const { getStorage } = useLocalStorage();

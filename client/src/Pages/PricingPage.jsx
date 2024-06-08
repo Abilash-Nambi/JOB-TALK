@@ -5,9 +5,9 @@ import {
 } from "../Services/api/PaymentEndpoints";
 import Button from "../components/Button";
 import logo from "../../public/images/logo.png";
-import useToast from "../Hooks/useToast";
-import useRouter from "../Hooks/useRouter";
-import useLocalStorage from "../Hooks/useLocalStorage";
+import useToast from "../hooks/useToast";
+import useRouter from "../hooks/useRouter";
+import useLocalStorage from "../hooks/useLocalStorage";
 import { getProfile } from "../Services/api/UserEndpoints";
 import { logIn } from "../Store/userAuthSlice";
 import { useDispatch, useSelector } from "react-redux";

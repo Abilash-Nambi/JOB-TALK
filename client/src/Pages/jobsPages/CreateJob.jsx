@@ -10,8 +10,8 @@ import { postJob } from "../../Services/api/JobEndPoints";
 import BreadCrumb from "../../components/BreadCrumb";
 import { cloudinaryImage } from "../../Utils/cloudinary";
 import { useSelector, useDispatch } from "react-redux";
-import useToast from "../../Hooks/useToast";
-import useRouter from "../../Hooks/useRouter";
+import useToast from "../../hooks/useToast";
+import useRouter from "../../hooks/useRouter";
 
 const CreateJob = () => {
   const [imageUrl, setImageUrl] = useState("");

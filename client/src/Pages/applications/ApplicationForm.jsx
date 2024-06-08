@@ -2,9 +2,9 @@ import React from "react";
 import BreadCrumb from "../../components/BreadCrumb";
 import { useState } from "react";
 import { postApplication } from "../../Services/api/ApplicationEndpoints";
-import useToast from "../../Hooks/useToast";
+import useToast from "../../hooks/useToast";
 import { useParams } from "react-router-dom";
-import useRouter from "../../Hooks/useRouter";
+import useRouter from "../../hooks/useRouter";
 
 const ApplicationForm = () => {
   const [data, setData] = useState({});

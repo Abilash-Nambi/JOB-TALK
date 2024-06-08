@@ -12,7 +12,7 @@ import { deleteJob, myAllJobs } from "../../Services/api/JobEndPoints";
 import ConfirmationModal from "../../components/ConfirmationModal";
 
 import NoData from "../NoData";
-import useToast from "../../Hooks/useToast";
+import useToast from "../../hooks/useToast";
 
 const MyJobs = () => {
   const [jobs, setJobs] = useState([]);
