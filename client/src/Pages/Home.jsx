@@ -3,7 +3,7 @@ import Banner from "../components/Home/Banner";
 import { useState } from "react";
 import Category from "../components/Home/Category";
 import IntroSection from "../components/Home/IntroSection";
-import useScrollToTop from "../Hooks/useScrollToTop";
+//import useScrollToTop from "../Hooks/useScrollToTop";
 import { useEffect } from "react";
 import { searchJob } from "../Services/api/JobEndPoints";
 
@@ -21,9 +21,9 @@ const Home = () => {
     setData(res);
   };
 
-  useEffect(() => {
-    useScrollToTop();
-  }, []);
+  // useEffect(() => {
+  //   useScrollToTop();
+  // }, []);
 
   const handleInputChange = (e) => {
     setQuerry((prev) => e.target.value);
