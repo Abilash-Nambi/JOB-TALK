@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Select from "react-select";
@@ -10,7 +11,6 @@ import useRouter from "../../Hooks/useRouter";
 import BreadCrumb from "../../components/BreadCrumb";
 import { cloudinaryImage } from "../../Utils/cloudinary";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
 
 const CreateJob = () => {
   const [imageUrl, setImageUrl] = useState("");
