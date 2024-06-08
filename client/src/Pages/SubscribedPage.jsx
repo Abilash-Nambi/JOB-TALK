@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../Assets/images/subscribed.png";
+import image from "../assets/images/subscribed.png";
 
 const SubscribedPage = () => {
   return (

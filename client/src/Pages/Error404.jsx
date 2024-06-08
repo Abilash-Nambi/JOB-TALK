@@ -1,5 +1,5 @@
 import React from "react";
-import useRouter from "../Hooks/useRouter";
+import useRouter from "../hooks/useRouter";
 import Button from "../components/Button";
 
 const Error404 = () => {

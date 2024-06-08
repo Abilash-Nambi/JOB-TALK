@@ -4,7 +4,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { MdOutlineAccessTime } from "react-icons/md";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { SlCalender } from "react-icons/sl";
-import noImage from "../Assets/images/noImage.jpg";
+import noImage from "../assets/images/noImage.jpg";
 import { FaArrowRight } from "react-icons/fa6";
 import Button from "./Button";
 import { date } from "../Utils/dateFormat";

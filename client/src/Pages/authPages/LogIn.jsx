@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logIn } from "../../Store/userAuthSlice";
 import { getProfile } from "../../Services/api/UserEndpoints";
 import CustomLoader from "../../components/CustomLoader";
-import loginImg from "../../Assets/images/loginImg.png";
+import loginImg from "../../assets/images/loginImg.png";
 import logo from "../../../public/images/logo.png";
 
 export const LogIn = () => {
