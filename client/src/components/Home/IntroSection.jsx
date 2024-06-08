@@ -1,11 +1,11 @@
 import React from "react";
-import map from "../../Assets/images/map.png";
-import user1 from "../../Assets/images/user1.jpg";
-import user2 from "../../Assets/images/user2.jpg";
-import user3 from "../../Assets/images/user3.jpg";
-import user4 from "../../Assets/images/user4.jpg";
-import user6 from "../../Assets/images/user6.jpg";
-import user7 from "../../Assets/images/user7.jpg";
+import map from "../../assets/images/map.png";
+import user1 from "../../assets/images/user1.jpg";
+import user2 from "../../assets/images/user2.jpg";
+import user3 from "../../assets/images/user3.jpg";
+import user4 from "../../assets/images/user4.jpg";
+import user6 from "../../assets/images/user6.jpg";
+import user7 from "../../assets/images/user7.jpg";
 import { TbUsersGroup } from "react-icons/tb";
 import { MdOutlineGroups } from "react-icons/md";
 import { TbTargetArrow } from "react-icons/tb";
