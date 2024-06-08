@@ -2,7 +2,7 @@ import React from "react";
 import { IoIosSearch } from "react-icons/io";
 import { CiLocationOn } from "react-icons/ci";
 import Button from "../Button";
-import useToast from "../../Hooks/useToast";
+import useToast from "../../hooks/useToast";
 import DropDown from "../DropDown";
 import CustomDropDown from "../CustomDropDown";
 import { Link } from "react-router-dom";

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Avatar from "./Avatar";
 import { userSignOut } from "../Services/authServices";
-import useToast from "../Hooks/useToast";
-import useRouter from "../Hooks/useRouter";
-import useLocalStorage from "../Hooks//useLocalStorage";
+import useToast from "../hooks/useToast";
+import useRouter from "../hooks/useRouter";
+import useLocalStorage from "../hooks/useLocalStorage";
 import { logOut } from "../Store/userAuthSlice";
 import { useDispatch } from "react-redux";
 
