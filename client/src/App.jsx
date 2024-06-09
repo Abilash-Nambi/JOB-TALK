@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import router from "./Router/Router";
 import { useState } from "react";
-import CustomLoader from "./components/CustomLoader";
+import CustomLoader from "./components/CustomLoader.jsx";
 function App() {
   const [loader, setLoader] = useState(true);
   const timeout = setTimeout(() => {
