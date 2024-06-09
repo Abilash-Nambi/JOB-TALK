@@ -171,7 +171,7 @@ const forgetPassword = async (req, res) => {
 const resetPassword = async (req, res) => {
   try {
     const { data } = req.body;
-    // console.log("🚀 + resetPassword + data:", data);
+    //console.log("🚀 + resetPassword + data:", data);
     // console.log(
     //   "🚀 + resetPassword + PasscodeVerificationData:",
     //   PasscodeVerificationData
