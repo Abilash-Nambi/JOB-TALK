@@ -38,6 +38,8 @@ const ForgetPassword = () => {
           reset();
           setLoader(false);
         }, 4000);
+      } else {
+        setLoader(false);
       }
     } else {
       const { password } = formData;
@@ -53,6 +55,8 @@ const ForgetPassword = () => {
           navigate("/auth/sign-in");
           setLoader(false);
         }, 4000);
+      } else {
+        setLoader(false);
       }
     }
   };

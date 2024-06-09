@@ -35,8 +35,8 @@ export const Loader = () => {
   return (
     <ThreeDots
       visible={true}
-      height="80"
-      width="80"
+      height="50"
+      width="50"
       color="#3575e2"
       radius="9"
       ariaLabel="three-dots-loading"
