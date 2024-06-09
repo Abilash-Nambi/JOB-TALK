@@ -1,10 +1,11 @@
 import React from "react";
 import InputField from "../InputField";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setExperience } from "../../Store/filterSlice";
 
 const WorkExperience = () => {
   const dispatch = useDispatch();
+  const experience = useSelector((state) => state.filter.experience);
   const handleRadioChange = (e) => {
     dispatch(setExperience(e.target.value));
   };
@@ -19,6 +20,7 @@ const WorkExperience = () => {
           title="Any experience"
           name="test4"
           id="test4"
+          checked={experience === " "}
         />
         <InputField
           onChange={handleRadioChange}
@@ -26,6 +28,7 @@ const WorkExperience = () => {
           title="Internship"
           name="test4"
           id="test4"
+          checked={experience === "Internship"}
         />
         <InputField
           onChange={handleRadioChange}
@@ -33,6 +36,7 @@ const WorkExperience = () => {
           title="Work remotely"
           name="test4"
           id="test4"
+          checked={experience === "Work remotely"}
         />
       </div>
     </div>

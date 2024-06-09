@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  experience: "",
-  employment: "",
-  salary: null,
+  experience: " ",
+  employment: " ",
+  salary: " ",
 };
 
 const userFilterSlice = createSlice({

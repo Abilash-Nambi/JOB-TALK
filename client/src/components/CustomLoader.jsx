@@ -20,8 +20,6 @@ const CustomLoader = () => {
 
 export default CustomLoader;
 
-import "ldrs/dotWave";
-
 export const Loader = () => {
   return (
     <ThreeDots

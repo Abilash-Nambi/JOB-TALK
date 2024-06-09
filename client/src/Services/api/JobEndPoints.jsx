@@ -11,13 +11,13 @@ export const getAllJob = async (
     let url = `/job?page=${currentPage}`;
     let params = [];
 
-    if (employment) {
+    if (employment && employment.trim() !== "") {
       params.push(`employment=${employment}`);
     }
-    if (experience) {
+    if (experience && experience.trim() !== "") {
       params.push(`experience=${experience}`);
     }
-    if (salary) {
+    if (salary && salary.trim() !== "") {
       params.push(`salary=${salary}`);
     }
 
@@ -31,6 +31,7 @@ export const getAllJob = async (
     return error;
   }
 };
+
 export const getSingleJob = async (id) => {
   try {
     const data = await axiosInstance.get(`/job/single-job/${id}`);

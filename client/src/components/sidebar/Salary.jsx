@@ -42,7 +42,7 @@ const Salary = () => {
           title="All"
           name="test2"
           id="test2"
-          checked={salary == null}
+          checked={salary == " "}
         />
         <InputField
           onChange={handleRadioChange}

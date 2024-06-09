@@ -197,9 +197,9 @@ const getAllFiltredJobs = async (req, res) => {
   const page = parseInt(req.query.page) - 1 || 0;
   const skipCount = page * pageLimit;
 
-  const salary = req.query.salary || "";
-  const experience = req.query.experience || "";
-  const employment = req.query.employment || "";
+  const salary = req.query.salary;
+  const experience = req.query.experience;
+  const employment = req.query.employment;
 
   // Build the query object based on the filters provided
   const query = { expired: false };
@@ -215,10 +215,11 @@ const getAllFiltredJobs = async (req, res) => {
   if (employment) {
     query.employmentType = employment;
   }
-
+  console.log("🚀 + getAllFiltredJobs + query:", query);
   try {
     // Find jobs based on the query
     const jobList = await jobModel.find(query).skip(skipCount).limit(pageLimit);
+    // console.log("🚀 + getAllFiltredJobs + jobList:", jobList);
 
     // Count total jobs based on the same query
     const count = await jobModel.find(query).countDocuments();
