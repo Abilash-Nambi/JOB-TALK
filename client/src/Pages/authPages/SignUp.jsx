@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { userSignUp } from "../../Services/authServices";
 import useToast from "../../hooks/useToast";
 import useRouter from "../../hooks/useRouter";
-import CustomLoader from "../../components/CustomLoader";
+import CustomLoader from "../../components/CustomLoader.jsx";
 const SignUp = () => {
   const [loading, setLoading] = useState(false);
   const { successToast, errorToast, warningToast } = useToast();
