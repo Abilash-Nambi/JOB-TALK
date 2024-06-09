@@ -10,8 +10,8 @@ const NewsLetter = () => {
           Email me for Jobs
         </h3>
         <p className="text-primary/75 text-base mb-4 ">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil ipsa
-          distinctio voluptates esse nulla nesciunt voluptatum provid
+          Subscribe to JobTalk to stay updated with the latest job opportunities
+          tailored for you!
         </p>
         <div className="w-full space-y-2">
           <input
@@ -34,13 +34,12 @@ const NewsLetter = () => {
           Get Noticed Faster
         </h3>
         <p className="text-primary/75 text-base mb-4 ">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil ipsa
-          distinctio voluptates esse nulla nesciunt voluptatum provid
+          Get noticed faster by top employers—subscribe to JobTalk today!
         </p>
         <div className="w-full space-y-2">
           <input
             type="submit"
-            value={"Upload your rresume"}
+            value={"Upload your resume"}
             className="w-full py-2 pl-3 border focus:outline-none bg-blue text-white cursor-pointer font-semibold rounded-sm"
           />
         </div>
