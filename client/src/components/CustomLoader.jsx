@@ -1,6 +1,6 @@
 import React from "react";
 //import "ldrs/infinity";
-import { InfinitySpin } from "react-loader-spinner";
+import { InfinitySpin, ThreeDots } from "react-loader-spinner";
 
 const CustomLoader = () => {
   return (
@@ -32,5 +32,16 @@ export default CustomLoader;
 import "ldrs/dotWave";
 
 export const Loader = () => {
-  return <l-dot-wave size="47" speed="1" color="#3575e2"></l-dot-wave>;
+  return (
+    <ThreeDots
+      visible={true}
+      height="80"
+      width="80"
+      color="#3575e2"
+      radius="9"
+      ariaLabel="three-dots-loading"
+      wrapperStyle={{}}
+      wrapperClass=""
+    />
+  );
 };
