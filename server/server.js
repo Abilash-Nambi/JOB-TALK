@@ -16,8 +16,7 @@ const app = express();
 
 app.use(
   cors({
-    //origin: process.env.FRONTEND_URL,
-    origin: "https://job-talk-xi.vercel.app",
+    origin: process.env.FRONTEND_URL,
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
