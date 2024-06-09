@@ -93,10 +93,23 @@ const getMyjobs = async (req, res) => {
         message: "Job Seeker not allowed to access this resource.",
       });
     }
-    const myJobs = await jobModel.aggregate([
-      { $match: { postedBy: req.user._id } },
-    ]); //we can use jobModel.find({postedBy: req.user._id})...get same result
-    res.status(200).json({ message: "Success", data: myJobs });
+    const { search } = req.query;
+    if (search) {
+      const myJobs = await jobModel.aggregate([
+        {
+          $match: {
+            postedBy: req.user._id,
+            jobTitle: { $regex: search, $options: "i" },
+          },
+        },
+      ]);
+      res.status(200).json({ message: "Success", data: myJobs });
+    } else {
+      const myJobs = await jobModel.aggregate([
+        { $match: { postedBy: req.user._id } },
+      ]); //we can use jobModel.find({postedBy: req.user._id})...get same result
+      res.status(200).json({ message: "Success", data: myJobs });
+    }
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

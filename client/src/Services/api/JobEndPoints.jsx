@@ -41,12 +41,21 @@ export const getSingleJob = async (id) => {
   }
 };
 
-export const myAllJobs = async () => {
-  try {
-    const res = await axiosInstance.get(`/job//my-jobs`);
-    return res;
-  } catch (error) {
-    return error;
+export const myAllJobs = async (search) => {
+  if (search.length >= 1) {
+    try {
+      const res = await axiosInstance.get(`/job/my-jobs?search=${search}`);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  } else {
+    try {
+      const res = await axiosInstance.get(`/job/my-jobs`);
+      return res;
+    } catch (error) {
+      return error;
+    }
   }
 };
 export const postJob = async (

@@ -13,20 +13,23 @@ import ConfirmationModal from "../../components/ConfirmationModal";
 
 import NoData from "../NoData";
 import useToast from "../../hooks/useToast";
+import Input from "../../components/Input";
 
 const MyJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [search, setSearch] = useState("");
+
   const [jobId, setJobId] = useState(null);
   const { successToast, errorToast } = useToast();
   const userDetials = useSelector((state) => state.user.user);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [search]);
 
   const fetchData = async () => {
-    const res = await myAllJobs();
+    const res = await myAllJobs(search);
     setJobs(res.data.data);
   };
   const handleDeleteButton = (id) => {
@@ -39,6 +42,10 @@ const MyJobs = () => {
       setIsModalOpen(false);
       fetchData();
     }
+  };
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
   };
 
   return (
@@ -54,13 +61,14 @@ const MyJobs = () => {
           {" "}
           <h1 className="text-center p-4"> All My Jobs</h1>
           <div className="p-2 text-center ">
-            <input
-              //value={query}
+            <Input
               type="text"
+              value={search}
+              onChange={(e) => handleSearch(e)}
               placeholder="Search Job..."
               className=" border py-2 pl-3 text-grey-900 placeholder:text-grey-400 sm:text-sm  focus:outline-none lg:w-6/12 w-full"
-              //onChange={handleInputChange}
             />
+
             <button className="text-white bg-blue px-8 rounded-md py-2 rounded-s-sm md:rounded-none">
               Search
             </button>
