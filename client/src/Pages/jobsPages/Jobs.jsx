@@ -27,7 +27,7 @@ const Jobs = () => {
   useEffect(() => {
     fetchData();
     useScrollToTop();
-  }, [currentPage, employment, experience, salary]);
+  }, [currentPage, employment, experience, salary, datePosted]);
 
   const fetchData = async () => {
     setskeleton(true);

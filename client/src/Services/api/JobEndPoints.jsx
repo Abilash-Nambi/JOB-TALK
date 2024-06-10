@@ -5,7 +5,8 @@ export const getAllJob = async (
   currentPage,
   employment,
   experience,
-  salary
+  salary,
+  datePosted
 ) => {
   try {
     let url = `/job?page=${currentPage}`;
@@ -20,7 +21,9 @@ export const getAllJob = async (
     if (salary && salary.trim() !== "") {
       params.push(`salary=${salary}`);
     }
-
+    if (datePosted && datePosted.trim() !== "") {
+      params.push(`datePosted=${datePosted}`);
+    }
     if (params.length > 0) {
       url += `&${params.join("&")}`;
     }
