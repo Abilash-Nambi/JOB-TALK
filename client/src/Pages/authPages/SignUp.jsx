@@ -68,7 +68,7 @@ const SignUp = () => {
                     {...register("role", {
                       required: "Please select a role",
                     })}
-                    className={`border block px-3 py-2  bg-white${
+                    className={`border block px-[80px] py-2  bg-white${
                       errors.role ? "border-red-500" : ""
                     }`}
                   >

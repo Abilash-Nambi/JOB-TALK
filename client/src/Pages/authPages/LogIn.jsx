@@ -90,7 +90,7 @@ export const LogIn = () => {
                     {...register("role", {
                       required: "Please select a role",
                     })}
-                    className={`border block px-3 py-2  bg-white${
+                    className={`border block px-[80px] py-2  bg-white${
                       errors.role ? "border-red-500" : ""
                     }`}
                   >
@@ -165,9 +165,9 @@ export const LogIn = () => {
                   </Link>
                 </p>
                 <p className="text-sm">
-                  Don't have account yet ?
+                  Don't have account yet?
                   <Link to="/auth/sign-up">
-                    <span className="text-blue font-semibold mt-0">
+                    <span className="text-blue font-semibold mt-0 ml-1">
                       Click me
                     </span>
                   </Link>
