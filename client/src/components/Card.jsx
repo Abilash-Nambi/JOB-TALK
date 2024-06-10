@@ -28,7 +28,7 @@ const Card = ({ data }) => {
   return (
     <div>
       <section className="card hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] delay-150 ">
-        <Link to={"/"} className="flex gap-4 flex-col sm:flex-row items-start">
+        <Link to={""} className="flex gap-4 flex-col sm:flex-row items-start">
           {companyLogo ? (
             <img src={companyLogo} alt="" className="w-20 h-20" />
           ) : (
