@@ -19,6 +19,8 @@ const Header = () => {
     setIsTrue(!isTrue);
   };
 
+  /* Desktop Menu */
+
   const navItemsEmployer = [
     {
       path: "/",
@@ -158,11 +160,20 @@ const Header = () => {
 
         {/* Mobile toggle */}
         <div className="md:hidden block relative">
+          {isAuthenticated && (
+            <DropDown
+              title={`${userName?.toUpperCase()}`}
+              avatar="true"
+              dropDownMenu={dropDownMenu}
+              avatarTitle={userName?.slice(0, 2).toUpperCase()}
+            />
+          )}
+
           <button onClick={handleChange}>
             {isTrue ? (
-              <FaXmark className="w-5 h-5 text-primary" />
+              <FaXmark className="w-5 h-5 text-primary ml-2" />
             ) : (
-              <FaAlignRight className="w-5 h-5 text-primary" />
+              <FaAlignRight className="w-5 h-5 text-primary ml-2" />
             )}
           </button>
         </div>
@@ -170,14 +181,15 @@ const Header = () => {
 
       {/* mobile menu*/}
       <div
-        className={`absolute z-10 w-full px-4 bg-black py-5 text-white ${
+        className={`absolute z-10 w-full px-4 bg-[azure] py-5 text-white ${
           isTrue ? "" : "hidden"
         }`}
       >
         <ul>
-          {isAuthenticated && userDetials?.role === "Employer"
-            ? navItemsEmployer.map((data, i) => (
-                <li key={i} className="text-base">
+          {isAuthenticated && userDetials?.role === "Employer" ? (
+            <>
+              {navItemsEmployer.map((data, i) => (
+                <li key={i} className="text-base ">
                   <NavLink
                     to={`${data.path}`}
                     className={({ isActive }) => (isActive ? "active " : "")}
@@ -185,29 +197,33 @@ const Header = () => {
                     {data.title}
                   </NavLink>
                 </li>
-              ))
-            : isAuthenticated &&
-              userDetials?.role === "Job Seeker" &&
-              navItemsJodSeeker.map((data, i) => (
-                <li key={i} className="text-base">
-                  <NavLink
-                    to={`${data.path}`}
-                    className={({ isActive }) => (isActive ? "active" : "")}
-                  >
-                    {data.title}
-                  </NavLink>
-                </li>
               ))}
-          <li>
-            <Link to="/auth/sign-in" className="text-white">
-              Log in
-            </Link>
-          </li>
-          <li>
-            <Link to="/auth/sign-up" className="text-white">
-              Sign up
-            </Link>
-          </li>
+            </>
+          ) : (
+            isAuthenticated &&
+            userDetials?.role === "Job Seeker" &&
+            navItemsJodSeeker.map((data, i) => (
+              <li key={i} className="text-base">
+                <NavLink
+                  to={`${data.path}`}
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
+                  {data.title}
+                </NavLink>
+              </li>
+            ))
+          )}
+
+          {!isAuthenticated && (
+            <>
+              <li>
+                <Link to="/auth/sign-in">Log in</Link>
+              </li>
+              <li>
+                <Link to="/auth/sign-up">Sign up</Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </header>
