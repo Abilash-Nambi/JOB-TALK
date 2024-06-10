@@ -4,6 +4,7 @@ const initialState = {
   experience: " ",
   employment: " ",
   salary: " ",
+  datePosted: " ",
 };
 
 const userFilterSlice = createSlice({
@@ -19,9 +20,12 @@ const userFilterSlice = createSlice({
     setSalary: (state, action) => {
       state.salary = action.payload;
     },
+    setDatePosted: (state, action) => {
+      state.datePosted = action.payload;
+    },
   },
 });
 
-export const { setExperience, setEmployment, setSalary } =
+export const { setExperience, setEmployment, setSalary, setDatePosted } =
   userFilterSlice.actions;
 export default userFilterSlice.reducer;

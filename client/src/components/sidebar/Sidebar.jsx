@@ -5,7 +5,7 @@ import JobPostingDate from "./JobPostingDate";
 import WorkExperience from "./WorkExperience";
 import EmployementType from "./EmployementType";
 
-const Sidebar = ({ handleRadioChange, handleClick }) => {
+const Sidebar = () => {
   return (
     <div className="space-y-5">
       <h3 className="text-lg font-bold mb-2">Filters</h3>

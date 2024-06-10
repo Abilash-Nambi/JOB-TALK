@@ -21,6 +21,7 @@ const Jobs = () => {
   const employment = useSelector((state) => state.filter.employment);
   const experience = useSelector((state) => state.filter.experience);
   const salary = useSelector((state) => state.filter.salary);
+  const datePosted = useSelector((state) => state.filter.datePosted);
   //console.log("🚀 + Jobs + experience:", salary);
 
   useEffect(() => {
@@ -35,7 +36,8 @@ const Jobs = () => {
         currentPage,
         employment,
         experience,
-        salary
+        salary,
+        datePosted
       );
       setJobs(response?.data?.data);
       setTotalPage(response?.data?.totalPage);
