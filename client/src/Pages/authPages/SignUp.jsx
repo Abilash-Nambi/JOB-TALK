@@ -23,7 +23,7 @@ const SignUp = () => {
 
   // let error = Object.values(errors);
   // error.forEach((text) => errorToast(  );
-  errorToast(errors?.password?.message);
+  // errorToast(errors?.password?.message);
 
   const onSubmit = async (data) => {
     try {
@@ -126,11 +126,17 @@ const SignUp = () => {
                   />
                 </div>
                 <div className="relative">
-                  {/* {errors.password && (
-              <span className="text-red-500 text-xs absolute top-[-15px] right-[0px]">
-                {errors.password.message}
-              </span>
-            )} */}
+                  {errors.password && (
+                    <span
+                      className={`text-red-500 text-xs absolute top-[-15px] ${
+                        errors.password.message.includes("uppercase letter")
+                          ? "right-[-90px]"
+                          : "right-[0px] "
+                      }`}
+                    >
+                      {errors.password.message}
+                    </span>
+                  )}
                   <input
                     {...register("password", {
                       required: "Password is required",
@@ -142,7 +148,7 @@ const SignUp = () => {
                         value:
                           /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{5,}$/,
                         message:
-                          "Password must contain at least one uppercase letter, one numeric digit, and one special character",
+                          "Must contain one uppercase letter, one numeric digit, and one special character",
                       },
                     })}
                     className={`border block px-3 py-2 placeholder:text-xs${
