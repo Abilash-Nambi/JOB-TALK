@@ -1,3 +1,4 @@
+import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../Pages/Home";
@@ -15,9 +16,13 @@ import JobPage from "../Pages/jobsPages/JobPage";
 import AuthProtected from "../Services/ProtectedRoutes/AuthProtected";
 import ApplicationForm from "../Pages/applications/ApplicationForm";
 import MyApplication from "../Pages/applications/MyApplication";
-import Jobs from "../Pages/jobsPages/Jobs";
+//import Jobs from "../Pages/jobsPages/Jobs";
+const Jobs = lazy(() => import("../Pages/jobsPages/Jobs"));
 import EditJob from "../Pages/jobsPages/EditJob";
 import ForgetPassword from "../Pages/authPages/ForgetPassword";
+
+import { Loader } from "../components/CustomLoader";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -46,7 +51,11 @@ const router = createBrowserRouter([
       },
       {
         path: "all-jobs",
-        element: <Jobs />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Jobs />
+          </Suspense>
+        ),
       },
       {
         path: "job-application/:id",

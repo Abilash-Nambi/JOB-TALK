@@ -9,8 +9,6 @@ import useLoader from "../hooks/useLoader";
 import { logOut } from "../Store/userAuthSlice";
 import { useDispatch } from "react-redux";
 
-import CustomLoader from "./CustomLoader";
-
 function DropDown({ title, dropDownMenu, avatar, avatarTitle }) {
   const [isOpen, setIsOpen] = useState(false);
   const { successToast, errorToast, warningToast } = useToast();
@@ -67,14 +65,7 @@ function DropDown({ title, dropDownMenu, avatar, avatarTitle }) {
                 onClick={async (e) => {
                   const res = await userSignOut(e, successToast, errorToast);
 
-                  if (res?.status === 200) {
-                    showLoader();
-                    setTimeout(() => {
-                      hideLoader();
-                      navigate("/");
-                    }, 10000);
-                  }
-                  dispatch(logOut()), clearStorage("authToken");
+                  dispatch(logOut()), clearStorage("authToken"), navigate("/");
                 }}
               >
                 Sign out
