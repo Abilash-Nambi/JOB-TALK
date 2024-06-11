@@ -5,12 +5,15 @@ import { postApplication } from "../../Services/api/ApplicationEndpoints";
 import useToast from "../../hooks/useToast";
 import { useParams } from "react-router-dom";
 import useRouter from "../../hooks/useRouter";
-
+import { IoIosCloudDone } from "react-icons/io";
+import useLoader from "../../hooks/useLoader";
+import { Loader } from "../../components/CustomLoader";
 const ApplicationForm = () => {
   const [data, setData] = useState({});
   const [file, setFile] = useState(null);
-
+  const [progress, setProgress] = useState(false);
   const { successToast, errorToast } = useToast();
+  const { isLoading, showLoader, hideLoader } = useLoader();
   const { goBack } = useRouter();
   let { id } = useParams();
 
@@ -18,10 +21,15 @@ const ApplicationForm = () => {
     setData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
   const handleFileChange = (event) => {
+    showLoader();
     setFile(event.target.files[0]);
+    setTimeout(() => {
+      hideLoader();
+    }, 3000);
   };
 
   const handleSubmit = async (e) => {
+    setProgress(true);
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", data.name);
@@ -38,6 +46,11 @@ const ApplicationForm = () => {
       errorToast,
       goBack
     );
+    if (res.status === 200) {
+      setProgress(false);
+    } else {
+      setProgress(false);
+    }
   };
   return (
     <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4">
@@ -69,6 +82,16 @@ const ApplicationForm = () => {
                       className="mx-auto h-12 w-12 text-gray-300"
                       aria-hidden="true"
                     /> */}
+                      <div className="text-center flex justify-center">
+                        {isLoading ? (
+                          <Loader />
+                        ) : (
+                          file && (
+                            <IoIosCloudDone className="text-5xl text-green-500" />
+                          )
+                        )}
+                      </div>
+
                       <div className="mt-4 flex text-sm leading-6 text-gray-600">
                         <label
                           htmlFor="file-upload"
@@ -308,7 +331,7 @@ const ApplicationForm = () => {
                 type="submit"
                 className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Submit
+                {progress ? "Submiting..." : "Submit"}
               </button>
             </div>
           </div>

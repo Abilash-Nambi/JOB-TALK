@@ -1,5 +1,5 @@
 import React from "react";
-import { InfinitySpin, ThreeDots } from "react-loader-spinner";
+import { InfinitySpin, ProgressBar, ThreeDots } from "react-loader-spinner";
 
 const CustomLoader = () => {
   return (
@@ -29,6 +29,19 @@ export const Loader = () => {
       color="#3575e2"
       radius="9"
       ariaLabel="three-dots-loading"
+      wrapperStyle={{}}
+      wrapperClass=""
+    />
+  );
+};
+export const ProgressBarLoader = () => {
+  return (
+    <ProgressBar
+      visible={true}
+      height="50"
+      width="80"
+      color="#4fa94d"
+      ariaLabel="progress-bar-loading"
       wrapperStyle={{}}
       wrapperClass=""
     />

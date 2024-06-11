@@ -13,11 +13,15 @@ import { date } from "../../Utils/dateFormat";
 import { AiTwotoneHourglass } from "react-icons/ai";
 import JobSkeleton from "../../components/Skeleton/JobSkeleton";
 import useScrollToTop from "../../hooks/useScrollToTop";
+import { useSelector } from "react-redux";
 
 const JobPage = () => {
   const [job, setJob] = useState({});
   const [loading, setLoading] = useState(true);
   let { id } = useParams();
+
+  const { user } = useSelector((state) => state?.user);
+  console.log("🚀 + JobPage + user:", user);
 
   useEffect(() => {
     fetchData();
@@ -77,22 +81,24 @@ const JobPage = () => {
                   {job.experienceLevel}
                 </span>
               </div>
-              <div className="flex items-center gap-3  text-primary/70">
-                <Button
-                  title={"JOB TYPE"}
-                  className={
-                    "bg-blue text-white px-4 py-2 hover:bg-[#172554] rounded-sm"
-                  }
-                />
-                <Link to={`/job-application/${id}`}>
+              {user?.role === "Job Seeker" && (
+                <div className="flex items-center gap-3  text-primary/70">
                   <Button
-                    title={"APPLY NOW"}
+                    title={"JOB TYPE"}
                     className={
-                      "bg-[#10b981] text-white px-4 py-2 hover:bg-[#064e3b] rounded-sm"
+                      "bg-blue text-white px-4 py-2 hover:bg-[#172554] rounded-sm"
                     }
                   />
-                </Link>
-              </div>
+                  <Link to={`/job-application/${id}`}>
+                    <Button
+                      title={"APPLY NOW"}
+                      className={
+                        "bg-[#10b981] text-white px-4 py-2 hover:bg-[#064e3b] rounded-sm"
+                      }
+                    />
+                  </Link>
+                </div>
+              )}
             </div>
             <div className="pt-5 md:pr-[5em] text-center">
               {job.companyLogo ? (
