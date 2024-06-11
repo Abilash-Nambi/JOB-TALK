@@ -19,6 +19,7 @@ const MyApplication = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  console.log("🚀 + MyApplication + isModalOpen:", isModalOpen);
   const [applicationId, setapplication] = useState(null);
   const { errorToast, successToast } = useToast();
   const { isLoading, showLoader, hideLoader } = useLoader();
@@ -65,7 +66,12 @@ const MyApplication = () => {
     );
     //console.log("🚀 + handleDelete + res:", res);
     if (res.status === 200) {
-      fetchData();
+      if (userDetials?.role == "Employer") {
+        fetchDataEmployer();
+      } else {
+        fetchDataUser();
+      }
+
       setIsModalOpen(false);
     }
   };
