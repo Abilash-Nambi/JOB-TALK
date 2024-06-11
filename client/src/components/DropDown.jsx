@@ -5,13 +5,17 @@ import { userSignOut } from "../Services/authServices";
 import useToast from "../hooks/useToast";
 import useRouter from "../hooks/useRouter";
 import useLocalStorage from "../hooks/useLocalStorage";
+import useLoader from "../hooks/useLoader";
 import { logOut } from "../Store/userAuthSlice";
 import { useDispatch } from "react-redux";
+
+import CustomLoader from "./CustomLoader";
 
 function DropDown({ title, dropDownMenu, avatar, avatarTitle }) {
   const [isOpen, setIsOpen] = useState(false);
   const { successToast, errorToast, warningToast } = useToast();
   const { clearStorage } = useLocalStorage();
+  const { isLoading, showLoader, hideLoader } = useLoader();
   const { navigate } = useRouter();
   const dispatch = useDispatch();
   const toggleMenu = () => {
@@ -62,7 +66,15 @@ function DropDown({ title, dropDownMenu, avatar, avatarTitle }) {
                 className="block w-full px-4 py-2 text-sm text-gray-700"
                 onClick={async (e) => {
                   const res = await userSignOut(e, successToast, errorToast);
-                  dispatch(logOut()), clearStorage("authToken"), navigate("/");
+
+                  if (res?.status === 200) {
+                    showLoader();
+                    setTimeout(() => {
+                      hideLoader();
+                      navigate("/");
+                    }, 10000);
+                  }
+                  dispatch(logOut()), clearStorage("authToken");
                 }}
               >
                 Sign out

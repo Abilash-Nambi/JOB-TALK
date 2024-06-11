@@ -7,9 +7,12 @@ import { userSignUp } from "../../Services/authServices";
 import useToast from "../../hooks/useToast";
 import useRouter from "../../hooks/useRouter";
 import CustomLoader from "../../components/CustomLoader.jsx";
+import useLoader from "../../hooks/useLoader.jsx";
+
 const SignUp = () => {
   const [loading, setLoading] = useState(false);
   const { successToast, errorToast, warningToast } = useToast();
+  const { isLoading, showLoader, hideLoader } = useLoader();
   const { navigate } = useRouter();
   const {
     register,
@@ -27,9 +30,11 @@ const SignUp = () => {
       const response = await userSignUp(data, successToast, errorToast);
       const { status } = response;
       if (status === 200) {
-        setLoading(true);
+        // setLoading(true);
+        showLoader();
         setTimeout(() => {
-          setLoading(false);
+          //setLoading(false);
+          hideLoader();
           navigate("/auth/sign-in");
         }, 3000);
       }
@@ -40,7 +45,7 @@ const SignUp = () => {
 
   return (
     <>
-      {loading ? (
+      {isLoading ? (
         <CustomLoader />
       ) : (
         <div className="container mx-auto px-4 md:px-24 h-screen justify-center items-center flex flex-col">

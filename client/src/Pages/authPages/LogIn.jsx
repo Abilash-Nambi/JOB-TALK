@@ -13,10 +13,12 @@ import { getProfile } from "../../Services/api/UserEndpoints";
 import CustomLoader from "../../components/CustomLoader";
 import loginImg from "../../assets/images/loginImg.png";
 import logo from "../../../public/images/logo.png";
+import useLoader from "../../hooks/useLoader";
 
 export const LogIn = () => {
   const [loading, setLoading] = useState(false);
   const { successToast, errorToast, warningToast } = useToast();
+  const { isLoading, showLoader, hideLoader } = useLoader();
 
   const { navigate } = useRouter();
   const { setStorage } = useLocalStorage();
@@ -35,7 +37,8 @@ export const LogIn = () => {
       const response = await userSignIn(formData, successToast, errorToast);
       const { status, data } = response;
       if (status === 200) {
-        setLoading(true);
+        // setLoading(true);
+        showLoader();
         setStorage("authToken", data.token);
         getUser();
 
@@ -45,7 +48,8 @@ export const LogIn = () => {
         }, 3000);
       }
       setTimeout(() => {
-        setLoading(false);
+        //setLoading(false);
+        hideLoader();
       }, 3000);
     } catch (error) {
       console.log("🚀 + onSubmit + error:", error);
@@ -62,7 +66,7 @@ export const LogIn = () => {
   };
   return (
     <>
-      {loading ? (
+      {isLoading ? (
         <CustomLoader />
       ) : (
         <div className="container mx-auto px-4 md:px-24 h-screen justify-center items-center flex flex-col">
