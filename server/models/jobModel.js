@@ -15,7 +15,8 @@ const jobSchema = new mongoose.Schema(
     },
     companyLogo: {
       type: String,
-      trim: true,
+      //trim: true,
+      required: true,
     },
     minPrice: {
       type: Number,

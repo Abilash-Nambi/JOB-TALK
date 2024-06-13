@@ -19,6 +19,7 @@ const checkAuth = async (req, res, next) => {
     //console.log("🚀 + checkAuth + user:", req.user);
     next();
   } catch (error) {
+    console.log("🚀 + checkAuth + error:", error);
     res.status(401).json({ message: "You are Unauthorized" });
   }
 };

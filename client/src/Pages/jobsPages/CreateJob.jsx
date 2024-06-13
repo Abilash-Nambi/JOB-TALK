@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-import { postJob } from "../../Services/api/JobEndPoints";
+import { jobImageUpload, postJob } from "../../Services/api/JobEndPoints";
 
 import BreadCrumb from "../../components/BreadCrumb";
 import { cloudinaryImage } from "../../Utils/cloudinary";
@@ -15,6 +15,8 @@ import useRouter from "../../hooks/useRouter";
 
 const CreateJob = () => {
   const [imageUrl, setImageUrl] = useState("");
+  console.log("🚀 + CreateJob + imageUrl:", imageUrl);
+  const [selectedFile, setSelectedFile] = useState(null);
   const { successToast, errorToast } = useToast();
   const { goBack, navigate } = useRouter();
   const isSubscribed = useSelector((state) => state.user);
@@ -58,9 +60,27 @@ const CreateJob = () => {
     { value: "MicroSoft  Office", label: "MicroSoft  Office" },
   ];
 
-  const handleChangeImage = (e) => {
-    cloudinaryImage(e, setImageUrl);
+  const handleChangeImage = async (event) => {
+    const file = event.target.files[0];
+
+    setSelectedFile(file);
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    if (formData) {
+      try {
+        const res = await jobImageUpload(formData, errorToast);
+        const { data } = res;
+        setImageUrl(data.url);
+      } catch (error) {
+        console.error("Error uploading image:", error);
+
+        errorToast("Failed to upload image");
+      }
+    }
   };
+
   return (
     <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4">
       <div>
@@ -217,6 +237,9 @@ const CreateJob = () => {
           <div className="flex w-full justify-between flex-wrap">
             <div className="md:w-[32em] w-full relative">
               <label className="block mb-2">Company Logo</label>
+              {imageUrl && (
+                <img src={imageUrl} alt="company logo" className="p-2" />
+              )}
               <input
                 className="create-job-input"
                 id="file_input"

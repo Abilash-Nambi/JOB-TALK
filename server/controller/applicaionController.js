@@ -75,7 +75,7 @@ const postApplication = async (req, res) => {
       return res.status(400).json({ message: "Resume File Required!" });
     }
     const { resume } = req.files;
-    console.log("🚀 + postApplication + resume:", resume.tempFilePath);
+    // console.log("🚀 + postApplication + resume:", resume.tempFilePath);
     const allowedFormats = ["image/png", "image/jpeg", "image/webp"];
     if (!allowedFormats.includes(resume.mimetype)) {
       // this mime type will check that file included the allowed formas
@@ -152,6 +152,7 @@ const postApplication = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
 module.exports = {
   employerGetAllApplication,
   jobSeekerGetAllApplication,

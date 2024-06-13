@@ -1,4 +1,5 @@
 const jobModel = require("../models/jobModel");
+const cloudinary = require("../config/cloudinary");
 
 const getAllJobs = async (req, res) => {
   const pageLimit = 4;
@@ -281,6 +282,43 @@ const searchJobs = async (req, res) => {
   }
 };
 
+const imageUpload = async (req, res) => {
+  try {
+    const { role } = req.user;
+    if (role === "Job Seeker") {
+      return res.status(400).json({
+        message: "Job Seeker not allowed to access this resource.",
+      });
+    }
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).send("No files were uploaded.");
+    }
+
+    const { image } = req.files;
+    const allowedFormats = ["image/png", "image/jpeg", "image/webp"];
+    if (!allowedFormats.includes(image.mimetype)) {
+      // this mime type will check that file included the allowed formas
+      return res.status(400).json({
+        message: "Invalid file type. Please upload a PNG, jpeg, webp file.",
+      });
+    }
+
+    const cloudinaryResponse = await cloudinary.uploader.upload(
+      image.tempFilePath
+    );
+
+    if (cloudinaryResponse.error || cloudinaryResponse === "undefined") {
+      return res
+        .status(500)
+        .json({ message: "Failed to upload Resume to Cloudinary" });
+    }
+    res.status(200).send({ url: cloudinaryResponse.secure_url });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
 module.exports = {
   getAllJobs,
   postJob,
@@ -290,4 +328,5 @@ module.exports = {
   getSingleJob,
   getAllFiltredJobs,
   searchJobs,
+  imageUpload,
 };

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { axiosInstance } from "./AxiosInterceptor";
 
 // all job
@@ -119,7 +120,19 @@ export const searchJob = async (querry) => {
       //console.log("🚀 + searchJob + res:", res.data);
       return res.data.data;
     } catch (error) {
-      console.log("🚀 + searchJob + error:", error);
+      console.log("🚀 + searchJob + error:", error.response.data.message);
     }
+  }
+};
+
+export const jobImageUpload = async (formData, errorToast) => {
+  // console.log("🚀 + jobImageUpload + formData:", formData);
+  try {
+    const res = await axiosInstance.post(`job/image/upload`, formData);
+    //console.log("🚀 + jobImageUpload + res:", res.data);
+    return res;
+  } catch (error) {
+    errorToast(error.response.data.message);
+    console.log("🚀 + jobImageUpload + error:", error.response.data.message);
   }
 };
