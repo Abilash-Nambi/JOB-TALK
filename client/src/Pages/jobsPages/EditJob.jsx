@@ -3,7 +3,11 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import BreadCrumb from "../../components/BreadCrumb";
 import { useParams } from "react-router-dom";
-import { editJob, getSingleJob } from "../../Services/api/JobEndPoints";
+import {
+  editJob,
+  getSingleJob,
+  jobImageUpload,
+} from "../../Services/api/JobEndPoints";
 import { useEffect } from "react";
 import { cloudinaryImage } from "../../Utils/cloudinary";
 import useToast from "../../hooks/useToast";
@@ -14,7 +18,8 @@ const EditJob = () => {
   const [job, setJob] = useState({});
   // console.log("🚀 + EditJob + job:", job);
   const [imageUrl, setImageUrl] = useState("");
-  //console.log("🚀 + EditJob + imageUrl:", imageUrl);
+  const [progress, setProgress] = useState(false);
+  // console.log("🚀 + EditJob + imageUrl:", imageUrl);
   const { successToast, errorToast } = useToast();
   const { goBack } = useRouter();
   const animatedComponents = makeAnimated();
@@ -59,9 +64,18 @@ const EditJob = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const updatedJob = { ...job, companyLogo: imageUrl };
+    setProgress(true);
+    const updatedJob = {
+      ...job,
+      companyLogo: imageUrl ? imageUrl : job.companyLogo,
+    };
     setJob(updatedJob);
     const res = await editJob(id, updatedJob, successToast, errorToast, goBack);
+    if (res.status === 200) {
+      setProgress(false);
+    } else {
+      setProgress(false);
+    }
   };
 
   const options = [
@@ -191,10 +205,7 @@ const EditJob = () => {
             <div className="md:w-[32em] w-full relative">
               <label className="block mb-2">Company Logo</label>
               <div className="pb-3">
-                <img
-                  src={imageUrl ? imageUrl : job?.companyLogo}
-                  alt="ompany-logo"
-                />
+                <img src={imageUrl ? imageUrl : job?.companyLogo} />
               </div>
 
               <input
@@ -254,7 +265,7 @@ const EditJob = () => {
           <div className="flex-row flex justify-end">
             <input
               type="submit"
-              value="Submit"
+              value={progress ? "Submiting..." : "Submit"}
               className=" block mt-2 bg-blue text-white font-semibold px-8 py-2 rounded-sm cursor-pointer"
             />
           </div>
