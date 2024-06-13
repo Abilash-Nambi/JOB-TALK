@@ -38,8 +38,24 @@ const EditJob = () => {
     setJob((prev) => ({ ...prev, [key]: value }));
   };
 
-  const handleChangeImage = async (e) => {
-    cloudinaryImage(e, setImageUrl);
+  const handleChangeImage = async (event) => {
+    // cloudinaryImage(e, setImageUrl);
+    const file = event.target.files[0];
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    if (formData) {
+      try {
+        const res = await jobImageUpload(formData, errorToast);
+        const { data } = res;
+        setImageUrl(data.url);
+      } catch (error) {
+        console.error("Error uploading image:", error);
+
+        // errorToast("Failed to upload image");
+      }
+    }
   };
   const handleSubmit = async (e) => {
     e.preventDefault();

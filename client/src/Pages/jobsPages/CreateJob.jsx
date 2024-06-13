@@ -76,7 +76,7 @@ const CreateJob = () => {
       } catch (error) {
         console.error("Error uploading image:", error);
 
-        errorToast("Failed to upload image");
+        // errorToast("Failed to upload image");
       }
     }
   };
