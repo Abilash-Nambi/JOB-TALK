@@ -18,7 +18,7 @@ const CreateJob = () => {
   const { successToast, errorToast } = useToast();
   const { goBack, navigate } = useRouter();
   const isSubscribed = useSelector((state) => state.user);
-  console.log("🚀 + CreateJob + isSubscribed:", isSubscribed);
+  // console.log("🚀 + CreateJob + isSubscribed:", isSubscribed);
 
   const animatedComponents = makeAnimated();
   useEffect(() => {
