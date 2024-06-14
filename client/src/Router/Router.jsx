@@ -24,6 +24,9 @@ import ForgetPassword from "../Pages/authPages/ForgetPassword";
 import { Loader } from "../components/CustomLoader";
 import DashBoardLayout from "../Layouts/DashBoardLayout";
 import DashBoard from "../Pages/DashBoard/DashBoard";
+import DashBoardAllJobs from "../Pages/DashBoard/DashBoardAllJobs";
+import DashBoardInActiveJobs from "../Pages/DashBoard/DashBoardInActiveJobs";
+import DashBoardActiveJobs from "../Pages/DashBoard/DashBoardActiveJobs";
 
 const router = createBrowserRouter([
   {
@@ -119,15 +122,15 @@ const router = createBrowserRouter([
       },
       {
         path: "all-jobs",
-        element: <DashBoard />,
+        element: <DashBoardAllJobs />,
       },
       {
         path: "active",
-        element: <DashBoard />,
+        element: <DashBoardActiveJobs />,
       },
       {
         path: "in-active",
-        element: <DashBoard />,
+        element: <DashBoardInActiveJobs />,
       },
     ],
   },
