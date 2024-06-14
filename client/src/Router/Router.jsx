@@ -23,6 +23,7 @@ import ForgetPassword from "../Pages/authPages/ForgetPassword";
 
 import { Loader } from "../components/CustomLoader";
 import DashBoardLayout from "../Layouts/DashBoardLayout";
+import DashBoard from "../Pages/DashBoard/DashBoard";
 
 const router = createBrowserRouter([
   {
@@ -111,6 +112,24 @@ const router = createBrowserRouter([
   {
     path: "/admin/dashboard",
     element: <DashBoardLayout />,
+    children: [
+      {
+        path: "home",
+        element: <DashBoard />,
+      },
+      {
+        path: "all-jobs",
+        element: <DashBoard />,
+      },
+      {
+        path: "active",
+        element: <DashBoard />,
+      },
+      {
+        path: "in-active",
+        element: <DashBoard />,
+      },
+    ],
   },
 ]);
 
