@@ -9,7 +9,7 @@ const DashBoardLayout = () => {
         <div className="bg-[#1f2937] p-4 h-full md:col-span-1">
           <DashboardSidebar />
         </div>
-        <div className="bg-slate-400 p-4 h-full md:col-span-4">
+        <div className="bg-slate-400  h-full md:col-span-4">
           <Outlet />
         </div>
       </div>
