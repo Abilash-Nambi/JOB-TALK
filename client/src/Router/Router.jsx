@@ -22,6 +22,7 @@ import EditJob from "../Pages/jobsPages/EditJob";
 import ForgetPassword from "../Pages/authPages/ForgetPassword";
 
 import { Loader } from "../components/CustomLoader";
+import DashBoardLayout from "../Layouts/DashBoardLayout";
 
 const router = createBrowserRouter([
   {
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
         element: <Error404 />,
       },
     ],
+  },
+  {
+    path: "/admin/dashboard",
+    element: <DashBoardLayout />,
   },
 ]);
 
