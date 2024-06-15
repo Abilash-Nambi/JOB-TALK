@@ -62,3 +62,30 @@ export const resetPassword = async (data, successToast, errorToast) => {
     return error;
   }
 };
+
+//admin api
+export const adminSignIn = async (data, successToast, errorToast) => {
+  try {
+    const response = await axiosInstance.post("/admin/sign-in", data);
+    //console.log("🚀 + userSignUp + response:", response);
+    successToast(response.data.message);
+    return response;
+  } catch (error) {
+    console.log("🚀 + userSignIn + error:", error);
+    errorToast(error.response.data.message);
+    return error;
+  }
+};
+
+export const adminSignOut = async (e, successToast, errorToast) => {
+  try {
+    e.preventDefault;
+    const response = await axiosInstance.post("/admin/sign-out");
+    successToast("adim logged out successfully");
+    return response;
+  } catch (error) {
+    //console.log("🚀 + userSignOut + error:", error);
+    errorToast(error.response.data.message);
+    return error;
+  }
+};

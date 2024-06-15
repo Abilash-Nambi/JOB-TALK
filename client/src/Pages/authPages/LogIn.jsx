@@ -176,6 +176,14 @@ export const LogIn = () => {
                     </span>
                   </Link>
                 </p>
+                <p className="text-sm">
+                  Admin login
+                  <Link to="/auth/admin-login">
+                    <span className="text-blue font-semibold mt-0 ml-1">
+                      Click me
+                    </span>
+                  </Link>
+                </p>
               </div>
             </form>
           </div>

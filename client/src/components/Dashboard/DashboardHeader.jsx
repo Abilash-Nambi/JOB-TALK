@@ -1,17 +1,27 @@
 import React, { useState } from "react";
 import { IoSettings } from "react-icons/io5";
 import Notification from "./Notification"; // Ensure you have this component
+import { adminSignOut } from "../../Services/authServices";
+import { useDispatch } from "react-redux";
+import useToast from "../../hooks/useToast";
+import useRouter from "../../hooks/useRouter";
+import useLocalStorage from "../../hooks/useLocalStorage";
+import { logOut } from "../../Store/userAuthSlice";
 
 const Dashboardheader = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const { successToast, errorToast, warningToast } = useToast();
+  const { clearStorage } = useLocalStorage();
+  const { navigate } = useRouter();
+  const dispatch = useDispatch();
   const handleMenuToggle = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const handleLogout = () => {
-    // Handle logout logic here
-    console.log("Logout clicked");
+  const handleLogout = async (e) => {
+    const res = await adminSignOut(e, successToast, errorToast);
+    console.log("🚀 + handleLogout + res:", res);
+    dispatch(logOut()), clearStorage("authToken"), navigate("/");
   };
 
   return (
@@ -29,7 +39,7 @@ const Dashboardheader = () => {
             }`}
           >
             <button
-              onClick={handleLogout}
+              onClick={(e) => handleLogout(e)}
               className="text-black hover:bg-gray-200 px-4 py-2 w-full text-left"
             >
               Logout

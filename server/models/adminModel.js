@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
 
 const adminSchema = new mongoose.Schema({
-  adminName: {
+  userName: {
     type: String,
-    reqired: true,
+    lowercase: true,
+    required: [true, "Username is required"],
+    minLength: [3, "Username must contain at least 3 characters!"],
+    maxLength: [30, "Username cannot exceed 30 characters!"],
+    trim: true,
   },
   email: {
     type: String,

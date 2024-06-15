@@ -27,6 +27,7 @@ import DashBoard from "../Pages/DashBoard/DashBoard";
 import DashBoardAllJobs from "../Pages/DashBoard/DashBoardAllJobs";
 import DashBoardInActiveJobs from "../Pages/DashBoard/DashBoardInActiveJobs";
 import DashBoardActiveJobs from "../Pages/DashBoard/DashBoardActiveJobs";
+import AdminLogin from "../Pages/authPages/AdminLogin";
 
 const router = createBrowserRouter([
   {
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
       {
         path: "forget-password",
         element: <ForgetPassword />,
+      },
+      {
+        path: "admin-login",
+        element: <AdminLogin />,
       },
     ],
   },

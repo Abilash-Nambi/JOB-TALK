@@ -5,11 +5,13 @@ const initialState = () => {
   const token = localStorage.getItem("authToken");
   const userString = localStorage.getItem("user");
   const user = userString && JSON.parse(userString);
+
   return {
     isAuthenticated: !!token, // Convert token to boolean
     user: user || null,
   };
 };
+console.log("🚀 + initialState + initialState:", initialState());
 
 const userAuthSlice = createSlice({
   name: "user",

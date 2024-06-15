@@ -5,8 +5,8 @@ const { generateToken } = require("../utils/jwt");
 
 const adminSignup = async (req, res) => {
   try {
-    const { email, password, role, adminName } = req.body;
-    if (!email || !password || !role || !adminName) {
+    const { email, password, role, userName } = req.body;
+    if (!email || !password || !role || !userName) {
       return res.status(400).json({
         message: "Please provide all required details",
       });
@@ -22,7 +22,7 @@ const adminSignup = async (req, res) => {
       email,
       password: hashedPassword,
       role,
-      adminName,
+      userName,
     });
 
     // Exclude password field from response
@@ -149,27 +149,89 @@ const adminActiveJob = async (req, res) => {
 const adminAllJob = async (req, res) => {
   try {
     const { role } = req.user;
-    console.log("🚀 + adminAllJob + role:", role);
     if (role === "Job Seeker" || role === "Employer") {
       return res.status(400).json({
         message: "Job Seeker or employer not allowed to access this resource.",
       });
     }
-
-    //const data = await jobModel.find({});
-    const result = await jobModel.aggregate([
-      {
-        $facet: {
-          data: [{ $match: {} }], // Match all documents
-          totalCount: [{ $count: "count" }], // Count all documents
+    const { search } = req.query;
+    if (search) {
+      const myJobs = await jobModel.aggregate([
+        {
+          $match: {
+            jobTitle: { $regex: search, $options: "i" },
+          },
         },
-      },
-    ]);
-    const data = result[0].data;
-    const totalCount = result[0].totalCount[0].count;
-    res.status(200).json({ message: "Success", data, totalCount });
+      ]);
+      res.status(200).json({ message: "Success", data: myJobs });
+    } else {
+      const result = await jobModel.aggregate([
+        {
+          $facet: {
+            data: [{ $match: {} }], // Match all documents
+            totalCount: [{ $count: "count" }], // Count all documents
+          },
+        },
+      ]);
+      const data = result[0].data;
+      const totalCount = result[0].totalCount[0].count;
+      res.status(200).json({ message: "Success", data, totalCount });
+    }
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }
+};
+
+const getAdmin = async (req, res) => {
+  try {
+    const user = req.user;
+    res.status(200).json({
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+};
+const adminSignOut = async (req, res) => {
+  try {
+    res
+      .status(200)
+      .cookie("token", " ", {
+        expires: new Date(Date.now()),
+        httpOnly: true,
+      })
+      .json({
+        success: true,
+        message: "User logged out successfully",
+      });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+};
+
+const adminSearchJobs = async (req, res) => {
+  const { search } = req.query;
+  console.log("🚀 + searchJobs + search:", search);
+  if (!search) {
+    return res.status(400).json({ message: "Enter the Job Title" });
+  }
+  try {
+    const job = await jobModel.find(
+      {
+        jobTitle: { $regex: search, $options: "i" },
+      },
+      { jobTitle: 1 }
+    );
+    if (job.length === 0) {
+      return res.status(404).json({ message: "Job not found." });
+    }
+    res.status(200).json({
+      success: true,
+      data: job,
+    });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
   }
 };
 
@@ -179,4 +241,7 @@ module.exports = {
   adminLogin,
   adminActiveJob,
   adminInActiveJob,
+  getAdmin,
+  adminSignOut,
+  adminSearchJobs,
 };
