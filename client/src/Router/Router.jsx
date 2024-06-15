@@ -28,6 +28,7 @@ import DashBoardAllJobs from "../Pages/DashBoard/DashBoardAllJobs";
 import DashBoardInActiveJobs from "../Pages/DashBoard/DashBoardInActiveJobs";
 import DashBoardActiveJobs from "../Pages/DashBoard/DashBoardActiveJobs";
 import AdminLogin from "../Pages/authPages/AdminLogin";
+import AdminProtected from "../Services/ProtectedRoutes/AdminProtected";
 
 const router = createBrowserRouter([
   {
@@ -119,7 +120,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin/dashboard",
-    element: <DashBoardLayout />,
+    element: (
+      <AdminProtected>
+        <DashBoardLayout />
+      </AdminProtected>
+    ),
+
     children: [
       {
         path: "home",
