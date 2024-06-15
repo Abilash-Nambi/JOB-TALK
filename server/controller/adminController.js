@@ -252,6 +252,38 @@ const adminSearchJobs = async (req, res) => {
   }
 };
 
+const adminRemoveJob = async (req, res) => {
+  try {
+    const { role } = req.user;
+    if (role === "Job Seeker" || "Employer") {
+      return res.status(400).json({
+        message: "No premission to access this resource.",
+      });
+    }
+
+    const { id } = req.params;
+    if (!id) {
+      return res.status(400).json({ message: "Job Id is required" });
+    }
+
+    // Check if the job exists
+    const existingJob = await jobModel.findById(id);
+    if (!existingJob) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+
+    // Delete the job
+    const deletedJob = await jobModel.findByIdAndDelete(id);
+
+    // Respond with success message and deleted data
+    res
+      .status(200)
+      .json({ message: "Job deleted successfully", data: deletedJob });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 module.exports = {
   adminAllJob,
   adminSignup,
@@ -261,4 +293,5 @@ module.exports = {
   getAdmin,
   adminSignOut,
   adminSearchJobs,
+  adminRemoveJob,
 };

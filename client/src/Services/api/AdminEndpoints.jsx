@@ -66,3 +66,16 @@ export const getAdminInActiveJob = async (search) => {
     }
   }
 };
+
+export const adminDeleteJob = async (id, successToast, errorToast) => {
+  try {
+    const res = await axiosInstance.delete(`/admin/remove-job/${id}`);
+    successToast(res.data.message);
+
+    return res;
+  } catch (error) {
+    if (error.response) {
+      errorToast(error.response.data.message);
+    } else return error;
+  }
+};
