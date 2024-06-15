@@ -10,11 +10,12 @@ const AdminProtected = ({ children }) => {
   useEffect(() => {
     const user = getStorage("user");
     const parsedDtata = JSON.parse(user);
-    const role = parsedDtata?.role === "admin";
+    const role = parsedDtata?.role;
+    console.log("🚀 + useEffect + role:", role);
 
     const token = getStorage("authToken");
 
-    if (!token && !role) {
+    if (role !== "admin") {
       warningToast("Please login as admin");
       navigate("/auth/admin-login");
     }
