@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const adminSchema = new mongoose.Schema({
+  adminName: {
+    type: String,
+    reqired: true,
+  },
   email: {
     type: String,
     required: true,
@@ -9,12 +13,10 @@ const adminSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  recruiters: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Recruiter",
-    },
-  ],
+  role: {
+    type: String,
+    enum: ["admin"],
+  },
 });
 
 module.exports = mongoose.model("Admin", adminSchema);

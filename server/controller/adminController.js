@@ -1,0 +1,182 @@
+const adminModel = require("../models/adminModel");
+const jobModel = require("../models/jobModel");
+const { generatePasswordHash, comparePassword } = require("../utils/bcrypt");
+const { generateToken } = require("../utils/jwt");
+
+const adminSignup = async (req, res) => {
+  try {
+    const { email, password, role, adminName } = req.body;
+    if (!email || !password || !role || !adminName) {
+      return res.status(400).json({
+        message: "Please provide all required details",
+      });
+    }
+    const existingUser = await adminModel.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({
+        message: "This email address has already been registered!",
+      });
+    }
+    const hashedPassword = await generatePasswordHash(password);
+    const creatAdmin = await adminModel.create({
+      email,
+      password: hashedPassword,
+      role,
+      adminName,
+    });
+
+    // Exclude password field from response
+    const adminWithoutPassword = creatAdmin.toObject();
+    delete adminWithoutPassword.password;
+
+    // Send success response without password
+    return res
+      .status(200)
+      .json({ message: "Registered Successfully", data: adminWithoutPassword });
+  } catch (error) {
+    return res.status(400).json({
+      message: error.message,
+    });
+  }
+};
+const adminLogin = async (req, res) => {
+  try {
+    const { email, password, role } = req.body;
+    if (!email || !password || !role) {
+      return res.status(400).json({
+        message: "Please provide email, password, role.",
+      });
+    }
+
+    const admin = await adminModel.findOne({ email });
+
+    if (!admin) {
+      return res
+        .status(400)
+        .json({ message: "Admin Not Found, Please check mail id" });
+    }
+    if (admin.role !== role) {
+      return res.status(400).json({ message: "You have No access" });
+    }
+    // Check if password is correct
+    const isValidPassword = await comparePassword(password, admin.password);
+
+    // If password is incorrect, return error
+    if (!isValidPassword) {
+      return res.status(400).json({ message: "Invalid password or email" });
+    }
+
+    // Generate token for authentication
+    const token = generateToken(admin._id);
+
+    const options = {
+      expires: new Date(
+        new Date().getTime() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000 //expires after 5 days
+      ),
+      httpOnly: true,
+    };
+
+    // Return success response with cookies token, email, and user ID
+    return res.status(200).cookie("token", token, options).json({
+      message: "Login Success",
+      token,
+      email: admin.email,
+      id: admin._id,
+      userName: admin.userName,
+    });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+};
+
+const adminInActiveJob = async (req, res) => {
+  try {
+    const { role } = req.user;
+    if (role === "Job Seeker" || role === "Employer") {
+      return res.status(400).json({
+        message: "Job Seeker or employer not allowed to access this resource.",
+      });
+    }
+
+    //const data = await jobModel.find({});
+    const result = await jobModel.aggregate([
+      {
+        $facet: {
+          data: [{ $match: { expired: true } }], // Match documents with expired: true
+          totalCount: [
+            { $match: { expired: true } }, // Apply the same match condition
+            { $count: "count" }, // Count the filtered documents
+          ],
+        },
+      },
+    ]);
+    const data = result[0].data;
+    const totalCount = result[0].totalCount[0]
+      ? result[0].totalCount[0].count
+      : 0;
+    res.status(200).json({ message: "Success", data, totalCount });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+const adminActiveJob = async (req, res) => {
+  try {
+    const { role } = req.user;
+    if (role === "Job Seeker" || role === "Employer") {
+      return res.status(400).json({
+        message: "Job Seeker or employer not allowed to access this resource.",
+      });
+    }
+
+    //const data = await jobModel.find({});
+    const result = await jobModel.aggregate([
+      {
+        $facet: {
+          data: [{ $match: { expired: false } }], // Match all documents
+          totalCount: [{ $count: "count" }], // Count all documents
+        },
+      },
+    ]);
+    const data = result[0].data;
+    const totalCount = result[0].totalCount[0]
+      ? result[0].totalCount[0].count
+      : 0;
+    res.status(200).json({ message: "Success", data, totalCount });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+const adminAllJob = async (req, res) => {
+  try {
+    const { role } = req.user;
+    console.log("🚀 + adminAllJob + role:", role);
+    if (role === "Job Seeker" || role === "Employer") {
+      return res.status(400).json({
+        message: "Job Seeker or employer not allowed to access this resource.",
+      });
+    }
+
+    //const data = await jobModel.find({});
+    const result = await jobModel.aggregate([
+      {
+        $facet: {
+          data: [{ $match: {} }], // Match all documents
+          totalCount: [{ $count: "count" }], // Count all documents
+        },
+      },
+    ]);
+    const data = result[0].data;
+    const totalCount = result[0].totalCount[0].count;
+    res.status(200).json({ message: "Success", data, totalCount });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+module.exports = {
+  adminAllJob,
+  adminSignup,
+  adminLogin,
+  adminActiveJob,
+  adminInActiveJob,
+};

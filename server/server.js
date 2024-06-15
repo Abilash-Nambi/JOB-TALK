@@ -8,6 +8,7 @@ const userRouter = require("./routes/user");
 const jobRouter = require("./routes/job");
 const applicationRouter = require("./routes/application");
 const paymentRouter = require("./routes/payment");
+const adminRouter = require("./routes/admin");
 const fileUpload = require("express-fileupload");
 
 dotenv.config();
@@ -38,6 +39,7 @@ app.use("/api/user", userRouter);
 app.use("/api/job", jobRouter);
 app.use("/api/application", applicationRouter);
 app.use("/api/payment", paymentRouter);
+app.use("/api/admin", adminRouter);
 
 app.all("*", (req, res) => {
   res.status(404).json("This page does not exist");
