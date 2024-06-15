@@ -21,7 +21,10 @@ const Dashboardheader = () => {
   const handleLogout = async (e) => {
     const res = await adminSignOut(e, successToast, errorToast);
     console.log("🚀 + handleLogout + res:", res);
-    dispatch(logOut()), clearStorage("authToken"), navigate("/");
+    dispatch(logOut()),
+      clearStorage("authToken"),
+      clearStorage("user"),
+      navigate("/");
   };
 
   return (

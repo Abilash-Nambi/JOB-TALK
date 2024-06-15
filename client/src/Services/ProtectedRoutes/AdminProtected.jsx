@@ -3,7 +3,7 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 import useRouter from "../../hooks/useRouter";
 import useToast from "../../hooks/useToast";
 
-const AdminProtected = () => {
+const AdminProtected = ({ children }) => {
   const { getStorage } = useLocalStorage();
   const { navigate } = useRouter();
   const { warningToast } = useToast();
