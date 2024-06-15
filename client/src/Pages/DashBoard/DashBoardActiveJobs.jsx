@@ -13,6 +13,7 @@ import useToast from "../../hooks/useToast";
 import useLoader from "../../hooks/useLoader";
 import Input from "../../components/Input";
 import { Loader } from "../../components/CustomLoader";
+import { getAdminAllActiveJob } from "../../Services/api/AdminEndpoints";
 
 const DashBoardActiveJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -29,7 +30,7 @@ const DashBoardActiveJobs = () => {
 
   const fetchData = async () => {
     showLoader();
-    const res = await myAllJobs(search);
+    const res = await getAdminAllActiveJob(search);
     if ((res.status = 200)) {
       setJobs(res.data.data);
       setTimeout(() => {
@@ -56,23 +57,23 @@ const DashBoardActiveJobs = () => {
     <div>
       <Dashboardheader />
       <div className="container max-w-screen-2xl mx-auto xl:px-24 px-4  ">
+        <div className="p-2 text-center ">
+          <Input
+            type="text"
+            value={search}
+            onChange={(e) => handleSearch(e)}
+            placeholder="Search Job..."
+            className=" border py-2 pl-3 text-grey-900 placeholder:text-grey-400 sm:text-sm  focus:outline-none lg:w-6/12 w-full"
+          />
+
+          <button className="text-white bg-blue px-8 rounded-md py-2 rounded-s-sm md:rounded-none">
+            Search
+          </button>
+        </div>
         {jobs.length === 0 ? (
           <NoData text={"No Jobs Posted Yet..."} />
         ) : (
           <>
-            <div className="p-2 text-center ">
-              <Input
-                type="text"
-                value={search}
-                onChange={(e) => handleSearch(e)}
-                placeholder="Search Job..."
-                className=" border py-2 pl-3 text-grey-900 placeholder:text-grey-400 sm:text-sm  focus:outline-none lg:w-6/12 w-full"
-              />
-
-              <button className="text-white bg-blue px-8 rounded-md py-2 rounded-s-sm md:rounded-none">
-                Search
-              </button>
-            </div>
             <section className="py-1 bg-blueGray-50">
               <div className="w-full xl:w-8/14 mb-12 xl:mb-0 px-4 mx-auto mt-5 ">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded ">
@@ -104,9 +105,9 @@ const DashBoardActiveJobs = () => {
                             <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                               SALARY
                             </th>
-                            <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            {/* <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                               EDIT
-                            </th>
+                            </th> */}
                             <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                               DELETE
                             </th>
@@ -134,14 +135,14 @@ const DashBoardActiveJobs = () => {
                                 <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
                                 ${data.minPrice}-${data.maxPrice}
                               </td>
-                              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                              {/* <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 <Link to={`/edit-job/${data._id}`}>
                                   <Button
                                     title="EDIT"
                                     className="bg-yellow-200 text-black active:bg-yellow-400 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                   />
                                 </Link>
-                              </td>
+                              </td> */}
                               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 <Link to="">
                                   <Button

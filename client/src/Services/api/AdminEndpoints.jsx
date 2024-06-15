@@ -28,3 +28,41 @@ export const getAdminAllJob = async (search) => {
     }
   }
 };
+export const getAdminAllActiveJob = async (search) => {
+  if (search.length >= 1) {
+    try {
+      const res = await axiosInstance.get(
+        `/admin/active-jobs?search=${search}`
+      );
+      return res;
+    } catch (error) {
+      return error;
+    }
+  } else {
+    try {
+      const res = await axiosInstance.get(`/admin/active-jobs`);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  }
+};
+export const getAdminInActiveJob = async (search) => {
+  if (search.length >= 1) {
+    try {
+      const res = await axiosInstance.get(
+        `/admin/in-active-jobs?search=${search}`
+      );
+      return res;
+    } catch (error) {
+      return error;
+    }
+  } else {
+    try {
+      const res = await axiosInstance.get(`/admin/in-active-jobs`);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  }
+};

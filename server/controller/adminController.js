@@ -98,27 +98,34 @@ const adminInActiveJob = async (req, res) => {
       });
     }
 
-    //const data = await jobModel.find({});
+    const { search } = req.query;
+    const matchCondition = search
+      ? { expired: true, jobTitle: new RegExp(search, "i") } // Use RegExp for partial matching and case insensitivity
+      : { expired: true };
+
     const result = await jobModel.aggregate([
       {
         $facet: {
-          data: [{ $match: { expired: true } }], // Match documents with expired: true
+          data: [{ $match: matchCondition }],
           totalCount: [
-            { $match: { expired: true } }, // Apply the same match condition
-            { $count: "count" }, // Count the filtered documents
+            { $match: { expired: true } }, // Apply the same match condition without jobTitle filter
+            { $count: "count" },
           ],
         },
       },
     ]);
+
     const data = result[0].data;
     const totalCount = result[0].totalCount[0]
       ? result[0].totalCount[0].count
       : 0;
+
     res.status(200).json({ message: "Success", data, totalCount });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
+
 const adminActiveJob = async (req, res) => {
   try {
     const { role } = req.user;
@@ -128,24 +135,34 @@ const adminActiveJob = async (req, res) => {
       });
     }
 
-    //const data = await jobModel.find({});
+    const { search } = req.query;
+    const matchCondition = search
+      ? { expired: false, jobTitle: new RegExp(search, "i") } // Use RegExp for partial matching and case insensitivity
+      : { expired: false };
+
     const result = await jobModel.aggregate([
       {
         $facet: {
-          data: [{ $match: { expired: false } }], // Match all documents
-          totalCount: [{ $count: "count" }], // Count all documents
+          data: [{ $match: matchCondition }],
+          totalCount: [
+            { $match: { expired: false } }, // Apply the same match condition without jobTitle filter
+            { $count: "count" },
+          ],
         },
       },
     ]);
+
     const data = result[0].data;
     const totalCount = result[0].totalCount[0]
       ? result[0].totalCount[0].count
       : 0;
+
     res.status(200).json({ message: "Success", data, totalCount });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
+
 const adminAllJob = async (req, res) => {
   try {
     const { role } = req.user;
