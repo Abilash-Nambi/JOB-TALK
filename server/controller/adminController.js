@@ -283,6 +283,25 @@ const adminRemoveJob = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+const adminJobCount = async (req, res) => {
+  try {
+    const allJobs = await jobModel.find({}).countDocuments();
+    const allActiveJobs = await jobModel
+      .find({ expired: false })
+      .countDocuments();
+    const allInActiveJobs = await jobModel
+      .find({ expired: true })
+      .countDocuments();
+    res.status(200).json({
+      message: "Success",
+      alljobs: allJobs,
+      allActiveJobs: allActiveJobs,
+      allInActiveJobs: allInActiveJobs,
+    });
+  } catch {
+    res.status(400).json({ message: error.message });
+  }
+};
 
 module.exports = {
   adminAllJob,
@@ -294,4 +313,5 @@ module.exports = {
   adminSignOut,
   adminSearchJobs,
   adminRemoveJob,
+  adminJobCount,
 };

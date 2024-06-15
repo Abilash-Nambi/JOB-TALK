@@ -11,7 +11,6 @@ const initialState = () => {
     user: user || null,
   };
 };
-console.log("🚀 + initialState + initialState:", initialState());
 
 const userAuthSlice = createSlice({
   name: "user",

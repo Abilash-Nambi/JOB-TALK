@@ -154,13 +154,16 @@ const DashBoardInActiveJobs = () => {
                                 </Link>
                               </td> */}
                               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                <Link to="">
+                                <a
+                                  href={`/job-details/${data._id}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
                                   <Button
                                     title="VIEW JOB"
-                                    className="bg-red-600 text-white active:bg-red-800 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                    onClick={() => handleDeleteButton(data._id)}
+                                    className="bg-green-600 text-white active:bg-red-800 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                   />
-                                </Link>
+                                </a>
                               </td>
                             </tr>
                           ))}

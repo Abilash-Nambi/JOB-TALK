@@ -9,6 +9,7 @@ const {
   adminSignOut,
   adminSearchJobs,
   adminRemoveJob,
+  adminJobCount,
 } = require("../controller/adminController");
 
 const { adminAuth } = require("../middleware/adminAuth");
@@ -23,4 +24,5 @@ router.get("/get-admin", adminAuth, getAdmin);
 router.post("/sign-out", adminAuth, adminSignOut);
 router.post("/search", adminAuth, adminSearchJobs);
 router.delete("/remove-job/:id", adminAuth, adminRemoveJob);
+router.get("/job-count", adminAuth, adminJobCount);
 module.exports = router;

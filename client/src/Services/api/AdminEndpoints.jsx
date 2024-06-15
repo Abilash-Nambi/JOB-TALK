@@ -29,7 +29,7 @@ export const getAdminAllJob = async (search) => {
   }
 };
 export const getAdminAllActiveJob = async (search) => {
-  if (search.length >= 1) {
+  if (search?.length >= 1) {
     try {
       const res = await axiosInstance.get(
         `/admin/active-jobs?search=${search}`
@@ -77,5 +77,14 @@ export const adminDeleteJob = async (id, successToast, errorToast) => {
     if (error.response) {
       errorToast(error.response.data.message);
     } else return error;
+  }
+};
+
+export const adminJobCount = async () => {
+  try {
+    const res = await axiosInstance.get(`/admin/job-count`);
+    return res;
+  } catch (error) {
+    return error;
   }
 };
