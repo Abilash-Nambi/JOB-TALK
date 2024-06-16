@@ -29,8 +29,9 @@ const ApplicationForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    setProgress(true);
     e.preventDefault();
+    setProgress(true);
+
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("email", data.email);
