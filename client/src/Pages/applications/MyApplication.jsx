@@ -14,6 +14,9 @@ import { useSelector } from "react-redux";
 import NoData from "../NoData";
 import BreadCrumb from "../../components/BreadCrumb";
 import { Loader } from "../../components/CustomLoader";
+import { logIn } from "../../Store/userAuthSlice";
+import { useDispatch } from "react-redux";
+import { getProfile } from "../../Services/api/UserEndpoints";
 const MyApplication = () => {
   const [data, setData] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -21,9 +24,10 @@ const MyApplication = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   console.log("🚀 + MyApplication + isModalOpen:", isModalOpen);
   const [applicationId, setapplication] = useState(null);
+  const [jobId, setJobId] = useState(null);
   const { errorToast, successToast } = useToast();
   const { isLoading, showLoader, hideLoader } = useLoader();
-
+  const dispatch = useDispatch();
   const userDetials = useSelector((state) => state.user.user);
   //console.log("🚀 + MyApplication + userDetials:", userDetials.role);
 
@@ -59,8 +63,11 @@ const MyApplication = () => {
   }, []);
 
   const handleDelete = async () => {
+    const id = jobId;
+    console.log("🚀 + handleDelete + jobId:", id);
     const res = await deleteApplication(
       applicationId,
+      id,
       successToast,
       errorToast
     );
@@ -70,6 +77,10 @@ const MyApplication = () => {
         fetchDataEmployer();
       } else {
         fetchDataUser();
+        const response = await getProfile();
+        if (response.status === 200) {
+          dispatch(logIn(response.data.data));
+        }
       }
 
       setIsModalOpen(false);
@@ -104,6 +115,9 @@ const MyApplication = () => {
                     />
                   </div>
                   <div className="p-6 md:w-[25rem]">
+                    <h6 className="block mb-1 font-sans  antialiased  leading-relaxed tracking-normal text-blue uppercase text-sm font-semibold">
+                      {data?.companyName}
+                    </h6>
                     <h6 className="block mb-4 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-gray-700 uppercase">
                       {data?.jobTitle}
                     </h6>
@@ -141,15 +155,19 @@ const MyApplication = () => {
                       </li>
                     </ul>
                   </div>
-                  <div className="flex md:flex-col-reverse flex-row-reverse pr-4 pb-3">
-                    <Button
-                      onClick={() => {
-                        setapplication(data._id), setIsModalOpen(true);
-                      }}
-                      title="DELETE"
-                      className="bg-red-600 text-white active:bg-red-800 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    />
-                  </div>
+                  {!userDetials?.role == "Employer" && (
+                    <div className="flex md:flex-col-reverse flex-row-reverse pr-4 pb-3">
+                      <Button
+                        onClick={() => {
+                          setapplication(data._id),
+                            setJobId(data.jobId),
+                            setIsModalOpen(true);
+                        }}
+                        title="DELETE"
+                        className="bg-red-600 text-white active:bg-red-800 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      />
+                    </div>
+                  )}
                 </div>
               ))}
             </>

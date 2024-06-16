@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    // jobs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Job" }],
+    appliedJobs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Job" }],
   }
   // { timestamps: true }
 );

@@ -4,7 +4,7 @@ export const postApplication = async (
   formData,
   successToast,
   errorToast,
-  goBack
+  navigate
 ) => {
   //console.log("🚀 + formData:", formData);
   try {
@@ -20,7 +20,7 @@ export const postApplication = async (
 
     //console.log(res);
     successToast(res.data.message);
-    goBack();
+    navigate("/all-jobs");
     return res;
   } catch (error) {
     console.log("🚀 + postApplication + error:", error.response.data.message);
@@ -44,10 +44,20 @@ export const employerGetApplication = async () => {
     console.log("🚀 + postApplication + error:", error.response.data.message);
   }
 };
-export const deleteApplication = async (id, successToast, errorToast) => {
+export const deleteApplication = async (
+  id,
+  jobId,
+  successToast,
+  errorToast
+) => {
   try {
     const res = await axiosInstance.delete(
-      `/application/jobseeker/remove/${id}`
+      `/application/jobseeker/remove/${id}`,
+      {
+        data: {
+          jobId,
+        },
+      }
     );
     successToast(res.data.message);
 

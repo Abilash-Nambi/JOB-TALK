@@ -18,14 +18,20 @@ import { useSelector } from "react-redux";
 const JobPage = () => {
   const [job, setJob] = useState({});
   const [loading, setLoading] = useState(true);
+  const [applied, setApplied] = useState(false);
   let { id } = useParams();
 
   const { user } = useSelector((state) => state?.user);
-  console.log("🚀 + JobPage + user:", user);
+  const { appliedJobs } = user;
+  // console.log("🚀 + JobPage + appliedJobs:", appliedJobs);
 
   useEffect(() => {
     fetchData();
     useScrollToTop();
+
+    if (appliedJobs?.includes(id)) {
+      setApplied(true);
+    }
   }, []);
 
   const fetchData = async () => {
@@ -89,14 +95,23 @@ const JobPage = () => {
                       "bg-blue text-white px-4 py-2 hover:bg-[#172554] rounded-sm"
                     }
                   />
-                  <Link to={`/job-application/${id}`}>
+                  {applied ? (
                     <Button
-                      title={"APPLY NOW"}
+                      title={"APPLIED"}
                       className={
                         "bg-[#10b981] text-white px-4 py-2 hover:bg-[#064e3b] rounded-sm"
                       }
                     />
-                  </Link>
+                  ) : (
+                    <Link to={`/job-application/${id}`}>
+                      <Button
+                        title={"APPLY NOW"}
+                        className={
+                          "bg-[#10b981] text-white px-4 py-2 hover:bg-[#064e3b] rounded-sm"
+                        }
+                      />
+                    </Link>
+                  )}
                 </div>
               )}
             </div>

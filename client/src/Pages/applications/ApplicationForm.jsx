@@ -8,14 +8,18 @@ import useRouter from "../../hooks/useRouter";
 import { IoIosCloudDone } from "react-icons/io";
 import useLoader from "../../hooks/useLoader";
 import { Loader } from "../../components/CustomLoader";
+import { getProfile } from "../../Services/api/UserEndpoints";
+import { useDispatch } from "react-redux";
+import { logIn } from "../../Store/userAuthSlice";
 const ApplicationForm = () => {
   const [data, setData] = useState({});
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(false);
   const { successToast, errorToast } = useToast();
   const { isLoading, showLoader, hideLoader } = useLoader();
-  const { goBack } = useRouter();
+  const { goBack, navigate } = useRouter();
   let { id } = useParams();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -51,9 +55,15 @@ const ApplicationForm = () => {
       formData,
       successToast,
       errorToast,
-      goBack
+      navigate
     );
     if (res.status === 200) {
+      const response = await getProfile();
+
+      if (response.status === 200) {
+        dispatch(logIn(response.data.data));
+      }
+
       setProgress(false);
     } else {
       setProgress(false);

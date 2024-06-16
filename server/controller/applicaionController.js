@@ -1,6 +1,7 @@
 const applicationModel = require("../models/applicationModel");
 const cloudinary = require("../config/cloudinary");
 const jobModel = require("../models/jobModel");
+const userModel = require("../models/userModel");
 
 const employerGetAllApplication = async (req, res) => {
   try {
@@ -40,6 +41,8 @@ const jobSeekerGetAllApplication = async (req, res) => {
 const jobSeekerDeleteApplication = async (req, res) => {
   try {
     const { role } = req.user;
+    const { jobId } = req.body;
+    //console.log("🚀 + jobSeekerDeleteApplication + jobId:", jobId);
     if (role === "Employer") {
       return res.status(400).json({
         message: "Employer not allowed to access this resource.",
@@ -47,12 +50,22 @@ const jobSeekerDeleteApplication = async (req, res) => {
     }
 
     const { id } = req.params;
-    console.log("🚀 + jobSeekerDeleteApplication + id:", id);
+    //console.log("🚀 + jobSeekerDeleteApplication + id:", id);
     const application = await applicationModel.findById(id);
     if (!application) {
       return res.status(400).json({ message: "Application not found" });
     }
     const deletedApplicaion = await applicationModel.findByIdAndDelete(id);
+
+    // Update user's appliedJobs array
+    const updateUser = await userModel.findByIdAndUpdate(
+      req.user._id,
+      {
+        $pull: { appliedJobs: jobId },
+      },
+      { new: true }
+    );
+    console.log("🚀 + jobSeekerDeleteApplication + updateUser:", updateUser);
     return res.status(200).json({
       message: "Application deleted successfully",
       data: deletedApplicaion,
@@ -106,7 +119,15 @@ const postApplication = async (req, res) => {
     }
 
     const jodDetails = await jobModel.findById(jobId);
-    console.log("🚀 + postApplication + jodDetails:", jodDetails);
+    const updateUser = await userModel.findByIdAndUpdate(
+      req.user._id,
+      {
+        $push: { appliedJobs: jobId },
+      },
+      { new: true }
+    );
+    console.log("🚀 + postApplication + updateUser:", updateUser);
+    //console.log("🚀 + postApplication + jodDetails:", jodDetails);
     if (!jodDetails) {
       return res.status(400).json({ message: "Job not found!" });
     }
@@ -114,6 +135,8 @@ const postApplication = async (req, res) => {
       user: jodDetails.postedBy,
       role: "Employer",
     };
+    const companyName = jodDetails.companyName;
+
     // const jobTitle = jodDetails._id;
     // console.log("🚀 + postApplication + jobTile:", jobTitle);
 
@@ -143,6 +166,8 @@ const postApplication = async (req, res) => {
         url: cloudinaryResponse.secure_url,
       },
       jobTitle: jodDetails.jobTitle,
+      companyName,
+      jobId,
     });
 
     res
