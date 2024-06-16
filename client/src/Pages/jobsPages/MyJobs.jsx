@@ -57,24 +57,24 @@ const MyJobs = () => {
       <div>
         <BreadCrumb title={"My Job  Page"} />
       </div>
+      <div className="p-2 text-center ">
+        <Input
+          type="text"
+          value={search}
+          onChange={(e) => handleSearch(e)}
+          placeholder="Search Job..."
+          className=" border py-2 pl-3 text-grey-900 placeholder:text-grey-400 sm:text-sm  focus:outline-none lg:w-6/12 w-full"
+        />
+
+        <button className="text-white bg-blue px-8 rounded-md py-2 rounded-s-sm md:rounded-none">
+          Search
+        </button>
+      </div>
 
       {jobs.length === 0 ? (
         <NoData text={"No Jobs Posted Yet..."} />
       ) : (
         <>
-          <div className="p-2 text-center ">
-            <Input
-              type="text"
-              value={search}
-              onChange={(e) => handleSearch(e)}
-              placeholder="Search Job..."
-              className=" border py-2 pl-3 text-grey-900 placeholder:text-grey-400 sm:text-sm  focus:outline-none lg:w-6/12 w-full"
-            />
-
-            <button className="text-white bg-blue px-8 rounded-md py-2 rounded-s-sm md:rounded-none">
-              Search
-            </button>
-          </div>
           <section className="py-1 bg-blueGray-50">
             <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-5 ">
               <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded ">
