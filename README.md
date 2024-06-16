@@ -1,49 +1,67 @@
-# Job Talk (Work in Progress)
+## Job Talk
 
-Welcome to the Job Talk project! This is an ongoing project aimed at creating a comprehensive job portal where users can find job listings, apply for jobs, manage applications, and employers can post jobs and manage applications.
+<p align="center"><img src="https://socialify.git.ci/Abilash-Nambi/JOB-TALK/image?description=1&amp;descriptionEditable=Job%20Talk%20is%20a%20full-featured%20job%20portal%20built%20with%20the%20MERN%20stack%20(MongoDB%2C%20Express%2C%20React%2C%20Node.js).%20&amp;language=1&amp;name=1&amp;owner=1&amp;pattern=Circuit%20Board&amp;theme=Dark" alt="project-image"></p>
 
-## Current Status
+Job Talk is a full-featured job portal built with the MERN stack (MongoDB, Express, React, Node.js). It provides a seamless platform for candidates to find and apply for jobs, and for employers to post job listings and review applications. The application includes an admin dashboard for managing the entire system effectively. Whether you're looking to advance your career or find the perfect candidate, Job Talk simplifies the process with its intuitive and user-friendly interface.
 
-This project is currently in development. While the core functionality is being implemented, certain features may not be fully functional or polished yet. We're actively working on adding new features and improving existing ones.
+<h2>💻 Built with</h2>
 
-## Features
+Technologies used in the project:
+- **Frontend:**
+  - React (with Vite)
+  - React Router
+  - React Hook Form
+  - Redux for global state management
+  - React CountUp
+  - Custom hooks (useLoader, useToast, useLocalStorage, useRouter, useScrollToTop)
 
-- **Admin Panel**: An admin panel is being developed to manage users, job listings, and applications. This will provide administrative control over the entire system.
-  
-- **Employer Panel**: Employers will have access to a panel where they can post job listings, view applications, and manage their job postings.
-  
-- **User Dashboard**: Users will have a dashboard where they can view job listings, apply for jobs, and manage their applications.
+- **Backend:**
+  - Express.js
+  - MongoDB
+  - JWT for authentication
 
-- **Job Listings**: Users can browse through a list of available job listings, filter them based on various criteria, and view detailed information about each job.
+- **Others:**
+  - Cloudinary (for image uploads and management)
+  - Razorpay (for payment processing)
 
-- **Application Management**: Users can apply for jobs through the portal and manage their applications, including viewing, editing, and deleting them.
 
-- **Employer Application Management**: Employers can view applications submitted for their job listings, manage them, and take actions such as accepting or rejecting applications.
+<h2>🧐 Features</h2>
 
-## Usage
+### Authentication
+- Sign-up, log-in, and log-out functionalities
+- Forgot password: password reset secured; the user will receive the OTP via email
+- Admin login and dashboard: can control and see all jobs
 
-As the project is still under development, certain features may not be available or fully functional. However, you can still explore the existing functionality and provide feedback. Follow the instructions below to get started:
+### Employer
+- Add job, edit job, review applications, delete job
+- View their posted jobs
+- Activate and deactivate job postings
+- Subscribe and make a one-time payment to post jobs
+- Job Talk offers multiple subscription plans
 
-1. **Clone the Repository**: Clone this repository to your local machine using `git clone https://github.com/Abilash-Nambi/job-portal.git`.
+### Job Seekers
+- Apply for jobs
+- View their applications
+- Delete applied applications
 
-2. **Install Dependencies**: Navigate to the project directory and install the necessary dependencies using `npm install`.
+### Admin
+- Control everything in the system
+- Delete job postings
+- View all active and inactive jobs
+- User-friendly dashboard: can access everything from there
 
-3. **Run the Development Server**: Start the development server using `npm start`. This will launch the application in your browser, allowing you to interact with it.
+## Custom Hooks
 
-4. **Explore and Test**: Explore the features that are currently available and test them out. Keep in mind that some features may be placeholders or not fully implemented yet.
+- **useLoader**: Manages a global loader to provide a seamless loading experience across the application, improving user experience during data fetch operations.
+- **useToast**: Displays short-lived, non-intrusive messages to inform users about actions and updates in a charming and user-friendly manner.
+- **useLocalStorage**: Stores and retrieves data from the browser's local storage, ensuring persistent state across sessions and improving data management.
+- **useRouter**: Facilitates navigation and redirection within the application, and provides easy access to the current path and parameters, enhancing routing capabilities.
+- **useScrollToTop**: Automatically scrolls the page to the top on refresh, ensuring users have a consistent and pleasant browsing experience.
 
-## Contributing
+These custom hooks contribute to a smoother, more efficient, and user-friendly experience on Job Talk.
 
-We welcome contributions from the community to help improve this project. Whether you're interested in adding new features, fixing bugs, or improving documentation, your contributions are valuable. To contribute, please follow these steps:
 
-1. Fork the repository on GitHub.
+   
 
-2. Make your changes in a new branch.
 
-3. Submit a pull request with a clear description of your changes.
 
-4. Your pull request will be reviewed, and once accepted, your changes will be merged into the main project.
-
-## Contact
-
-If you have any questions, feedback, or suggestions regarding this project, please feel free to reach out to us at abilashn2704@gmail.com(mailto:abilashn2704@gmail.com).
