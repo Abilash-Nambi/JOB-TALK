@@ -62,4 +62,4 @@ These custom hooks contribute to a smoother, more efficient, and user-friendly e
 
 ---
 
-This README highlights the Razorpay payment integration and removes the installation note, providing a clear and comprehensive overview of your project.
+
