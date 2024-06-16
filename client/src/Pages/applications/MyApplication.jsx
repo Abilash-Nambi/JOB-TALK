@@ -29,7 +29,7 @@ const MyApplication = () => {
   const { isLoading, showLoader, hideLoader } = useLoader();
   const dispatch = useDispatch();
   const userDetials = useSelector((state) => state.user.user);
-  //console.log("🚀 + MyApplication + userDetials:", userDetials.role);
+  console.log("🚀 + MyApplication + userDetials:", userDetials.role);
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
@@ -155,19 +155,22 @@ const MyApplication = () => {
                       </li>
                     </ul>
                   </div>
-                  {!userDetials?.role == "Employer" && (
-                    <div className="flex md:flex-col-reverse flex-row-reverse pr-4 pb-3">
-                      <Button
-                        onClick={() => {
-                          setapplication(data._id),
-                            setJobId(data.jobId),
-                            setIsModalOpen(true);
-                        }}
-                        title="DELETE"
-                        className="bg-red-600 text-white active:bg-red-800 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                      />
-                    </div>
-                  )}
+
+                  <div
+                    className={`flex md:flex-col-reverse flex-row-reverse pr-4 pb-3 ${
+                      userDetials?.role == "Employer" ? "hidden" : "block"
+                    } `}
+                  >
+                    <Button
+                      onClick={() => {
+                        setapplication(data._id),
+                          setJobId(data.jobId),
+                          setIsModalOpen(true);
+                      }}
+                      title="DELETE"
+                      className="bg-red-600 text-white active:bg-red-800 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    />
+                  </div>
                 </div>
               ))}
             </>
