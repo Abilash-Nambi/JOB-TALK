@@ -28,6 +28,12 @@ const ApplicationForm = () => {
     }, 3000);
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setProgress(true);
@@ -59,7 +65,7 @@ const ApplicationForm = () => {
         <BreadCrumb title={"Job Application Page"} />
       </div>
       <div className="bg-[#FAFAFA]">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
           <div className="space-y-12 border p-5 mt-5">
             <div className="border-b border-gray-900/10 pb-12">
               <h2 className="text-base font-semibold leading-7 text-gray-900">
@@ -142,6 +148,7 @@ const ApplicationForm = () => {
                       id="name"
                       autoComplete="given-name"
                       className="create-job-input"
+                      required
                     />
                   </div>
                 </div>
@@ -179,6 +186,7 @@ const ApplicationForm = () => {
                       type="email"
                       autoComplete="email"
                       className="create-job-input"
+                      required
                     />
                   </div>
                 </div>
@@ -220,6 +228,7 @@ const ApplicationForm = () => {
                         autoComplete="phone"
                         className="create-job-input"
                         placeholder="mobile number"
+                        required
                       />
                     </div>
                   </div>
@@ -239,6 +248,7 @@ const ApplicationForm = () => {
                       id="address"
                       autoComplete="address"
                       className="create-job-input"
+                      required
                     />
                   </div>
                 </div>
@@ -257,6 +267,7 @@ const ApplicationForm = () => {
                       id="city"
                       autoComplete="address-level2"
                       className="create-job-input"
+                      required
                     />
                   </div>
                 </div>
@@ -275,6 +286,7 @@ const ApplicationForm = () => {
                       id="region"
                       autoComplete="address-level1"
                       className="create-job-input"
+                      required
                     />
                   </div>
                 </div>
@@ -293,6 +305,7 @@ const ApplicationForm = () => {
                       id="postal-code"
                       autoComplete="postal-code"
                       className="create-job-input"
+                      required
                     />
                   </div>
                 </div>
@@ -311,6 +324,7 @@ const ApplicationForm = () => {
                       rows={3}
                       className="create-job-input"
                       defaultValue={""}
+                      required
                     />
                   </div>
                   <p className="mt-3 text-sm leading-6 text-gray-600">
