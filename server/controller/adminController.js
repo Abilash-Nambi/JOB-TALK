@@ -255,7 +255,7 @@ const adminSearchJobs = async (req, res) => {
 const adminRemoveJob = async (req, res) => {
   try {
     const { role } = req.user;
-    if (role === "Job Seeker" || "Employer") {
+    if (role === "Job Seeker" || role === "Employer") {
       return res.status(400).json({
         message: "No premission to access this resource.",
       });

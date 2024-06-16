@@ -158,7 +158,7 @@ export const LogIn = () => {
 
                 <input
                   type="submit"
-                  className="py-1 px-4 border rounded bg-blue text-white text-sm"
+                  className="py-1 px-4 border rounded bg-blue text-white text-sm cursor-pointer"
                   value="Sign In"
                 />
                 <p className="text-sm">

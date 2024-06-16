@@ -105,7 +105,7 @@ const ForgetPassword = () => {
 
                   <input
                     type="submit"
-                    className="py-1 px-4 border rounded bg-blue text-white text-sm capitalize w-[262px] mt-2"
+                    className="cursor-pointer py-1 px-4 border rounded bg-blue text-white text-sm capitalize w-[262px] mt-2"
                     value="SEND OTP"
                   />
                 </div>

@@ -187,7 +187,7 @@ const SignUp = () => {
 
                 <input
                   type="submit"
-                  className="py-1 px-4 border rounded bg-blue text-white text-sm"
+                  className="py-1 cursor-pointer px-4 border rounded bg-blue text-white text-sm"
                   value="Sign up"
                 />
                 <p className="text-sm">

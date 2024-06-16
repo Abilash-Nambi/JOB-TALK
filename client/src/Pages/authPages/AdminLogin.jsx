@@ -163,24 +163,24 @@ const AdminLogin = () => {
 
                   <input
                     type="submit"
-                    className="py-1 px-4 border rounded bg-blue text-white text-sm"
+                    className="py-1 px-4 border rounded bg-blue text-white text-sm cursor-pointer"
                     value="Sign In"
                   />
-                  <p className="text-sm">
+                  {/* <p className="text-sm">
                     <Link to="/auth/forget-password">
                       <span className="text-blue font-semibold mt-0">
                         Forget Password ?
                       </span>
                     </Link>
-                  </p>
-                  <p className="text-sm">
+                  </p> */}
+                  {/* <p className="text-sm">
                     Don't have account yet?
                     <Link to="/auth/sign-up">
                       <span className="text-blue font-semibold mt-0 ml-1">
                         Click me
                       </span>
                     </Link>
-                  </p>
+                  </p> */}
                 </div>
               </form>
             </div>

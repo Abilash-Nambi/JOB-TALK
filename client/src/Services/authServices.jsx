@@ -81,7 +81,7 @@ export const adminSignOut = async (e, successToast, errorToast) => {
   try {
     e.preventDefault;
     const response = await axiosInstance.post("/admin/sign-out");
-    successToast("adim logged out successfully");
+    successToast("admin logged out successfully");
     return response;
   } catch (error) {
     //console.log("🚀 + userSignOut + error:", error);

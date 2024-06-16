@@ -14,7 +14,10 @@ import useToast from "../../hooks/useToast";
 import useLoader from "../../hooks/useLoader";
 import Input from "../../components/Input";
 import { Loader } from "../../components/CustomLoader";
-import { getAdminAllJob } from "../../Services/api/AdminEndpoints";
+import {
+  adminDeleteJob,
+  getAdminAllJob,
+} from "../../Services/api/AdminEndpoints";
 
 const DashBoardAllJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -44,7 +47,7 @@ const DashBoardAllJobs = () => {
     setIsModalOpen(!isModalOpen);
   };
   const handleDelete = async () => {
-    const res = await deleteJob(jobId, successToast, errorToast);
+    const res = await adminDeleteJob(jobId, successToast, errorToast);
     if (res.status === 200) {
       setIsModalOpen(false);
       fetchData();
