@@ -7,7 +7,7 @@ Job Talk is a full-featured job portal built with the MERN stack (MongoDB, Expre
 
 - **Frontend:**
   - React (with Vite)
-  - Tailwind CSS (with Vite)
+  - Tailwind CSS 
   - React Router
   - React Hook Form
   - Redux for global state management
