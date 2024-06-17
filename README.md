@@ -1,6 +1,13 @@
 ## LiveUrl: https://job-talk-xi.vercel.app/
 ## Job Talk
 
+
+
+
+https://github.com/Abilash-Nambi/JOB-TALK/assets/142148604/9c508ae7-3f6c-45cd-8f00-cc213e6c20ae
+
+
+
 Job Talk is a full-featured job portal built with the MERN stack (MongoDB, Express, React, Node.js). It provides a seamless platform for candidates to find and apply for jobs, and for employers to post job listings and review applications. The application includes an admin dashboard for managing the entire system effectively. Whether you're looking to advance your career or find the perfect candidate, Job Talk simplifies the process with its intuitive and user-friendly interface.
 
 ## Technologies
