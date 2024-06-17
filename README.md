@@ -1,4 +1,5 @@
 ## LiveUrl: https://job-talk-xi.vercel.app/
+⚠️ Important Note: Users need to wait for 5 to 10 seconds for the data to be fetched. This delay occurs because the backend is hosted on Render.com's free plan, which shuts down the server if there are no API calls for 15 minutes. When the server shuts down, it takes a few seconds to reactivate.
 ## Youtube Link : https://youtu.be/c2kau-lm1sk
 ## Job Talk
 
