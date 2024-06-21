@@ -65,7 +65,10 @@ function DropDown({ title, dropDownMenu, avatar, avatarTitle }) {
                 onClick={async (e) => {
                   const res = await userSignOut(e, successToast, errorToast);
 
-                  dispatch(logOut()), clearStorage("authToken"), navigate("/");
+                  dispatch(logOut()),
+                    clearStorage("authToken"),
+                    clearStorage("user"),
+                    navigate("/");
                 }}
               >
                 Sign out

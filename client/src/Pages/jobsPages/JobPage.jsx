@@ -22,16 +22,19 @@ const JobPage = () => {
   let { id } = useParams();
 
   const { user } = useSelector((state) => state?.user);
-  const { appliedJobs } = user;
+
+  useEffect(() => {
+    if (user !== null) {
+      const { appliedJobs } = user;
+      appliedJobs?.includes(id) ? setApplied(true) : setApplied(false);
+    }
+  }, []);
+
   // console.log("🚀 + JobPage + appliedJobs:", appliedJobs);
 
   useEffect(() => {
     fetchData();
     useScrollToTop();
-
-    if (appliedJobs?.includes(id)) {
-      setApplied(true);
-    }
   }, []);
 
   const fetchData = async () => {
@@ -87,7 +90,7 @@ const JobPage = () => {
                   {job.experienceLevel}
                 </span>
               </div>
-              {user?.role === "Job Seeker" && (
+              {user && user?.role === "Job Seeker" && (
                 <div className="flex items-center gap-3  text-primary/70">
                   <Button
                     title={"JOB TYPE"}
